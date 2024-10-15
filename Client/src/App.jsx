@@ -16,7 +16,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/account" element={<Account />} />
-        <Route path="/bucketlist" element={<BucketList />} />
+        <Route path="/account/:userID" element={<BucketList />} />
         <Route path="/bucketdetails/:bucketID" element={<BucketDetails />} />
         <Route path="/addbucket" element={<BucketAdd />} />
         <Route path="/editbucket/:bucketID" element={<BucketEdit />} />

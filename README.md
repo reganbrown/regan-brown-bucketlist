@@ -80,9 +80,11 @@ See attached folder of example mock ups
 
 ### Endpoints
 
-##### Bucket
+#### Account
 
-- GET - http://localhost${PORT}/buckets/ Provides a list of all buckets of authenticated user
+- GET - http://localhost${PORT}/account/:userID Provides a list of all buckets of authenticated user
+
+##### Bucket
 
 - GET - http://localhost${PORT}/buckets/:BucketID Provides the details of one bucket
 
