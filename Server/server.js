@@ -11,10 +11,12 @@ const { PORT, BACKEND_URL } = process.env;
 const app = express();
 
 import bucketRoutes from "./routes/bucket-routes.js";
+import chatRoutes from "./routes/chat-routes.js";
 
 app.use(cors());
 app.use(express.json());
 app.use("/bucket", bucketRoutes);
+app.use("/chat", chatRoutes);
 
 app.listen(PORT, () => {
   console.log(`Listening at ${BACKEND_URL}:${PORT}`);

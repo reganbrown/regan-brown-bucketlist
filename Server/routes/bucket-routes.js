@@ -6,7 +6,7 @@ const router = express.Router();
 router.route("/").post(bucketController.bucketAdd);
 
 router
-  .route("/:id")
+  .route("/:bucket_id")
   .get(bucketController.bucketDetails)
   .put(bucketController.bucketEdit)
   .delete(bucketController.bucketDelete);
