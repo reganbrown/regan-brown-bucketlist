@@ -10,4 +10,8 @@ export default {
     password: process.env.DB_PASSWORD,
     charset: "utf8",
   },
+  migrations: {
+    directory: "./migrations", // Path to your migrations folder
+    tableName: "knex_migrations", // This is where Knex will keep track of the migrations applied
+  },
 };
