@@ -1,33 +1,31 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home/Home";
+import Account from "./pages/Account/Account";
+import BucketList from "./pages/BucketList/BucketList";
+import BucketDetails from "./pages/BucketDetails/BucketDetails";
+import BucketEdit from "./pages/BucketEdit/BucketEdit";
+import BucketAdd from "./pages/BucketAdd/BucketAdd";
+import BucketExpenses from "./pages/BucketExpenses/BucketExpenses";
+import BucketSavings from "./pages/BucketSavings/BucketSavings";
+import BucketChat from "./pages/BucketChat/BucketChat";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/account" element={<Account />} />
+        <Route path="/bucketlist" element={<BucketList />} />
+        <Route path="/bucketdetails/:bucketID" element={<BucketDetails />} />
+        <Route path="/addbucket" element={<BucketAdd />} />
+        <Route path="/editbucket/:bucketID" element={<BucketEdit />} />
+        <Route path="/expenses/:bucketID" element={<BucketExpenses />} />
+        <Route path="/savings/:bucketID" element={<BucketSavings />} />
+        <Route path="/chat/:bucketID" element={<BucketChat />} />
+        <Route path="*" element={<h1>404 Page Not Found</h1>} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
