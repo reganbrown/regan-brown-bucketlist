@@ -9,6 +9,7 @@ import BucketAdd from "./pages/BucketAdd/BucketAdd";
 import BucketExpenses from "./pages/BucketExpenses/BucketExpenses";
 import BucketSavings from "./pages/BucketSavings/BucketSavings";
 import BucketChat from "./pages/BucketChat/BucketChat";
+import "./App.scss";
 
 function App() {
   return (
