@@ -98,9 +98,7 @@ See attached folder of example mock ups
 
 - POST - http://localhost${PORT}/expenses/:BucketID Creates an expense list for the bucket
 
-- PUT - http://localhost${PORT}/expenses/:BucketID Updates the expense list for the bucket
-
-- DELETE - http://localhost${PORT}/expenses/:BucketID Deletes an expense list associated to a bucket
+- DELETE - http://localhost${PORT}/expenses/:BucketID/expenses/:ExpensesID Deletes an expense list associated to a bucket
 
 ##### Savings
 
@@ -108,9 +106,15 @@ See attached folder of example mock ups
 
 - POST - http://localhost${PORT}/savings/:BucketID Creates an savings list for the bucket
 
-- PUT - http://localhost${PORT}/savings/:BucketID Updates the savings list for the bucket
+- DELETE - http://localhost${PORT}/savings/:BucketID/savings/:SavingsID Deletes a savings list associated to a bucket
 
-- DELETE - http://localhost${PORT}/savings/:BucketID Deletes a savings list associated to a bucket
+##### Chat
+
+- GET - http://localhost${PORT}/chat/:BucketID Returns the savings list for a bucket
+
+- POST - http://localhost${PORT}/chat/:BucketID Creates an savings list for the bucket
+
+- DELETE - http://localhost${PORT}/chat/:BucketID/chats/:ChatID Deletes a savings list associated to a bucket
 
 ## Roadmap
 
