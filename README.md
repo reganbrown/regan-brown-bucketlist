@@ -116,7 +116,7 @@ See attached folder of example mock ups
 
 See attached Roadmap
 
-[](ProposalAssets/Roadmap/RoadMap.pdf)
+![](ProposalAssets/Roadmap/Roadmap.jpg)
 
 ---
 
