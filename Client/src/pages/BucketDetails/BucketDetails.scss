@@ -1,3 +1,35 @@
+@use "../../styles/variables" as *;
+
+body {
+  color: grey;
+}
+
+.travel-primary {
+  color: $travel-primary;
+}
+
+.travel-secondary {
+  background-color: $travel-secondary;
+}
+
+.adventure-primary {
+  color: $adventure-primary;
+}
+
+.adventure-secondary {
+  background-color: $adventure-secondary;
+}
 .banner-image {
   height: 40vw;
+}
+
+.container {
+  text-align: center;
+}
+
+.expense-list {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  padding: 0.5rem 0;
 }
