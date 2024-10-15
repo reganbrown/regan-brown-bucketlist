@@ -15,7 +15,7 @@ export async function up(knex) {
       .onDelete("CASCADE");
     table.string("saver_name").notNullable();
     table.decimal("amount", 10, 2).notNullable();
-    table.timestamp("date_added").defaultTo(knex.fn.now());
+    table.bigint("date_added").defaultTo(Date.now());
     table.timestamps(true, true);
   });
 }

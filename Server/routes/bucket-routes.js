@@ -35,10 +35,10 @@ router
 
 router
   .route("/:bucket_id/expenses")
-  .get(ex.savingsList)
-  .post(savingsController.savingsAdd);
+  .get(expensesController.expenseList)
+  .post(expensesController.expenseAdd);
 
 router
-  .route("/:bucket_id/savings/:savings_id")
-  .delete(savingsController.savingsDelete);
+  .route("/:bucket_id/expenses/:expense_id")
+  .delete(expensesController.expenseDelete);
 export default router;

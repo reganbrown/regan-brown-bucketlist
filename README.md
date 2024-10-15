@@ -78,6 +78,12 @@ See attached folder of example mock ups
 - Expense sheet will have a FK to a bucket and have expense names, amounts, and notes
 - Savings sheet will have a FK to a bucket and have contributiond details
 
+![](ProposalAssets/DB/user_data.png)
+![](ProposalAssets/DB/buckets_data.png)
+![](ProposalAssets/DB/expenses_data.png)
+![](ProposalAssets/DB/savings_data.png)
+![](ProposalAssets/DB/chats_data.png)
+
 ### Endpoints
 
 ##### Bucket

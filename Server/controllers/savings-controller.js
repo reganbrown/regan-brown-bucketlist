@@ -6,6 +6,7 @@ const knex = initKnex(configuration);
 
 const savingsAdd = async (req, res) => {
   const { bucket_id } = req.params;
+  const user_id = "1"; // hardcoded until auth
   try {
     const bucketExists = await knex("buckets").where({ id: bucket_id }).first();
     if (!bucketExists) {
@@ -14,9 +15,14 @@ const savingsAdd = async (req, res) => {
       });
     }
 
+    const user = await knex("users").where({ id: user_id }).first();
+    if (!user) {
+      return res.status(404).send("user not found");
+    }
+
     const newSavings = {
       bucket_id: bucket_id,
-      saver_name: req.body.name,
+      saver_name: user.name,
       amount: req.body.amount,
       date_added: Date.Now(),
     };
