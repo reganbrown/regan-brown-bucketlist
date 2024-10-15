@@ -16,13 +16,19 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/account" element={<Account />} />
-        <Route path="/account/:userID" element={<BucketList />} />
-        <Route path="/bucketdetails/:bucketID" element={<BucketDetails />} />
-        <Route path="/addbucket" element={<BucketAdd />} />
-        <Route path="/editbucket/:bucketID" element={<BucketEdit />} />
-        <Route path="/expenses/:bucketID" element={<BucketExpenses />} />
-        <Route path="/savings/:bucketID" element={<BucketSavings />} />
-        <Route path="/chat/:bucketID" element={<BucketChat />} />
+        <Route path="/bucketlist" element={<BucketList />} />
+        <Route path="/bucketlist/:bucketID" element={<BucketDetails />} />
+        <Route path="/bucketlist/addbucket" element={<BucketAdd />} />
+        <Route path="/bucketlist/:bucketID/edit" element={<BucketEdit />} />
+        <Route
+          path="/bucketlist/:bucketID/expenses"
+          element={<BucketExpenses />}
+        />
+        <Route
+          path="/bucketlist/:bucketID/savings"
+          element={<BucketSavings />}
+        />
+        <Route path="/bucketlist/:bucketID/chat" element={<BucketChat />} />
         <Route path="*" element={<h1>404 Page Not Found</h1>} />
       </Routes>
     </BrowserRouter>
