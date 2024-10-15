@@ -3,9 +3,11 @@ import configuration from "../knexfile.js";
 const knex = initKnex(configuration);
 
 // user_id is hardcoded in all instances until I figure out user authentication
+const { USER_ID } = process.env;
 
 const chatAdd = async (req, res) => {
   const { bucket_id } = req.params;
+
   try {
     const bucketExists = await knex("buckets").where({ id: bucket_id }).first();
     if (!bucketExists) {
@@ -15,7 +17,7 @@ const chatAdd = async (req, res) => {
     }
 
     const newChat = {
-      user_id: "1",
+      user_id: USER_ID,
       bucket_id: bucket_id,
       message: req.body.message,
     };

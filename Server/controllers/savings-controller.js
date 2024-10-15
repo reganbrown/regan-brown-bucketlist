@@ -3,10 +3,10 @@ import configuration from "../knexfile.js";
 const knex = initKnex(configuration);
 
 // user_id is hardcoded in all instances until I figure out user authentication
+const { USER_ID } = process.env;
 
 const savingsAdd = async (req, res) => {
   const { bucket_id } = req.params;
-  const user_id = "1"; // hardcoded until auth
   try {
     const bucketExists = await knex("buckets").where({ id: bucket_id }).first();
     if (!bucketExists) {
@@ -15,7 +15,7 @@ const savingsAdd = async (req, res) => {
       });
     }
 
-    const user = await knex("users").where({ id: user_id }).first();
+    const user = await knex("users").where({ id: USER_ID }).first();
     if (!user) {
       return res.status(404).send("user not found");
     }

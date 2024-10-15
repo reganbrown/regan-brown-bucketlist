@@ -2,20 +2,20 @@ import initKnex from "knex";
 import configuration from "../knexfile.js";
 const knex = initKnex(configuration);
 // user_id is hardcoded in all instances until you implement user authentication
+const { USER_ID } = process.env;
 
 const bucketList = async (req, res) => {
-  const buckets = await knex("buckets").where({ user_id: 1 });
+  const buckets = await knex("buckets").where({ user_id: USER_ID });
   res.status(200).json(buckets);
 };
 
 const bucketAdd = async (req, res) => {
   try {
-    const user = "1"; // Hardcoded user ID
     const newBucket = {
       image_url: req.body.image_url,
       title: req.body.title,
       theme_name: req.body.theme_name,
-      user_id: user,
+      user_id: USER_ID,
     };
 
     const [insertedID] = await knex("buckets")
