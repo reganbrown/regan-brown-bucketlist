@@ -8,12 +8,12 @@ export async function seed(knex) {
   await knex("savings").insert([
     {
       bucket_id: 1,
-      saver_name: "Regan Brown",
+      user_id: 1,
       amount: 100.0,
     },
     {
       bucket_id: 2,
-      saver_name: "Tyler Brown",
+      user_id: 2,
       amount: 200.0,
     },
   ]);

@@ -14,7 +14,6 @@ export async function seed(knex) {
         "https://www.discoverboating.com/sites/default/files/boating-camping-activity.jpg",
       title: "Camping Trip",
       theme_name: "Adventure",
-      user_id: 1,
     },
     {
       id: 2,
@@ -22,7 +21,6 @@ export async function seed(knex) {
         "https://www.flightgift.com/media/wp/FG/2024/08/Christmas-in-NYC-3.jpg",
       title: "NYC Christmas",
       theme_name: "Travel",
-      user_id: 1,
     },
     {
       id: 3,
@@ -30,7 +28,6 @@ export async function seed(knex) {
         "https://thesavvybackpacker.com/wp-content/uploads/2013/08/backpacking-europe-packing.jpg",
       title: "Backpack in Europe",
       theme_name: "Travel",
-      user_id: 2,
     },
   ]);
 }

@@ -2,11 +2,14 @@
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> }
  */
-export async function up(knex) {
-  return knex.schema.createTable("savings", function (table) {
-    table.increments("id");
+/**
+ * @param { import("knex").Knex } knex
+ * @returns { Promise<void> }
+ */
 
-    // Foreign key to the buckets table
+export async function up(knex) {
+  return knex.schema.createTable("bucket_users", (table) => {
+    table.increments("id");
     table
       .integer("bucket_id")
       .unsigned()
@@ -14,8 +17,6 @@ export async function up(knex) {
       .references("id")
       .inTable("buckets")
       .onDelete("CASCADE");
-
-    // Foreign key to the users table
     table
       .integer("user_id")
       .unsigned()
@@ -23,13 +24,11 @@ export async function up(knex) {
       .references("id")
       .inTable("users")
       .onDelete("CASCADE");
-
-    table.decimal("amount", 10, 2).notNullable();
-    table.bigint("date_added").defaultTo(Date.now());
+    table.string("role").defaultTo("contributor"); // Optional role field
     table.timestamps(true, true);
   });
 }
 
 export async function down(knex) {
-  return knex.schema.dropTable("savings");
+  return knex.schema.dropTable("bucket_users");
 }

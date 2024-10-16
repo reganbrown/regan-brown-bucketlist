@@ -8,7 +8,7 @@ export async function seed(knex) {
 
   // Insert new sample entries
   await knex("users").insert([
-    { id: 1, name: "Regan Brown" },
-    { id: 2, name: "Tyler Brown" },
+    { id: 1, name: "Regan Brown", email: "regan@regan.com" },
+    { id: 2, name: "Tyler Brown", email: "tyler@tyler.com" },
   ]);
 }

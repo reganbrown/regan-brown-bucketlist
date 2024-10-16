@@ -5,8 +5,20 @@ const knex = initKnex(configuration);
 const { USER_ID } = process.env;
 
 const bucketList = async (req, res) => {
-  const buckets = await knex("buckets").where({ user_id: USER_ID });
-  res.status(200).json(buckets);
+  try {
+    const buckets = await knex("buckets")
+      .join("bucket_users", "buckets.id", "bucket_users.bucket_id")
+      .where({ "bucket_users.user_id": USER_ID })
+      .select("buckets.*");
+
+    res.status(200).json(buckets);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      message: "Unable to fetch buckets",
+      error: error.message,
+    });
+  }
 };
 
 const bucketAdd = async (req, res) => {
@@ -15,12 +27,17 @@ const bucketAdd = async (req, res) => {
       image_url: req.body.image_url,
       title: req.body.title,
       theme_name: req.body.theme_name,
-      user_id: USER_ID,
     };
 
     const [insertedID] = await knex("buckets")
       .insert(newBucket)
       .returning("id");
+
+    await knex("bucket_users").insert({
+      user_id: USER_ID, // hardcoded user ID until auth
+      bucket_id: insertedID,
+      role: "owner",
+    });
 
     const insertedBucket = await knex("buckets")
       .where({ id: insertedID })
@@ -57,6 +74,29 @@ const bucketDetails = async (req, res) => {
 
 const bucketEdit = async (req, res) => {
   try {
+    const bucketFound = await knex("buckets")
+      .where({ id: req.params.bucket_id })
+      .first();
+
+    if (!bucketFound) {
+      return res.status(404).json({
+        message: `Bucket with ID ${req.params.bucket_id} not found`,
+      });
+    }
+
+    const userRole = await knex("bucket_users")
+      .where({
+        user_id: USER_ID, // auth later
+        bucket_id: req.params.bucket_id,
+      })
+      .first();
+
+    if (!userRole || userRole.role !== "owner") {
+      return res.status(403).json({
+        message: "You are not authorized to edit this bucket.",
+      });
+    }
+
     const bucketUpdated = await knex("buckets")
       .where({ id: req.params.bucket_id })
       .update({
@@ -90,16 +130,34 @@ const bucketDelete = async (req, res) => {
     const bucketToDelete = await knex("buckets")
       .where({ id: req.params.bucket_id })
       .first();
+
     if (!bucketToDelete) {
       return res
         .status(404)
         .json({ message: `Bucket with ID ${req.params.bucket_id} not found` });
     }
+
+    const userRole = await knex("bucket_users")
+      .where({
+        user_id: USER_ID, // hardcoded till auth
+        bucket_id: req.params.bucket_id,
+      })
+      .first();
+
+    if (!userRole || userRole.role !== "owner") {
+      return res.status(403).json({
+        message: "You are not authorized to delete this bucket.",
+      });
+    }
+
     await knex("expenses").where({ bucket_id: req.params.bucket_id }).del();
     await knex("savings").where({ bucket_id: req.params.bucket_id }).del();
     await knex("chats").where({ bucket_id: req.params.bucket_id }).del();
 
+    await knex("bucket_users").where({ bucket_id: req.params.bucket_id }).del();
+
     await knex("buckets").where({ id: req.params.bucket_id }).del();
+
     res.status(204).end();
   } catch (error) {
     console.error(error);

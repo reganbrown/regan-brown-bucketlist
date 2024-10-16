@@ -17,7 +17,7 @@ export async function seed(knex) {
     },
     {
       id: 2,
-      bucket_id: 2,
+      bucket_id: 3,
       expense_name: "Travel Tickets",
       amount: 200.0,
       notes: "Roundtrip tickets for Grand Canyon visit.",
