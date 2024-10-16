@@ -1,5 +1,9 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import bucketLogo from "../../assets/bucket.svg";
+import arrowBack from "../../assets/arrow-back.svg";
+import accountLogo from "../../assets/account.svg";
 import axios from "axios";
 import "./BucketDetails.scss";
 
@@ -41,20 +45,83 @@ export default function BucketDetails() {
     <div
       className={
         bucket.theme_name === "Adventure"
-          ? "container adventure-secondary"
-          : "container travel-secondary"
+          ? "container adventure-page"
+          : bucket.theme_name === "Travel"
+          ? "container travel-page"
+          : bucket.theme_name === "Rose"
+          ? "container rose-page"
+          : bucket.theme_name === "Grink"
+          ? "container grink-page"
+          : bucket.theme_name === "Royal"
+          ? "container royal-page"
+          : bucket.theme_name === "Elegant"
+          ? "container elegant-page"
+          : "container coffee-page"
       }
     >
+      <div className="header">
+        <Link to={`/bucketlist`}>
+          <img
+            src={arrowBack}
+            className={
+              bucket.theme_name === "Adventure"
+                ? "logo adventure-filter"
+                : bucket.theme_name === "Travel"
+                ? "logo travel-filter"
+                : bucket.theme_name === "Rose"
+                ? "logo rose-filter"
+                : bucket.theme_name === "Grink"
+                ? "logo grink-filter"
+                : bucket.theme_name === "Royal"
+                ? "logo royal-filter"
+                : bucket.theme_name === "Elegant"
+                ? "logo elegant-filter"
+                : "logo coffee-filter"
+            }
+          />
+        </Link>
+        <Link to={`/`}>
+          <img
+            src={bucketLogo}
+            className={
+              bucket.theme_name === "Adventure"
+                ? "logo adventure-filter"
+                : bucket.theme_name === "Travel"
+                ? "logo travel-filter"
+                : bucket.theme_name === "Rose"
+                ? "logo rose-filter"
+                : bucket.theme_name === "Grink"
+                ? "logo grink-filter"
+                : bucket.theme_name === "Royal"
+                ? "logo royal-filter"
+                : bucket.theme_name === "Elegant"
+                ? "logo elegant-filter"
+                : "logo coffee-filter"
+            }
+          />
+        </Link>
+        <img
+          src={accountLogo}
+          className={
+            bucket.theme_name === "Adventure"
+              ? "logo adventure-filter"
+              : bucket.theme_name === "Travel"
+              ? "logo travel-filter"
+              : bucket.theme_name === "Rose"
+              ? "logo rose-filter"
+              : bucket.theme_name === "Grink"
+              ? "logo grink-filter"
+              : bucket.theme_name === "Royal"
+              ? "logo royal-filter"
+              : bucket.theme_name === "Elegant"
+              ? "logo elegant-filter"
+              : "logo coffee-filter"
+          }
+        />
+      </div>
       <img src={bucket.image_url} className="banner-image" />
-      <h1
-        className={
-          bucket.theme_name === "Adventure"
-            ? "adventure-primary"
-            : "travel-primary"
-        }
-      >
-        Bucket Details: {bucket.title}
-      </h1>
+
+      <h1>Bucket Details: {bucket.title}</h1>
       <h2>Expenses</h2>
       {expenses.map((expense) => (
         <div key={expense.id} className="expense-list">

@@ -1,30 +1,94 @@
 @use "../../styles/variables" as *;
 
-body {
-  color: grey;
+.logo {
+  width: 30px;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
 }
 
-.travel-primary {
+.travel-filter {
+  filter: invert(19%) sepia(18%) saturate(1287%) hue-rotate(74deg)
+    brightness(98%) contrast(94%);
+}
+
+.travel-page {
+  background-color: $travel-secondary;
   color: $travel-primary;
 }
 
-.travel-secondary {
-  background-color: $travel-secondary;
+.adventure-filter {
+  filter: invert(19%) sepia(80%) saturate(2346%) hue-rotate(349deg)
+    brightness(99%) contrast(99%);
 }
 
-.adventure-primary {
+.adventure-page {
+  background-color: $adventure-secondary;
   color: $adventure-primary;
 }
 
-.adventure-secondary {
-  background-color: $adventure-secondary;
+.rose-filter {
+  filter: invert(82%) sepia(4%) saturate(2070%) hue-rotate(316deg)
+    brightness(99%) contrast(95%);
 }
+
+.rose-page {
+  background-color: $rose-secondary;
+  color: $rose-primary;
+}
+
+.grink-filter {
+  filter: invert(79%) sepia(12%) saturate(994%) hue-rotate(291deg)
+    brightness(97%) contrast(92%);
+}
+
+.grink-page {
+  background-color: $grink-secondary;
+  color: $grink-primary;
+}
+
+.royal-filter {
+  filter: invert(75%) sepia(69%) saturate(4086%) hue-rotate(8deg)
+    brightness(102%) contrast(101%);
+}
+.royal-page {
+  background-color: $royal-secondary;
+  color: $royal-primary;
+}
+
+.elegant-filter {
+  filter: invert(32%) sepia(18%) saturate(657%) hue-rotate(230deg)
+    brightness(92%) contrast(86%);
+}
+
+.elegant-page {
+  background-color: $elegant-secondary;
+  color: $elegant-primary;
+}
+
+.coffee-filter {
+  filter: invert(23%) sepia(8%) saturate(3609%) hue-rotate(324deg)
+    brightness(92%) contrast(87%);
+}
+.coffee-page {
+  background-color: $coffee-secondary;
+  color: $coffee-primary;
+}
+
 .banner-image {
-  height: 40vw;
+  width: 100%;
+  height: 25vw;
+  object-fit: cover;
 }
 
 .container {
   text-align: center;
+}
+
+.none {
+  color: white;
 }
 
 .expense-list {

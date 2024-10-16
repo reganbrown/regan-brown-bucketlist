@@ -29,5 +29,40 @@ export async function seed(knex) {
       title: "Backpack in Europe",
       theme_name: "Travel",
     },
+    {
+      id: 4,
+      image_url:
+        "https://thesavvybackpacker.com/wp-content/uploads/2013/08/backpacking-europe-packing.jpg",
+      title: "Grink Theme",
+      theme_name: "Grink",
+    },
+    {
+      id: 5,
+      image_url:
+        "https://thesavvybackpacker.com/wp-content/uploads/2013/08/backpacking-europe-packing.jpg",
+      title: "Royal Theme",
+      theme_name: "Royal",
+    },
+    {
+      id: 6,
+      image_url:
+        "https://thesavvybackpacker.com/wp-content/uploads/2013/08/backpacking-europe-packing.jpg",
+      title: "Elegant Theme",
+      theme_name: "Elegant",
+    },
+    {
+      id: 7,
+      image_url:
+        "https://thesavvybackpacker.com/wp-content/uploads/2013/08/backpacking-europe-packing.jpg",
+      title: "Cofffee Theme",
+      theme_name: "Coffee",
+    },
+    {
+      id: 8,
+      image_url:
+        "https://thesavvybackpacker.com/wp-content/uploads/2013/08/backpacking-europe-packing.jpg",
+      title: "Rose Theme",
+      theme_name: "Rose",
+    },
   ]);
 }
