@@ -120,8 +120,8 @@ export default function BucketDetails() {
         />
       </div>
       <img src={bucket.image_url} className="banner-image" />
-
-      <h1>Bucket Details: {bucket.title}</h1>
+      <div className="bucket-title">BUCKET LIST</div>
+      <h1>{bucket.title}</h1>
       <h2>Expenses</h2>
       {expenses.map((expense) => (
         <div key={expense.id} className="expense-list">
@@ -139,6 +139,10 @@ export default function BucketDetails() {
           <p>{item.date_added}</p>
         </div>
       ))}
+
+      <Link to={`/bucketlist/${bucketID}/edit`} className="link">
+        <div className="list-item">EDIT</div>
+      </Link>
     </div>
   );
 }

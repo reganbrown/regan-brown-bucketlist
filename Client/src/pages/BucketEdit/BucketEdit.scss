@@ -1,0 +1,29 @@
+@use "../../styles/fonts" as *;
+@use "../../styles/mixins" as *;
+@use "../../styles//variables" as *;
+@use "../../styles/global";
+
+.edit-form {
+  margin-top: 3rem;
+  margin-bottom: 10rem;
+}
+.form-input {
+  margin-bottom: 1rem;
+  margin-left: 1rem;
+}
+
+.button {
+  border: none;
+  cursor: pointer;
+  margin: 2rem;
+}
+
+.save-button {
+  width: 3rem;
+  height: 3rem;
+}
+
+.delete-button {
+  width: 3rem;
+  height: 3rem;
+}
