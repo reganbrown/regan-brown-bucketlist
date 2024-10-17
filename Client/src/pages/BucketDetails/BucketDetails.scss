@@ -9,14 +9,29 @@
 
 .banner-image {
   width: 100%;
-  height: 25vw;
+  height: 30vw;
   object-fit: cover;
 }
 
-.container {
-  text-align: center;
+.title {
   width: 100%;
-  height: 100vh;
+  font-size: 60px;
+}
+
+.bucket-body {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.bucket-links {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: center;
+  gap: 2rem;
 }
 
 .none {
@@ -28,4 +43,61 @@
   justify-content: center;
   gap: 1rem;
   padding: 0.5rem 0;
+}
+
+.bucket-links__wrapper {
+  width: 100%;
+}
+
+.edit-button {
+  margin: auto;
+  display: flex;
+  width: 38rem;
+  height: 4rem;
+  background-color: none;
+  color: white;
+  border: 1px solid white;
+  border-radius: 8px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.finance-button {
+  margin: auto;
+  display: flex;
+  width: 18rem;
+  height: 4rem;
+  background-color: none;
+  color: white;
+  border: 1px solid white;
+  border-radius: 8px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.contributor-hidden {
+  display: none;
+}
+
+.app-wrapper-left {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  height: 20rem;
+}
+
+.app-wrapper-right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+  height: 20rem;
+  padding: 2rem;
+}
+.finances {
+  width: 100%;
 }

@@ -16,13 +16,23 @@ html {
   margin: 0;
 }
 
+.container {
+  text-align: center;
+  width: 100%;
+  height: 100vh;
+}
+
 .header {
+  width: 100%;
   display: flex;
   justify-content: space-between;
-  padding: 1rem;
+  align-items: center;
+  padding: 0 2rem;
+  height: 5rem;
 }
 
 .bucket-title {
+  width: 100%;
   font-size: 1.5rem;
   @include rajdhani-regular;
 }

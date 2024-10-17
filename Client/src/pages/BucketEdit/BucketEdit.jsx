@@ -28,9 +28,13 @@ export default function BucketEdit() {
   ];
 
   const getBucket = async () => {
-    let results = await axios.get(`http://localhost:8080/bucket/${bucketID}`);
-    setBucketTitle(results.data.title);
-    setBucketTheme(results.data.theme_name);
+    try {
+      let results = await axios.get(`http://localhost:8080/bucket/${bucketID}`);
+      setBucketTitle(results.data.bucket.title);
+      setBucketTheme(results.data.bucket.theme_name);
+    } catch (error) {
+      navigate("/404");
+    }
   };
 
   async function updateBucketDetails() {
@@ -41,6 +45,7 @@ export default function BucketEdit() {
       };
 
       await axios.put(`http://localhost:8080/bucket/${bucketID}`, bucketUpdate);
+      navigate(`/bucketlist/${bucketID}`);
     } catch (error) {
       console.log(error);
     }
@@ -71,7 +76,6 @@ export default function BucketEdit() {
     event.preventDefault();
 
     updateBucketDetails();
-    navigate(`/bucketlist/${bucketID}`);
   }
 
   return (

@@ -1,45 +1,84 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import bucketLogo from "../../assets/bucket.svg";
 import arrowBack from "../../assets/arrow-back.svg";
 import accountLogo from "../../assets/account.svg";
 import axios from "axios";
 import "./BucketDetails.scss";
+import { CircularProgressbar } from "react-circular-progressbar";
+import "react-circular-progressbar/dist/styles.css";
 
 export default function BucketDetails() {
+  let navigate = useNavigate();
   let { bucketID } = useParams();
 
   const [bucket, setBucket] = useState([]);
-  const [expenses, setExpenses] = useState([]);
-  const [savings, setSavings] = useState([]);
 
-  const getBucket = async () => {
-    let results = await axios.get(`http://localhost:8080/bucket/${bucketID}`);
-    setBucket(results.data);
-  };
+  const [userRole, setUserRole] = useState([]);
+
+  const [expensesTotal, setExpensesTotal] = useState();
+
+  const [savingsTotal, setSavingsTotal] = useState();
+  const [percent, setPercent] = useState();
 
   const getExpenses = async () => {
     let results = await axios.get(
       `http://localhost:8080/bucket/${bucketID}/expenses`
     );
-    console.log(results.data);
-    setExpenses(results.data);
+    let result = results.data;
+    let total = 0;
+    result.map((item) => {
+      total = total + Number(item.amount);
+    });
+    setExpensesTotal(total);
   };
 
   const getSavings = async () => {
     let results = await axios.get(
       `http://localhost:8080/bucket/${bucketID}/savings`
     );
-    console.log(results.data);
-    setSavings(results.data);
+    let result = results.data;
+    let total = 0;
+    result.map((item) => {
+      total = total + Number(item.amount);
+    });
+    setSavingsTotal(total);
   };
+
+  const getBucket = async () => {
+    try {
+      let results = await axios.get(`http://localhost:8080/bucket/${bucketID}`);
+      setBucket(results.data.bucket);
+      setUserRole(results.data.userRole);
+    } catch (error) {
+      navigate("/404");
+    }
+  };
+
+  function percentage() {
+    let percent = (savingsTotal / expensesTotal) * 100;
+    setPercent(Math.round(percent));
+  }
 
   useEffect(() => {
     getBucket();
     getExpenses();
     getSavings();
-  }, []);
+  }, [bucketID]);
+
+  useEffect(() => {
+    if (expensesTotal !== undefined && savingsTotal !== undefined) {
+      if (expensesTotal === 0 && savingsTotal === 0) {
+        setPercent(0);
+      } else if (expensesTotal === 0 && savingsTotal !== 0) {
+        setPercent(100);
+      } else {
+        percentage();
+      }
+    }
+  }, [expensesTotal, savingsTotal]);
 
   return (
     <div
@@ -120,29 +159,78 @@ export default function BucketDetails() {
         />
       </div>
       <img src={bucket.image_url} className="banner-image" />
-      <div className="bucket-title">BUCKET LIST</div>
-      <h1>{bucket.title}</h1>
-      <h2>Expenses</h2>
-      {expenses.map((expense) => (
-        <div key={expense.id} className="expense-list">
-          <p>{expense.expense_name}</p>
-          <p>{expense.amount}</p>
-          <p>{expense.notes}</p>
-        </div>
-      ))}
+      <div className="bucket-body">
+        <div className="bucket-title">BUCKET LIST</div>
+        <div className="app-wrapper-left">
+          <h1 className="title">{bucket.title}</h1>
+          <div className="bucket-links">
+            <Link to={`/bucketlist/${bucketID}/expenses`} className="link">
+              <div className="finance-button">EXPENSES</div>
+            </Link>
 
-      <h2>Savings</h2>
-      {savings.map((item) => (
-        <div key={item.id} className="expense-list">
-          <p>{item.saver_name}</p>
-          <p>{item.amount}</p>
-          <p>{item.date_added}</p>
-        </div>
-      ))}
+            <Link to={`/bucketlist/${bucketID}/savings`} className="link">
+              <div className="finance-button">SAVINGS</div>
+            </Link>
 
-      <Link to={`/bucketlist/${bucketID}/edit`} className="link">
-        <div className="list-item">EDIT</div>
-      </Link>
+            <div className="bucket-links__wrapper">
+              <Link
+                to={`/bucketlist/${bucketID}/edit`}
+                className={userRole === "owner" ? "link" : "contributor-hidden"}
+              >
+                <div
+                  className={
+                    userRole === "owner" ? "edit-button" : "contributor-hidden"
+                  }
+                >
+                  EDIT
+                </div>
+              </Link>
+            </div>
+          </div>
+        </div>
+        <div className="app-wrapper-right">
+          <CircularProgressbar
+            value={percent}
+            text={`${percent}%`}
+            styles={{
+              path: {
+                stroke:
+                  bucket.theme_name === "Adventure"
+                    ? "#bf1717"
+                    : bucket.theme_name === "Travel"
+                    ? "#1e3f20"
+                    : bucket.theme_name === "Rose"
+                    ? "#f7c1bb"
+                    : bucket.theme_name === "Grink"
+                    ? "#edadc7"
+                    : bucket.theme_name === "Royal"
+                    ? "#eca400"
+                    : bucket.theme_name === "Elegant"
+                    ? "#5f506b"
+                    : "#63372c",
+              },
+              // Customize the text
+              text: {
+                // Text color
+                fill:
+                  bucket.theme_name === "Adventure"
+                    ? "#bf1717"
+                    : bucket.theme_name === "Travel"
+                    ? "#1e3f20"
+                    : bucket.theme_name === "Rose"
+                    ? "#f7c1bb"
+                    : bucket.theme_name === "Grink"
+                    ? "#edadc7"
+                    : bucket.theme_name === "Royal"
+                    ? "#eca400"
+                    : bucket.theme_name === "Elegant"
+                    ? "#5f506b"
+                    : "#63372c",
+              },
+            }}
+          />
+        </div>
+      </div>
     </div>
   );
 }

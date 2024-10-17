@@ -24,7 +24,7 @@ export async function up(knex) {
       .references("id")
       .inTable("users")
       .onDelete("CASCADE");
-    table.string("role").defaultTo("contributor"); // Optional role field
+    table.string("role").defaultTo("contributor");
     table.timestamps(true, true);
   });
 }

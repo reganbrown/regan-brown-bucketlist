@@ -57,12 +57,31 @@ const bucketDetails = async (req, res) => {
     const bucketFound = await knex("buckets")
       .where({ id: req.params.bucket_id })
       .first();
+
     if (!bucketFound) {
       return res.status(404).json({
         message: `Bucket with ID ${req.params.bucket_id} not found`,
       });
     }
-    res.status(200).json(bucketFound);
+
+    const userRole = await knex("bucket_users")
+      .where({
+        user_id: USER_ID, // hardcoded user ID for now
+        bucket_id: req.params.bucket_id,
+      })
+      .select("role")
+      .first();
+
+    if (!userRole) {
+      return res.status(403).json({
+        message: "You are not authorized to view this bucket.",
+      });
+    }
+
+    res.status(200).json({
+      bucket: bucketFound,
+      userRole: userRole.role,
+    });
   } catch (error) {
     console.error(error);
     res.status(500).json({
