@@ -4,12 +4,11 @@ import axios from "axios";
 
 export default function BucketSavings() {
   let { bucketID } = useParams();
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const [savings, setSavings] = useState([]);
 
   const getSavings = async () => {
-    let results = await axios.get(
-      `http://localhost:8080/bucket/${bucketID}/savings`
-    );
+    let results = await axios.get(`${backendUrl}/bucket/${bucketID}/savings`);
     setSavings(results.data);
   };
 

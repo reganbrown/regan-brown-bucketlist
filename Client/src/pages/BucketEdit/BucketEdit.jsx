@@ -11,6 +11,7 @@ import axios from "axios";
 import "./BucketEdit.scss";
 
 export default function BucketEdit() {
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
   let navigate = useNavigate();
   let { bucketID } = useParams();
 
@@ -18,18 +19,18 @@ export default function BucketEdit() {
   const [bucketTheme, setBucketTheme] = useState("");
 
   const themes = [
+    "Coffee",
     "Travel",
     "Adventure",
     "Rose",
     "Grink",
     "Royal",
     "Elegant",
-    "Coffee",
   ];
 
   const getBucket = async () => {
     try {
-      let results = await axios.get(`http://localhost:8080/bucket/${bucketID}`);
+      let results = await axios.get(`${backendUrl}/bucket/${bucketID}`);
       setBucketTitle(results.data.bucket.title);
       setBucketTheme(results.data.bucket.theme_name);
     } catch (error) {
@@ -44,7 +45,7 @@ export default function BucketEdit() {
         theme_name: bucketTheme,
       };
 
-      await axios.put(`http://localhost:8080/bucket/${bucketID}`, bucketUpdate);
+      await axios.put(`${backendUrl}/bucket/${bucketID}`, bucketUpdate);
       navigate(`/bucketlist/${bucketID}`);
     } catch (error) {
       console.log(error);
@@ -53,7 +54,7 @@ export default function BucketEdit() {
 
   async function deleteBucket() {
     try {
-      await axios.delete(`http://localhost:8080/bucket/${bucketID}`);
+      await axios.delete(`${backendUrl}/bucket/${bucketID}`);
       navigate("/bucketlist");
     } catch (error) {
       console.log(error);

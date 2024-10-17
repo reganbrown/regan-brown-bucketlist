@@ -31,6 +31,13 @@
   font-style: normal;
 }
 
+@mixin playfair-display {
+  font-family: "Playfair Display", serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+}
+
 @mixin breakpoint-tablet {
   @media (min-width: $tablet-screen) {
     @content;

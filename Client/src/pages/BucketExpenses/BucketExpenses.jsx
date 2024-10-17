@@ -3,13 +3,12 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 
 export default function BucketExpenses() {
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
   let { bucketID } = useParams();
   const [expenses, setExpenses] = useState([]);
 
   const getExpenses = async () => {
-    let results = await axios.get(
-      `http://localhost:8080/bucket/${bucketID}/expenses`
-    );
+    let results = await axios.get(`${backendUrl}/bucket/${bucketID}/expenses`);
     setExpenses(results.data);
   };
 

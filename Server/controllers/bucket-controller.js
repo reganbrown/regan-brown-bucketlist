@@ -29,9 +29,7 @@ const bucketAdd = async (req, res) => {
       theme_name: req.body.theme_name,
     };
 
-    const [insertedID] = await knex("buckets")
-      .insert(newBucket)
-      .returning("id");
+    const [insertedID] = await knex("buckets").insert(newBucket);
 
     await knex("bucket_users").insert({
       user_id: USER_ID, // hardcoded user ID until auth
@@ -42,6 +40,7 @@ const bucketAdd = async (req, res) => {
     const insertedBucket = await knex("buckets")
       .where({ id: insertedID })
       .first();
+
     res.status(201).json(insertedBucket);
   } catch (error) {
     console.error(error);

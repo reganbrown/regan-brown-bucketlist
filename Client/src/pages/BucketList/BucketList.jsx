@@ -7,10 +7,11 @@ import accountLogo from "../../assets/account.svg";
 import "./BucketList.scss";
 
 export default function BucketList() {
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const [buckets, setBuckets] = useState([]);
 
   const getBucketList = async () => {
-    let results = await axios.get("http://localhost:8080/bucket/");
+    let results = await axios.get(`${backendUrl}/bucket/`);
     setBuckets(results.data);
   };
 
@@ -44,6 +45,9 @@ export default function BucketList() {
           </Link>
         ))}
       </div>
+      <Link to={"/bucketlist/addbucket"}>
+        <button type="button">Add New Bucket</button>
+      </Link>
     </div>
   );
 }

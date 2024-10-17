@@ -9,13 +9,16 @@
 
 .banner-image {
   width: 100%;
-  height: 30vw;
+  height: 40vh;
+  max-height: 26rem;
   object-fit: cover;
 }
 
 .title {
   width: 100%;
-  font-size: 60px;
+  font-size: 80px;
+  @include playfair-display;
+  padding-bottom: 2rem;
 }
 
 .bucket-body {
@@ -52,29 +55,45 @@
 .edit-button {
   margin: auto;
   display: flex;
-  width: 38rem;
+  width: 40rem;
   height: 4rem;
   background-color: none;
-  color: white;
-  border: 1px solid white;
   border-radius: 8px;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  color: white;
+  border: 1px solid white;
+  @include rajdhani-regular;
+  font-size: 20px;
 }
 
 .finance-button {
   margin: auto;
   display: flex;
-  width: 18rem;
+  width: 12rem;
   height: 4rem;
   background-color: none;
-  color: white;
-  border: 1px solid white;
   border-radius: 8px;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  color: white;
+  border: 1px solid white;
+  @include rajdhani-regular;
+  font-size: 20px;
+}
+
+.finance-button__coffee {
+  @extend .finance-button;
+  color: $coffee-primary;
+  border: 1px solid $coffee-primary;
+}
+
+.edit-button__coffee {
+  @extend .edit-button;
+  color: $coffee-primary;
+  border: 1px solid $coffee-primary;
 }
 
 .contributor-hidden {
@@ -95,9 +114,21 @@
   justify-content: center;
   align-items: center;
   width: 30%;
-  height: 20rem;
+  height: 22rem;
   padding: 2rem;
 }
 .finances {
   width: 100%;
+}
+
+.bucket-list-title {
+  width: 100%;
+  font-size: 1.5rem;
+  @include rajdhani-regular;
+  color: white;
+}
+
+.bucket-list-title__coffee {
+  @extend .bucket-list-title;
+  color: $coffee-primary;
 }

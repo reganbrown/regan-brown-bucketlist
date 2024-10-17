@@ -11,6 +11,7 @@ import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 
 export default function BucketDetails() {
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
   let navigate = useNavigate();
   let { bucketID } = useParams();
 
@@ -24,9 +25,7 @@ export default function BucketDetails() {
   const [percent, setPercent] = useState();
 
   const getExpenses = async () => {
-    let results = await axios.get(
-      `http://localhost:8080/bucket/${bucketID}/expenses`
-    );
+    let results = await axios.get(`${backendUrl}/bucket/${bucketID}/expenses`);
     let result = results.data;
     let total = 0;
     result.map((item) => {
@@ -36,9 +35,7 @@ export default function BucketDetails() {
   };
 
   const getSavings = async () => {
-    let results = await axios.get(
-      `http://localhost:8080/bucket/${bucketID}/savings`
-    );
+    let results = await axios.get(`${backendUrl}/bucket/${bucketID}/savings`);
     let result = results.data;
     let total = 0;
     result.map((item) => {
@@ -49,7 +46,7 @@ export default function BucketDetails() {
 
   const getBucket = async () => {
     try {
-      let results = await axios.get(`http://localhost:8080/bucket/${bucketID}`);
+      let results = await axios.get(`${backendUrl}/bucket/${bucketID}`);
       setBucket(results.data.bucket);
       setUserRole(results.data.userRole);
     } catch (error) {
@@ -160,16 +157,52 @@ export default function BucketDetails() {
       </div>
       <img src={bucket.image_url} className="banner-image" />
       <div className="bucket-body">
-        <div className="bucket-title">BUCKET LIST</div>
         <div className="app-wrapper-left">
+          <div
+            className={
+              bucket.theme_name === "Coffee"
+                ? "bucket-list-title__coffee"
+                : "bucket-list-title"
+            }
+          >
+            BUCKET LIST
+          </div>
           <h1 className="title">{bucket.title}</h1>
           <div className="bucket-links">
             <Link to={`/bucketlist/${bucketID}/expenses`} className="link">
-              <div className="finance-button">EXPENSES</div>
+              <div
+                className={
+                  bucket.theme_name === "Coffee"
+                    ? "finance-button__coffee"
+                    : "finance-button"
+                }
+              >
+                EXPENSES
+              </div>
             </Link>
 
             <Link to={`/bucketlist/${bucketID}/savings`} className="link">
-              <div className="finance-button">SAVINGS</div>
+              <div
+                className={
+                  bucket.theme_name === "Coffee"
+                    ? "finance-button__coffee"
+                    : "finance-button"
+                }
+              >
+                SAVINGS
+              </div>
+            </Link>
+
+            <Link to={`/bucketlist/${bucketID}/chat`} className="link">
+              <div
+                className={
+                  bucket.theme_name === "Coffee"
+                    ? "finance-button__coffee"
+                    : "finance-button"
+                }
+              >
+                CHAT
+              </div>
             </Link>
 
             <div className="bucket-links__wrapper">
@@ -179,7 +212,11 @@ export default function BucketDetails() {
               >
                 <div
                   className={
-                    userRole === "owner" ? "edit-button" : "contributor-hidden"
+                    userRole === "owner"
+                      ? bucket.theme_name === "Coffee"
+                        ? "edit-button__coffee"
+                        : "edit-button"
+                      : "contributor-hidden"
                   }
                 >
                   EDIT
