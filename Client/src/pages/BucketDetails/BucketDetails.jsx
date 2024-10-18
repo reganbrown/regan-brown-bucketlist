@@ -1,7 +1,6 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 import bucketLogo from "../../assets/bucket.svg";
 import arrowBack from "../../assets/arrow-back.svg";
 import accountLogo from "../../assets/account.svg";
@@ -16,37 +15,71 @@ export default function BucketDetails() {
   let { bucketID } = useParams();
 
   const [bucket, setBucket] = useState([]);
-
   const [userRole, setUserRole] = useState([]);
-
   const [expensesTotal, setExpensesTotal] = useState();
-
   const [savingsTotal, setSavingsTotal] = useState();
   const [percent, setPercent] = useState();
 
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      navigate("/login");
+    }
+  }, [navigate]);
+
+  const getToken = () => {
+    return localStorage.getItem("token");
+  };
+
   const getExpenses = async () => {
-    let results = await axios.get(`${backendUrl}/bucket/${bucketID}/expenses`);
-    let result = results.data;
-    let total = 0;
-    result.map((item) => {
-      total = total + Number(item.amount);
-    });
-    setExpensesTotal(total);
+    try {
+      let results = await axios.get(
+        `${backendUrl}/bucket/${bucketID}/expenses`,
+        {
+          headers: {
+            Authorization: `Bearer ${getToken()}`,
+          },
+        }
+      );
+      let result = results.data;
+      let total = 0;
+      result.forEach((item) => {
+        total += Number(item.amount);
+      });
+      setExpensesTotal(total);
+    } catch (error) {
+      console.error("Error fetching expenses:", error);
+    }
   };
 
   const getSavings = async () => {
-    let results = await axios.get(`${backendUrl}/bucket/${bucketID}/savings`);
-    let result = results.data;
-    let total = 0;
-    result.map((item) => {
-      total = total + Number(item.amount);
-    });
-    setSavingsTotal(total);
+    try {
+      let results = await axios.get(
+        `${backendUrl}/bucket/${bucketID}/savings`,
+        {
+          headers: {
+            Authorization: `Bearer ${getToken()}`,
+          },
+        }
+      );
+      let result = results.data;
+      let total = 0;
+      result.forEach((item) => {
+        total += Number(item.amount);
+      });
+      setSavingsTotal(total);
+    } catch (error) {
+      console.error("Error fetching savings:", error);
+    }
   };
 
   const getBucket = async () => {
     try {
-      let results = await axios.get(`${backendUrl}/bucket/${bucketID}`);
+      let results = await axios.get(`${backendUrl}/bucket/${bucketID}`, {
+        headers: {
+          Authorization: `Bearer ${getToken()}`,
+        },
+      });
       setBucket(results.data.bucket);
       setUserRole(results.data.userRole);
     } catch (error) {
@@ -136,24 +169,26 @@ export default function BucketDetails() {
             }
           />
         </Link>
-        <img
-          src={accountLogo}
-          className={
-            bucket.theme_name === "Adventure"
-              ? "logo adventure-filter"
-              : bucket.theme_name === "Travel"
-              ? "logo travel-filter"
-              : bucket.theme_name === "Rose"
-              ? "logo rose-filter"
-              : bucket.theme_name === "Grink"
-              ? "logo grink-filter"
-              : bucket.theme_name === "Royal"
-              ? "logo royal-filter"
-              : bucket.theme_name === "Elegant"
-              ? "logo elegant-filter"
-              : "logo coffee-filter"
-          }
-        />
+        <Link to={`/account`}>
+          <img
+            src={accountLogo}
+            className={
+              bucket.theme_name === "Adventure"
+                ? "logo adventure-filter"
+                : bucket.theme_name === "Travel"
+                ? "logo travel-filter"
+                : bucket.theme_name === "Rose"
+                ? "logo rose-filter"
+                : bucket.theme_name === "Grink"
+                ? "logo grink-filter"
+                : bucket.theme_name === "Royal"
+                ? "logo royal-filter"
+                : bucket.theme_name === "Elegant"
+                ? "logo elegant-filter"
+                : "logo coffee-filter"
+            }
+          />
+        </Link>
       </div>
       <img src={bucket.image_url} className="banner-image" />
       <div className="bucket-body">
@@ -243,12 +278,10 @@ export default function BucketDetails() {
                     : bucket.theme_name === "Royal"
                     ? "#eca400"
                     : bucket.theme_name === "Elegant"
-                    ? "#5f506b"
+                    ? "#011638"
                     : "#63372c",
               },
-              // Customize the text
               text: {
-                // Text color
                 fill:
                   bucket.theme_name === "Adventure"
                     ? "#bf1717"
@@ -261,7 +294,7 @@ export default function BucketDetails() {
                     : bucket.theme_name === "Royal"
                     ? "#eca400"
                     : bucket.theme_name === "Elegant"
-                    ? "#5f506b"
+                    ? "#011638"
                     : "#63372c",
               },
             }}

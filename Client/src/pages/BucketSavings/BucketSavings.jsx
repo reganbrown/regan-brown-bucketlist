@@ -1,15 +1,38 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export default function BucketSavings() {
+  let navigate = useNavigate();
   let { bucketID } = useParams();
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const [savings, setSavings] = useState([]);
 
+  const getToken = () => {
+    return localStorage.getItem("token");
+  };
+
+  useEffect(() => {
+    const token = getToken();
+    if (!token) {
+      navigate("/login");
+    }
+  }, [navigate]);
+
   const getSavings = async () => {
-    let results = await axios.get(`${backendUrl}/bucket/${bucketID}/savings`);
-    setSavings(results.data);
+    try {
+      let results = await axios.get(
+        `${backendUrl}/bucket/${bucketID}/savings`,
+        {
+          headers: {
+            Authorization: `Bearer ${getToken()}`,
+          },
+        }
+      );
+      setSavings(results.data);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   useEffect(() => {

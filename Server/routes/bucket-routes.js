@@ -3,42 +3,45 @@ import * as bucketController from "../controllers/bucket-controller.js";
 import * as chatController from "../controllers/chat-controller.js";
 import * as savingsController from "../controllers/savings-controller.js";
 import * as expensesController from "../controllers/expense-controller.js";
+import { authenticate } from "../middleware/auth.js";
 
 const router = express.Router();
 
 router
   .route("/")
-  .get(bucketController.bucketList)
-  .post(bucketController.bucketAdd);
+  .get(authenticate, bucketController.bucketList)
+  .post(authenticate, bucketController.bucketAdd);
 
 router
   .route("/:bucket_id")
-  .get(bucketController.bucketDetails)
-  .put(bucketController.bucketEdit)
-  .delete(bucketController.bucketDelete);
+  .get(authenticate, bucketController.bucketDetails)
+  .put(authenticate, bucketController.bucketEdit)
+  .delete(authenticate, bucketController.bucketDelete);
 
 router
   .route("/:bucket_id/chat")
-  .get(chatController.chatList)
-  .post(chatController.chatAdd);
+  .get(authenticate, chatController.chatList)
+  .post(authenticate, chatController.chatAdd);
 
-router.route("/:bucket_id/chat/:chat_id").delete(chatController.chatDelete);
+router
+  .route("/:bucket_id/chat/:chat_id")
+  .delete(authenticate, chatController.chatDelete);
 
 router
   .route("/:bucket_id/savings")
-  .get(savingsController.savingsList)
+  .get(authenticate, savingsController.savingsList)
   .post(savingsController.savingsAdd);
 
 router
   .route("/:bucket_id/savings/:savings_id")
-  .delete(savingsController.savingsDelete);
+  .delete(authenticate, savingsController.savingsDelete);
 
 router
   .route("/:bucket_id/expenses")
-  .get(expensesController.expenseList)
-  .post(expensesController.expenseAdd);
+  .get(authenticate, expensesController.expenseList)
+  .post(authenticate, expensesController.expenseAdd);
 
 router
   .route("/:bucket_id/expenses/:expense_id")
-  .delete(expensesController.expenseDelete);
+  .delete(authenticate, expensesController.expenseDelete);
 export default router;

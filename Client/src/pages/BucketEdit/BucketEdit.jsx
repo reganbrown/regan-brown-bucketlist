@@ -1,7 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import bucketLogo from "../../assets/bucket.svg";
 import arrowBack from "../../assets/arrow-back.svg";
 import accountLogo from "../../assets/account.svg";
@@ -19,7 +18,6 @@ export default function BucketEdit() {
 
   const [bucketTitle, setBucketTitle] = useState("");
   const [bucketTheme, setBucketTheme] = useState("");
-
   const [photoSearch, setPhotoSearch] = useState("");
   const [photoList, setPhotoList] = useState([]);
   const [selectedPhoto, setSelectedPhoto] = useState("");
@@ -34,9 +32,24 @@ export default function BucketEdit() {
     "Elegant",
   ];
 
+  const getToken = () => {
+    return localStorage.getItem("token");
+  };
+
+  useEffect(() => {
+    const token = getToken();
+    if (!token) {
+      navigate("/login");
+    }
+  }, [navigate]);
+
   const getBucket = async () => {
     try {
-      let results = await axios.get(`${backendUrl}/bucket/${bucketID}`);
+      let results = await axios.get(`${backendUrl}/bucket/${bucketID}`, {
+        headers: {
+          Authorization: `Bearer ${getToken()}`,
+        },
+      });
       setBucketTitle(results.data.bucket.title);
       setBucketTheme(results.data.bucket.theme_name);
       setSelectedPhoto(results.data.bucket.image_url);
@@ -53,7 +66,11 @@ export default function BucketEdit() {
         image_url: selectedPhoto,
       };
 
-      await axios.put(`${backendUrl}/bucket/${bucketID}`, bucketUpdate);
+      await axios.put(`${backendUrl}/bucket/${bucketID}`, bucketUpdate, {
+        headers: {
+          Authorization: `Bearer ${getToken()}`,
+        },
+      });
       navigate(`/${bucketID}`);
     } catch (error) {
       console.log(error);
@@ -62,7 +79,11 @@ export default function BucketEdit() {
 
   async function deleteBucket() {
     try {
-      await axios.delete(`${backendUrl}/bucket/${bucketID}`);
+      await axios.delete(`${backendUrl}/bucket/${bucketID}`, {
+        headers: {
+          Authorization: `Bearer ${getToken()}`,
+        },
+      });
       navigate("/");
     } catch (error) {
       console.log(error);
@@ -95,7 +116,6 @@ export default function BucketEdit() {
 
   function submitEdit(event) {
     event.preventDefault();
-
     updateBucketDetails();
   }
 
@@ -158,60 +178,56 @@ export default function BucketEdit() {
             }
           />
         </Link>
-        <img
-          src={accountLogo}
-          className={
-            bucketTheme === "Adventure"
-              ? "logo adventure-filter"
-              : bucketTheme === "Travel"
-              ? "logo travel-filter"
-              : bucketTheme === "Rose"
-              ? "logo rose-filter"
-              : bucketTheme === "Grink"
-              ? "logo grink-filter"
-              : bucketTheme === "Royal"
-              ? "logo royal-filter"
-              : bucketTheme === "Elegant"
-              ? "logo elegant-filter"
-              : "logo coffee-filter"
-          }
-        />
+        <Link to={`/account`}>
+          <img
+            src={accountLogo}
+            className={
+              bucketTheme === "Adventure"
+                ? "logo adventure-filter"
+                : bucketTheme === "Travel"
+                ? "logo travel-filter"
+                : bucketTheme === "Rose"
+                ? "logo rose-filter"
+                : bucketTheme === "Grink"
+                ? "logo grink-filter"
+                : bucketTheme === "Royal"
+                ? "logo royal-filter"
+                : bucketTheme === "Elegant"
+                ? "logo elegant-filter"
+                : "logo coffee-filter"
+            }
+          />
+        </Link>
       </div>
       <div className="add-page">
         <h1 className="add-title">{bucketTitle}</h1>
         <form onSubmit={submitEdit} className="add-form">
           <div className="form-box">
-            <label>
-              Title:
-              <input
-                type="text"
-                placeholder="enter title"
-                value={bucketTitle}
-                onChange={titleChange}
-                className="form-input"
-              />
-            </label>
+            <input
+              type="text"
+              placeholder="enter title"
+              value={bucketTitle}
+              onChange={titleChange}
+              className="form-input"
+            />
           </div>
           <div className="form-box">
             <div className="theme-dropdown">
-              <label>
-                Select a Theme
-                <select
-                  id="theme"
-                  value={bucketTheme}
-                  onChange={updateTheme}
-                  className="form-input"
-                >
-                  <option value="" disabled>
-                    Select a theme
+              <select
+                id="theme"
+                value={bucketTheme}
+                onChange={updateTheme}
+                className="form-input"
+              >
+                <option value="" disabled>
+                  Select a theme
+                </option>
+                {themes.map((theme, index) => (
+                  <option key={index} value={theme}>
+                    {theme}
                   </option>
-                  {themes.map((theme, index) => (
-                    <option key={index} value={theme}>
-                      {theme}
-                    </option>
-                  ))}
-                </select>
-              </label>
+                ))}
+              </select>
             </div>
           </div>
           <div

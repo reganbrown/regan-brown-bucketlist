@@ -7,19 +7,28 @@ import "./BucketList.scss";
 export default function BucketList() {
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const [buckets, setBuckets] = useState([]);
+  const token = localStorage.getItem("token");
 
   const getBucketList = async () => {
-    let results = await axios.get(`${backendUrl}/bucket/`);
-    setBuckets(results.data);
+    try {
+      const results = await axios.get(`${backendUrl}/bucket`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setBuckets(results.data);
+    } catch (error) {
+      console.error(
+        "Error fetching bucket list:",
+        error.response?.data || error.message
+      );
+    }
   };
 
   useEffect(() => {
     getBucketList();
-  }, []);
+  }, [backendUrl, token]);
 
-  if (!buckets) {
-    return <h1>loading...</h1>;
-  }
   return (
     <>
       <Link to={"/account"}>

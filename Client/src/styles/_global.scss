@@ -105,8 +105,8 @@ body {
 }
 
 .elegant-filter {
-  filter: invert(32%) sepia(18%) saturate(657%) hue-rotate(230deg)
-    brightness(92%) contrast(86%);
+  filter: invert(10%) sepia(23%) saturate(3692%) hue-rotate(193deg)
+    brightness(96%) contrast(109%);
 }
 
 .elegant-page {
@@ -121,4 +121,23 @@ body {
 .coffee-page {
   background-color: $coffee-secondary;
   color: $coffee-primary;
+}
+
+.account-form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.account-input {
+  height: 2rem;
+  border-radius: 8px;
+  border: 1px solid $coffee-primary;
+  padding: 1rem;
+  margin: 0.5rem 0;
+}
+
+.account-header {
+  color: $coffee-primary;
+  @include rajdhani-bold;
 }

@@ -1,14 +1,12 @@
 import initKnex from "knex";
 import configuration from "../knexfile.js";
 const knex = initKnex(configuration);
-// user_id is hardcoded in all instances until you implement user authentication
-const { USER_ID } = process.env;
 
 const bucketList = async (req, res) => {
   try {
     const buckets = await knex("buckets")
       .join("bucket_users", "buckets.id", "bucket_users.bucket_id")
-      .where({ "bucket_users.user_id": USER_ID })
+      .where({ "bucket_users.user_id": req.userId })
       .select("buckets.*");
 
     res.status(200).json(buckets);
@@ -32,7 +30,7 @@ const bucketAdd = async (req, res) => {
     const [insertedID] = await knex("buckets").insert(newBucket);
 
     await knex("bucket_users").insert({
-      user_id: USER_ID, // hardcoded user ID until auth
+      user_id: req.userId,
       bucket_id: insertedID,
       role: "owner",
     });
@@ -65,7 +63,7 @@ const bucketDetails = async (req, res) => {
 
     const userRole = await knex("bucket_users")
       .where({
-        user_id: USER_ID, // hardcoded user ID for now
+        user_id: req.userId,
         bucket_id: req.params.bucket_id,
       })
       .select("role")
@@ -104,7 +102,7 @@ const bucketEdit = async (req, res) => {
 
     const userRole = await knex("bucket_users")
       .where({
-        user_id: USER_ID, // auth later
+        user_id: req.userId,
         bucket_id: req.params.bucket_id,
       })
       .first();
@@ -157,7 +155,7 @@ const bucketDelete = async (req, res) => {
 
     const userRole = await knex("bucket_users")
       .where({
-        user_id: USER_ID, // hardcoded till auth
+        user_id: req.userId,
         bucket_id: req.params.bucket_id,
       })
       .first();

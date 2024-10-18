@@ -11,10 +11,12 @@ const { PORT, BACKEND_URL } = process.env;
 const app = express();
 
 import bucketRoutes from "./routes/bucket-routes.js";
+import userRoutes from "./routes/user-routes.js";
 
 app.use(cors());
 app.use(express.json());
 app.use("/bucket", bucketRoutes);
+app.use("/user", userRoutes);
 
 app.listen(PORT, () => {
   console.log(`Listening at ${BACKEND_URL}:${PORT}`);

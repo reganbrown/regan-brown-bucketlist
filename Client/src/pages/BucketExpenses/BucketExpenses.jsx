@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import bucketLogo from "../../assets/bucket.svg";
 import arrowBack from "../../assets/arrow-back.svg";
 import accountLogo from "../../assets/account.svg";
@@ -19,14 +17,33 @@ export default function BucketExpenses() {
   const [expenseAmount, setExpenseAmount] = useState("");
   const [expenseNotes, setExpenseNotes] = useState("");
 
+  const getToken = () => {
+    return localStorage.getItem("token");
+  };
+
+  useEffect(() => {
+    const token = getToken();
+    if (!token) {
+      navigate("/login");
+    }
+  }, [navigate]);
+
   const getExpenses = async () => {
-    let results = await axios.get(`${backendUrl}/bucket/${bucketID}/expenses`);
+    let results = await axios.get(`${backendUrl}/bucket/${bucketID}/expenses`, {
+      headers: {
+        Authorization: `Bearer ${getToken()}`,
+      },
+    });
     setExpenses(results.data);
   };
 
   const getBucket = async () => {
     try {
-      let results = await axios.get(`${backendUrl}/bucket/${bucketID}`);
+      let results = await axios.get(`${backendUrl}/bucket/${bucketID}`, {
+        headers: {
+          Authorization: `Bearer ${getToken()}`,
+        },
+      });
       setBucketTheme(results.data.bucket.theme_name);
     } catch (error) {
       navigate("/404");
@@ -46,7 +63,12 @@ export default function BucketExpenses() {
     };
     let results = await axios.post(
       `${backendUrl}/bucket/${bucketID}/expenses`,
-      newExpense
+      newExpense,
+      {
+        headers: {
+          Authorization: `Bearer ${getToken()}`,
+        },
+      }
     );
     getExpenses();
   };
@@ -71,7 +93,12 @@ export default function BucketExpenses() {
   async function deleteExpense(expenseID) {
     try {
       await axios.delete(
-        `${backendUrl}/bucket/${bucketID}/expenses/${expenseID}`
+        `${backendUrl}/bucket/${bucketID}/expenses/${expenseID}`,
+        {
+          headers: {
+            Authorization: `Bearer ${getToken()}`,
+          },
+        }
       );
       getExpenses();
     } catch (error) {
@@ -82,6 +109,7 @@ export default function BucketExpenses() {
   useEffect(() => {
     getExpenses();
   }, [bucketID]);
+
   return (
     <div
       className={
@@ -141,24 +169,26 @@ export default function BucketExpenses() {
             }
           />
         </Link>
-        <img
-          src={accountLogo}
-          className={
-            bucketTheme === "Adventure"
-              ? "logo adventure-filter"
-              : bucketTheme === "Travel"
-              ? "logo travel-filter"
-              : bucketTheme === "Rose"
-              ? "logo rose-filter"
-              : bucketTheme === "Grink"
-              ? "logo grink-filter"
-              : bucketTheme === "Royal"
-              ? "logo royal-filter"
-              : bucketTheme === "Elegant"
-              ? "logo elegant-filter"
-              : "logo coffee-filter"
-          }
-        />
+        <Link to={`/account`}>
+          <img
+            src={accountLogo}
+            className={
+              bucketTheme === "Adventure"
+                ? "logo adventure-filter"
+                : bucketTheme === "Travel"
+                ? "logo travel-filter"
+                : bucketTheme === "Rose"
+                ? "logo rose-filter"
+                : bucketTheme === "Grink"
+                ? "logo grink-filter"
+                : bucketTheme === "Royal"
+                ? "logo royal-filter"
+                : bucketTheme === "Elegant"
+                ? "logo elegant-filter"
+                : "logo coffee-filter"
+            }
+          />
+        </Link>
       </div>
       <h1>Bucket Expenses</h1>
       {expenses.map((expense) => (

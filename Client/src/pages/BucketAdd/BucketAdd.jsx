@@ -35,6 +35,8 @@ export default function BucketAdd() {
   ];
 
   async function addBucketList() {
+    const token = localStorage.getItem("token");
+
     try {
       let newBucket = {
         title: bucketTitle,
@@ -42,7 +44,11 @@ export default function BucketAdd() {
         image_url: selectedPhoto,
       };
 
-      await axios.post(`${backendUrl}/bucket/`, newBucket);
+      await axios.post(`${backendUrl}/bucket/`, newBucket, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       navigate(`/`);
     } catch (error) {
       console.log(error);
@@ -134,61 +140,57 @@ export default function BucketAdd() {
             }
           />
         </Link>
-        <img
-          src={accountLogo}
-          className={
-            bucketTheme === "Adventure"
-              ? "logo adventure-filter"
-              : bucketTheme === "Travel"
-              ? "logo travel-filter"
-              : bucketTheme === "Rose"
-              ? "logo rose-filter"
-              : bucketTheme === "Grink"
-              ? "logo grink-filter"
-              : bucketTheme === "Royal"
-              ? "logo royal-filter"
-              : bucketTheme === "Elegant"
-              ? "logo elegant-filter"
-              : "logo coffee-filter"
-          }
-        />
+        <Link to={`/account`}>
+          <img
+            src={accountLogo}
+            className={
+              bucketTheme === "Adventure"
+                ? "logo adventure-filter"
+                : bucketTheme === "Travel"
+                ? "logo travel-filter"
+                : bucketTheme === "Rose"
+                ? "logo rose-filter"
+                : bucketTheme === "Grink"
+                ? "logo grink-filter"
+                : bucketTheme === "Royal"
+                ? "logo royal-filter"
+                : bucketTheme === "Elegant"
+                ? "logo elegant-filter"
+                : "logo coffee-filter"
+            }
+          />
+        </Link>
       </div>
       <div className="add-page">
         <h1 className="add-title">{bucketTitle}</h1>
         <form onSubmit={submitEdit} className="add-form">
           <div className="form-box">
-            <label>
-              Title:
-              <input
-                type="text"
-                placeholder="enter title"
-                value={bucketTitle}
-                onChange={titleChange}
-                className="form-input"
-              />
-            </label>
+            <input
+              type="text"
+              placeholder="Title"
+              value={bucketTitle}
+              onChange={titleChange}
+              className="form-input"
+            />
           </div>
 
           <div className="form-box">
             <div className="theme-dropdown">
-              <label>
-                Select a Theme
-                <select
-                  id="theme"
-                  value={bucketTheme}
-                  onChange={updateTheme}
-                  className="form-input"
-                >
-                  <option value="" disabled>
-                    Select a theme
+              <select
+                id="theme"
+                value={bucketTheme}
+                onChange={updateTheme}
+                className="form-input"
+              >
+                <option value="" disabled>
+                  Select a theme
+                </option>
+                {themes.map((theme, index) => (
+                  <option key={index} value={theme}>
+                    {theme}
                   </option>
-                  {themes.map((theme, index) => (
-                    <option key={index} value={theme}>
-                      {theme}
-                    </option>
-                  ))}
-                </select>
-              </label>
+                ))}
+              </select>
             </div>
           </div>
           <div
