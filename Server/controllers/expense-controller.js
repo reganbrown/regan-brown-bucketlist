@@ -16,8 +16,9 @@ const expenseAdd = async (req, res) => {
 
     const newExpense = {
       bucket_id: bucket_id,
-      name: req.body.name,
+      expense_name: req.body.expense_name,
       amount: req.body.amount,
+      notes: req.body.notes,
     };
 
     const insertedIDs = await knex("expenses").insert(newExpense);
@@ -58,7 +59,7 @@ const expenseList = async (req, res) => {
 };
 
 const expenseDelete = async (req, res) => {
-  const { expense_id } = req.params;
+  const { bucket_id, expense_id } = req.params;
   try {
     const expenseToDelete = await knex("expenses")
       .where({ id: expense_id })

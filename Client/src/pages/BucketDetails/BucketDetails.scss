@@ -66,6 +66,7 @@
   border: 1px solid white;
   @include rajdhani-regular;
   font-size: 20px;
+  box-shadow: 8px 5px 8px black;
 }
 
 .finance-button {
@@ -82,6 +83,7 @@
   border: 1px solid white;
   @include rajdhani-regular;
   font-size: 20px;
+  box-shadow: 8px 5px 8px black;
 }
 
 .finance-button__coffee {
@@ -106,7 +108,7 @@
   justify-content: center;
   align-items: center;
   width: 70%;
-  height: 20rem;
+  min-height: 20rem;
 }
 
 .app-wrapper-right {

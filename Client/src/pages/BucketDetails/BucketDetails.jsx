@@ -96,7 +96,7 @@ export default function BucketDetails() {
       }
     >
       <div className="header">
-        <Link to={`/bucketlist`}>
+        <Link to={`/`}>
           <img
             src={arrowBack}
             className={
@@ -169,7 +169,7 @@ export default function BucketDetails() {
           </div>
           <h1 className="title">{bucket.title}</h1>
           <div className="bucket-links">
-            <Link to={`/bucketlist/${bucketID}/expenses`} className="link">
+            <Link to={`/${bucketID}/expenses`} className="link">
               <div
                 className={
                   bucket.theme_name === "Coffee"
@@ -181,7 +181,7 @@ export default function BucketDetails() {
               </div>
             </Link>
 
-            <Link to={`/bucketlist/${bucketID}/savings`} className="link">
+            <Link to={`/${bucketID}/savings`} className="link">
               <div
                 className={
                   bucket.theme_name === "Coffee"
@@ -207,7 +207,7 @@ export default function BucketDetails() {
 
             <div className="bucket-links__wrapper">
               <Link
-                to={`/bucketlist/${bucketID}/edit`}
+                to={`/${bucketID}/edit`}
                 className={userRole === "owner" ? "link" : "contributor-hidden"}
               >
                 <div

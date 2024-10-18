@@ -51,6 +51,7 @@ body {
 .list-item {
   color: $coffee-primary;
   @include rajdhani-bold;
+  font-size: 1.2rem;
   padding: 1rem;
 }
 

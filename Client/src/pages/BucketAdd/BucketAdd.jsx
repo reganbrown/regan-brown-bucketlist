@@ -43,7 +43,7 @@ export default function BucketAdd() {
       };
 
       await axios.post(`${backendUrl}/bucket/`, newBucket);
-      navigate(`/bucketlist/`);
+      navigate(`/`);
     } catch (error) {
       console.log(error);
     }
@@ -94,7 +94,7 @@ export default function BucketAdd() {
       }
     >
       <div className="header">
-        <Link to={`/bucketlist`}>
+        <Link to={`/`}>
           <img
             src={arrowBack}
             className={
@@ -191,19 +191,42 @@ export default function BucketAdd() {
               </label>
             </div>
           </div>
-          <div className="photo-list">
+          <div
+            className={
+              bucketTheme === "Adventure"
+                ? "adventure-photo-list"
+                : bucketTheme === "Travel"
+                ? "travel-photo-list"
+                : bucketTheme === "Rose"
+                ? "rose-photo-list"
+                : bucketTheme === "Grink"
+                ? "grink-photo-list"
+                : bucketTheme === "Royal"
+                ? "royal-photo-list"
+                : bucketTheme === "Elegant"
+                ? "elegant-photo-list"
+                : "coffee-photo-list"
+            }
+          >
             <div className="form-box">
               <input
                 type="text"
                 placeholder="Search for photo"
                 value={photoSearch}
                 onChange={photoChange}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter") {
+                    event.preventDefault();
+                    document.getElementById("search-button").click();
+                  }
+                }}
                 className="form-input"
               />
 
               <button
                 type="button"
                 onClick={findPhotos}
+                id="search-button"
                 className="search-button"
               >
                 Search for Banners

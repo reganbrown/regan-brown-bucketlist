@@ -13,10 +13,5 @@ export async function seed(knex) {
     { bucket_id: 1, user_id: 2, role: "contributor" },
     { bucket_id: 2, user_id: 1, role: "owner" },
     { bucket_id: 3, user_id: 2, role: "owner" },
-    { bucket_id: 4, user_id: 1, role: "owner" },
-    { bucket_id: 5, user_id: 1, role: "owner" },
-    { bucket_id: 6, user_id: 1, role: "owner" },
-    { bucket_id: 7, user_id: 1, role: "owner" },
-    { bucket_id: 8, user_id: 1, role: "owner" },
   ]);
 }

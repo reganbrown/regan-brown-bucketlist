@@ -12,11 +12,17 @@ import "./BucketEdit.scss";
 
 export default function BucketEdit() {
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
+  const unsplashURL = import.meta.env.VITE_UNSPLASH_URL;
+  const unsplashAPI = import.meta.env.VITE_UNSPLASH_API;
   let navigate = useNavigate();
   let { bucketID } = useParams();
 
   const [bucketTitle, setBucketTitle] = useState("");
   const [bucketTheme, setBucketTheme] = useState("");
+
+  const [photoSearch, setPhotoSearch] = useState("");
+  const [photoList, setPhotoList] = useState([]);
+  const [selectedPhoto, setSelectedPhoto] = useState("");
 
   const themes = [
     "Coffee",
@@ -33,6 +39,7 @@ export default function BucketEdit() {
       let results = await axios.get(`${backendUrl}/bucket/${bucketID}`);
       setBucketTitle(results.data.bucket.title);
       setBucketTheme(results.data.bucket.theme_name);
+      setSelectedPhoto(results.data.bucket.image_url);
     } catch (error) {
       navigate("/404");
     }
@@ -43,10 +50,11 @@ export default function BucketEdit() {
       let bucketUpdate = {
         title: bucketTitle,
         theme_name: bucketTheme,
+        image_url: selectedPhoto,
       };
 
       await axios.put(`${backendUrl}/bucket/${bucketID}`, bucketUpdate);
-      navigate(`/bucketlist/${bucketID}`);
+      navigate(`/${bucketID}`);
     } catch (error) {
       console.log(error);
     }
@@ -55,7 +63,7 @@ export default function BucketEdit() {
   async function deleteBucket() {
     try {
       await axios.delete(`${backendUrl}/bucket/${bucketID}`);
-      navigate("/bucketlist");
+      navigate("/");
     } catch (error) {
       console.log(error);
     }
@@ -71,6 +79,18 @@ export default function BucketEdit() {
 
   function updateTheme(event) {
     setBucketTheme(event.target.value);
+  }
+
+  function photoChange(event) {
+    setPhotoSearch(event.target.value);
+  }
+
+  async function findPhotos() {
+    let results = await axios.get(
+      `${unsplashURL}/search/photos/?client_id=${unsplashAPI}&page=1&per_page=6&query=${photoSearch}`
+    );
+    console.log(results.data.results);
+    setPhotoList(results.data.results);
   }
 
   function submitEdit(event) {
@@ -98,7 +118,7 @@ export default function BucketEdit() {
       }
     >
       <div className="header">
-        <Link to={`/bucketlist`}>
+        <Link to={`/${bucketID}`}>
           <img
             src={arrowBack}
             className={
@@ -157,116 +177,176 @@ export default function BucketEdit() {
           }
         />
       </div>
-      <h1>{bucketTitle} Edit</h1>
-      <form onSubmit={submitEdit} className="edit-form">
-        <label>
-          Title:
-          <input
-            type="text"
-            placeholder="enter title"
-            value={bucketTitle}
-            onChange={titleChange}
-            className="form-input"
-          />
-        </label>
-
-        <div className="theme-dropdown">
-          <label>
-            Select a Theme
-            <select
-              id="theme"
-              value={bucketTheme}
-              onChange={updateTheme}
-              className="form-input"
-            >
-              <option value="" disabled>
-                Select a theme
-              </option>
-              {themes.map((theme, index) => (
-                <option key={index} value={theme}>
-                  {theme}
-                </option>
-              ))}
-            </select>
-          </label>
-        </div>
-
-        <button
-          type="submit"
-          className={
-            bucketTheme === "Adventure"
-              ? "button adventure-page"
-              : bucketTheme === "Travel"
-              ? "button travel-page"
-              : bucketTheme === "Rose"
-              ? "button rose-page"
-              : bucketTheme === "Grink"
-              ? "button grink-page"
-              : bucketTheme === "Royal"
-              ? "button royal-page"
-              : bucketTheme === "Elegant"
-              ? "button elegant-page"
-              : "button coffee-page"
-          }
-        >
-          <img
-            src={saveButton}
+      <div className="add-page">
+        <h1 className="add-title">{bucketTitle}</h1>
+        <form onSubmit={submitEdit} className="add-form">
+          <div className="form-box">
+            <label>
+              Title:
+              <input
+                type="text"
+                placeholder="enter title"
+                value={bucketTitle}
+                onChange={titleChange}
+                className="form-input"
+              />
+            </label>
+          </div>
+          <div className="form-box">
+            <div className="theme-dropdown">
+              <label>
+                Select a Theme
+                <select
+                  id="theme"
+                  value={bucketTheme}
+                  onChange={updateTheme}
+                  className="form-input"
+                >
+                  <option value="" disabled>
+                    Select a theme
+                  </option>
+                  {themes.map((theme, index) => (
+                    <option key={index} value={theme}>
+                      {theme}
+                    </option>
+                  ))}
+                </select>
+              </label>
+            </div>
+          </div>
+          <div
             className={
               bucketTheme === "Adventure"
-                ? "save-button adventure-filter"
+                ? "adventure-photo-list"
                 : bucketTheme === "Travel"
-                ? "save-button travel-filter"
+                ? "travel-photo-list"
                 : bucketTheme === "Rose"
-                ? "save-button rose-filter"
+                ? "rose-photo-list"
                 : bucketTheme === "Grink"
-                ? "save-button grink-filter"
+                ? "grink-photo-list"
                 : bucketTheme === "Royal"
-                ? "save-button royal-filter"
+                ? "royal-photo-list"
                 : bucketTheme === "Elegant"
-                ? "save-button elegant-filter"
-                : "save-button coffee-filter"
+                ? "elegant-photo-list"
+                : "coffee-photo-list"
             }
-          />
-        </button>
-        <button
-          type="button"
-          onClick={deleteBucket}
-          className={
-            bucketTheme === "Adventure"
-              ? "button adventure-page"
-              : bucketTheme === "Travel"
-              ? "button travel-page"
-              : bucketTheme === "Rose"
-              ? "button rose-page"
-              : bucketTheme === "Grink"
-              ? "button grink-page"
-              : bucketTheme === "Royal"
-              ? "button royal-page"
-              : bucketTheme === "Elegant"
-              ? "button elegant-page"
-              : "button coffee-page"
-          }
-        >
-          <img
-            src={deleteButton}
+          >
+            <div className="form-box">
+              <input
+                type="text"
+                placeholder="Search for photo"
+                value={photoSearch}
+                onChange={photoChange}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter") {
+                    event.preventDefault();
+                    document.getElementById("search-button").click();
+                  }
+                }}
+                className="form-input"
+              />
+
+              <button
+                type="button"
+                onClick={findPhotos}
+                id="search-button"
+                className="search-button"
+              >
+                Search for Banners
+              </button>
+            </div>
+            {photoList.map((photo, index) => (
+              <img
+                src={photo.urls.regular}
+                key={index}
+                className="thumbnails"
+                onClick={() => {
+                  setSelectedPhoto(photo.urls.regular);
+                }}
+              />
+            ))}
+          </div>
+          <div className="selected-photo">
+            <h2 className="selected-photo-banner">Selected Banner</h2>
+            <img src={selectedPhoto} className="selected-thumbnail" />
+          </div>
+          <button
+            type="submit"
             className={
               bucketTheme === "Adventure"
-                ? "delete-button adventure-filter"
+                ? "button adventure-page"
                 : bucketTheme === "Travel"
-                ? "delete-button travel-filter"
+                ? "button travel-page"
                 : bucketTheme === "Rose"
-                ? "delete-button rose-filter"
+                ? "button rose-page"
                 : bucketTheme === "Grink"
-                ? "delete-button grink-filter"
+                ? "button grink-page"
                 : bucketTheme === "Royal"
-                ? "delete-button royal-filter"
+                ? "button royal-page"
                 : bucketTheme === "Elegant"
-                ? "delete-button elegant-filter"
-                : "delete-button coffee-filter"
+                ? "button elegant-page"
+                : "button coffee-page"
             }
-          />
-        </button>
-      </form>
+          >
+            <img
+              src={saveButton}
+              className={
+                bucketTheme === "Adventure"
+                  ? "save-button adventure-filter"
+                  : bucketTheme === "Travel"
+                  ? "save-button travel-filter"
+                  : bucketTheme === "Rose"
+                  ? "save-button rose-filter"
+                  : bucketTheme === "Grink"
+                  ? "save-button grink-filter"
+                  : bucketTheme === "Royal"
+                  ? "save-button royal-filter"
+                  : bucketTheme === "Elegant"
+                  ? "save-button elegant-filter"
+                  : "save-button coffee-filter"
+              }
+            />
+          </button>
+          <button
+            type="button"
+            onClick={deleteBucket}
+            className={
+              bucketTheme === "Adventure"
+                ? "button adventure-page"
+                : bucketTheme === "Travel"
+                ? "button travel-page"
+                : bucketTheme === "Rose"
+                ? "button rose-page"
+                : bucketTheme === "Grink"
+                ? "button grink-page"
+                : bucketTheme === "Royal"
+                ? "button royal-page"
+                : bucketTheme === "Elegant"
+                ? "button elegant-page"
+                : "button coffee-page"
+            }
+          >
+            <img
+              src={deleteButton}
+              className={
+                bucketTheme === "Adventure"
+                  ? "delete-button adventure-filter"
+                  : bucketTheme === "Travel"
+                  ? "delete-button travel-filter"
+                  : bucketTheme === "Rose"
+                  ? "delete-button rose-filter"
+                  : bucketTheme === "Grink"
+                  ? "delete-button grink-filter"
+                  : bucketTheme === "Royal"
+                  ? "delete-button royal-filter"
+                  : bucketTheme === "Elegant"
+                  ? "delete-button elegant-filter"
+                  : "delete-button coffee-filter"
+              }
+            />
+          </button>
+        </form>
+      </div>
     </div>
   );
 }

@@ -1,8 +1,12 @@
+import "./Account.scss";
+import SignInForm from "../../components/SignInForm/SignInForm";
+
 export default function Account() {
   return (
-    <>
-      <h1>Account</h1>
-      <p>Sign Up / Sign In</p>
-    </>
+    <div className="container account-page">
+      <div className="nav-box">
+        <SignInForm />
+      </div>
+    </div>
   );
 }
