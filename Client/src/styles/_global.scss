@@ -141,3 +141,62 @@ body {
   color: $coffee-primary;
   @include rajdhani-bold;
 }
+
+.finance-list {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  padding: 0.5rem 0;
+}
+
+.finance-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 18rem;
+  height: 4rem;
+  box-shadow: 6px 5px 8px black;
+  border-radius: 8px;
+}
+
+.adventure-finance-box {
+  @extend .finance-box;
+  background-color: $adventure-primary;
+  color: $adventure-secondary;
+}
+
+.travel-finance-box {
+  @extend .finance-box;
+  background-color: $travel-primary;
+  color: $travel-secondary;
+}
+
+.rose-finance-box {
+  @extend .finance-box;
+  background-color: $rose-primary;
+  color: $rose-secondary;
+}
+
+.grink-finance-box {
+  @extend .finance-box;
+  background-color: $grink-primary;
+  color: $grink-secondary;
+}
+
+.royal-finance-box {
+  @extend .finance-box;
+  background-color: $royal-primary;
+  color: $royal-secondary;
+}
+
+.elegant-finance-box {
+  @extend .finance-box;
+  background-color: $elegant-primary;
+  color: $elegant-secondary;
+}
+
+.coffee-finance-box {
+  @extend .finance-box;
+  background-color: $coffee-primary;
+  color: $coffee-secondary;
+}

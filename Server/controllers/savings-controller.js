@@ -15,16 +15,16 @@ const savingsAdd = async (req, res) => {
       });
     }
 
-    const user = await knex("users").where({ id: USER_ID }).first();
+    const user = await knex("users").where({ id: req.userId }).first();
     if (!user) {
       return res.status(404).send("user not found");
     }
 
     const newSavings = {
       bucket_id: bucket_id,
-      saver_name: user.name,
+      user_id: req.userId,
       amount: req.body.amount,
-      date_added: Date.Now(),
+      date_added: Date.now(),
     };
 
     const insertedIDs = await knex("savings").insert(newSavings);
@@ -53,7 +53,11 @@ const savingsList = async (req, res) => {
       });
     }
 
-    const savings = await knex("savings").where({ bucket_id: bucket_id });
+    const savings = await knex("savings")
+      .join("users", "savings.user_id", "users.id")
+      .select("savings.*", "users.name as user_name")
+      .where({ "savings.bucket_id": bucket_id });
+
     res.status(200).json(savings);
   } catch (error) {
     console.error(error);

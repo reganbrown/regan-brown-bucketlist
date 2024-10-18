@@ -21,7 +21,6 @@ export default function SignOutForm({ onLogout }) {
         },
       });
       const { name } = response.data;
-      console.log(response.data);
       setName(name);
     } catch (error) {
       console.log(error);

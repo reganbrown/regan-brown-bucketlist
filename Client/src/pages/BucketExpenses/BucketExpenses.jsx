@@ -5,7 +5,6 @@ import arrowBack from "../../assets/arrow-back.svg";
 import accountLogo from "../../assets/account.svg";
 import deleteButton from "../../assets/delete.svg";
 import axios from "axios";
-import "./BucketExpenses.scss";
 
 export default function BucketExpenses() {
   let navigate = useNavigate();
@@ -192,22 +191,22 @@ export default function BucketExpenses() {
       </div>
       <h1>Bucket Expenses</h1>
       {expenses.map((expense) => (
-        <div key={expense.id} className="expense-list">
+        <div key={expense.id} className="finance-list">
           <div
             className={
               bucketTheme === "Adventure"
-                ? "adventure-expense-box"
+                ? "adventure-finance-box"
                 : bucketTheme === "Travel"
-                ? "travel-expense-box"
+                ? "travel-finance-box"
                 : bucketTheme === "Rose"
-                ? "rose-expense-box"
+                ? "rose-finance-box"
                 : bucketTheme === "Grink"
-                ? "grink-expense-box"
+                ? "grink-finance-box"
                 : bucketTheme === "Royal"
-                ? "royal-expense-box"
+                ? "royal-finance-box"
                 : bucketTheme === "Elegant"
-                ? "elegant-expense-box"
-                : "coffee-expense-box"
+                ? "elegant-finance-box"
+                : "coffee-finance-box"
             }
           >
             {expense.expense_name}
@@ -215,18 +214,18 @@ export default function BucketExpenses() {
           <div
             className={
               bucketTheme === "Adventure"
-                ? "adventure-expense-box"
+                ? "adventure-finance-box"
                 : bucketTheme === "Travel"
-                ? "travel-expense-box"
+                ? "travel-finance-box"
                 : bucketTheme === "Rose"
-                ? "rose-expense-box"
+                ? "rose-finance-box"
                 : bucketTheme === "Grink"
-                ? "grink-expense-box"
+                ? "grink-finance-box"
                 : bucketTheme === "Royal"
-                ? "royal-expense-box"
+                ? "royal-finance-box"
                 : bucketTheme === "Elegant"
-                ? "elegant-expense-box"
-                : "coffee-expense-box"
+                ? "elegant-finance-box"
+                : "coffee-finance-box"
             }
           >
             {expense.amount}
@@ -234,18 +233,18 @@ export default function BucketExpenses() {
           <div
             className={
               bucketTheme === "Adventure"
-                ? "adventure-expense-box"
+                ? "adventure-finance-box"
                 : bucketTheme === "Travel"
-                ? "travel-expense-box"
+                ? "travel-finance-box"
                 : bucketTheme === "Rose"
-                ? "rose-expense-box"
+                ? "rose-finance-box"
                 : bucketTheme === "Grink"
-                ? "grink-expense-box"
+                ? "grink-finance-box"
                 : bucketTheme === "Royal"
-                ? "royal-expense-box"
+                ? "royal-finance-box"
                 : bucketTheme === "Elegant"
-                ? "elegant-expense-box"
-                : "coffee-expense-box"
+                ? "elegant-finance-box"
+                : "coffee-finance-box"
             }
           >
             {expense.notes}

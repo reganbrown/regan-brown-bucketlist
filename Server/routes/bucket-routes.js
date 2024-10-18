@@ -30,7 +30,7 @@ router
 router
   .route("/:bucket_id/savings")
   .get(authenticate, savingsController.savingsList)
-  .post(savingsController.savingsAdd);
+  .post(authenticate, savingsController.savingsAdd);
 
 router
   .route("/:bucket_id/savings/:savings_id")

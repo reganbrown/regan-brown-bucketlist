@@ -110,7 +110,6 @@ export default function BucketEdit() {
     let results = await axios.get(
       `${unsplashURL}/search/photos/?client_id=${unsplashAPI}&page=1&per_page=6&query=${photoSearch}`
     );
-    console.log(results.data.results);
     setPhotoList(results.data.results);
   }
 
