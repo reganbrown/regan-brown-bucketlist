@@ -9,6 +9,9 @@ import deleteButton from "../../assets/delete.svg";
 import axios from "axios";
 import "./BucketEdit.scss";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 export default function BucketEdit() {
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const unsplashURL = import.meta.env.VITE_UNSPLASH_URL;
@@ -33,6 +36,9 @@ export default function BucketEdit() {
     "Royal",
     "Elegant",
   ];
+
+  const notifySuccess = () => toast.success("User Added as Contributor", {});
+  const notifyError = (errorMessage) => toast.error(errorMessage);
 
   const getToken = () => {
     return localStorage.getItem("token");
@@ -132,13 +138,14 @@ export default function BucketEdit() {
         }
       );
       getUsers();
+      notifySuccess();
     } catch (error) {
       if (error.response && error.response.status === 404) {
-        alert("User not found. Please check the email address.");
+        notifyError("User not found. Please check the email address.");
       } else if (error.response && error.response.status === 400) {
-        alert(error.response.data.message);
+        notifyError(error.response.data.message);
       } else {
-        console.log("Error adding user", error);
+        notifyError("Error adding user");
       }
     }
   }
@@ -535,6 +542,7 @@ export default function BucketEdit() {
           </button>
         </form>
       </div>
+      <ToastContainer limit={3} />
     </div>
   );
 }

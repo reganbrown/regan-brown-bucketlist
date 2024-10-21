@@ -2,6 +2,8 @@ import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import accountLogo from "../../assets/account.svg";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function SignInForm() {
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
@@ -10,6 +12,12 @@ export default function SignInForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+
+  const notifySuccess = () =>
+    toast.success("Account Created! Redirecting...", {
+      onClose: () => navigate("/"),
+    });
+  const notifyError = (errorMessage) => toast.error(errorMessage);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -26,10 +34,9 @@ export default function SignInForm() {
       localStorage.setItem("token", token);
       localStorage.setItem("userId", userId);
 
-      navigate("/");
+      notifySuccess();
     } catch (error) {
-      console.error("Sign Up failed:", error.response?.data || error);
-      alert(error.response?.data.message || "Sign Up failed");
+      notifyError(error.response?.data.message || "Sign Up failed");
     }
   };
 
@@ -82,6 +89,7 @@ export default function SignInForm() {
           Sign Up
         </button>
       </form>
+      <ToastContainer limit={3} />
     </div>
   );
 }

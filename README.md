@@ -157,3 +157,4 @@ See attached Roadmap
 - Additional page options for buckets like a mood board, or a links list where users can save links for hotels, excursions, etc.
 - Customizable themes instead of the pre-builds
 - Mobile and Tablet views (responsiveness)
+- User details edit / delete account

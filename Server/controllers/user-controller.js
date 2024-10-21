@@ -36,6 +36,12 @@ export const signup = async (req, res) => {
   const { name, email, password } = req.body;
 
   try {
+    const user = await knex("users").where({ email: email }).first();
+
+    if (user) {
+      res.status(409).json({ message: "Email already in use" });
+    }
+
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const [newUserId] = await knex("users").insert({

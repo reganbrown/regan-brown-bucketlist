@@ -8,11 +8,14 @@ import accountLogo from "../../assets/account.svg";
 import saveButton from "../../assets/save.svg";
 import "./BucketAdd.scss";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function BucketAdd() {
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const unsplashURL = import.meta.env.VITE_UNSPLASH_URL;
   const unsplashAPI = import.meta.env.VITE_UNSPLASH_API;
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   let navigate = useNavigate();
 
@@ -34,6 +37,12 @@ export default function BucketAdd() {
     "Elegant",
   ];
 
+  const notifySuccess = (url) =>
+    toast.success("Bucket Created! Redirecting...", {
+      onClose: () => navigate(`/${url}`),
+    });
+  const notifyError = () => toast.error("Unable to create Bucket...");
+
   async function addBucketList() {
     const token = localStorage.getItem("token");
 
@@ -44,14 +53,17 @@ export default function BucketAdd() {
         image_url: selectedPhoto,
       };
 
+      setIsSubmitting(true);
+
       let response = await axios.post(`${backendUrl}/bucket/`, newBucket, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-      navigate(`/${response.data.id}`);
+      notifySuccess(response.data.id);
     } catch (error) {
       console.log(error);
+      notifyError();
     }
   }
 
@@ -70,7 +82,9 @@ export default function BucketAdd() {
   function submitEdit(event) {
     event.preventDefault();
 
-    addBucketList();
+    if (!isSubmitting) {
+      addBucketList();
+    }
   }
 
   async function findPhotos() {
@@ -173,6 +187,7 @@ export default function BucketAdd() {
                 value={bucketTitle}
                 onChange={titleChange}
                 className="form__input"
+                required
               />
             </div>
 
@@ -269,6 +284,7 @@ export default function BucketAdd() {
 
           <button
             type="submit"
+            disabled={isSubmitting}
             className={
               bucketTheme === "Navy"
                 ? "button Navy-page full"
@@ -306,6 +322,7 @@ export default function BucketAdd() {
           </button>
         </form>
       </div>
+      <ToastContainer limit={3} />
     </div>
   );
 }
