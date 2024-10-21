@@ -147,6 +147,11 @@ body {
   border: 1px solid grey;
 }
 
+.message__input {
+  width: 40%;
+  max-width: 900px;
+}
+
 .nav-box {
   width: 20rem;
   background-color: $Coffee-secondary;

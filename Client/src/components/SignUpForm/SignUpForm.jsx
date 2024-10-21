@@ -5,7 +5,8 @@ import accountLogo from "../../assets/account.svg";
 
 export default function SignInForm() {
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
-  const [name, setName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -15,7 +16,7 @@ export default function SignInForm() {
 
     try {
       const response = await axios.post(`${backendUrl}/user/signup`, {
-        name,
+        name: `${firstName} ${lastName}`,
         email,
         password,
       });
@@ -43,10 +44,19 @@ export default function SignInForm() {
       <form onSubmit={handleSubmit}>
         <input
           type="text"
-          placeholder="Name"
+          placeholder="First Name"
           className="full account__input"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
+          value={firstName}
+          onChange={(e) => setFirstName(e.target.value)}
+          required
+        />
+
+        <input
+          type="text"
+          placeholder="Last Name"
+          className="full account__input"
+          value={lastName}
+          onChange={(e) => setLastName(e.target.value)}
           required
         />
 

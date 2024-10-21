@@ -270,13 +270,15 @@ export default function BucketEdit() {
         </Link>
       </div>
       <div className="add-page">
-        <h1 className="add-title">{bucketTitle}</h1>
+        <div className="add-title__box">
+          <h1 className="add-title">{bucketTitle}</h1>
+        </div>
         <form onSubmit={submitEdit} className="add-form">
           <div className="form-box__wrapper-left">
             <div className="form__box">
               <input
                 type="text"
-                placeholder="enter title"
+                placeholder="Enter a Title"
                 value={bucketTitle}
                 onChange={titleChange}
                 className="form__input"
