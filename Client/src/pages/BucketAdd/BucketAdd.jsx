@@ -164,23 +164,23 @@ export default function BucketAdd() {
         <h1 className="add-title">{bucketTitle}</h1>
         <form onSubmit={submitEdit} className="add-form">
           <div className="form-box__wrapper-left">
-            <div className="form-box">
+            <div className="form__box">
               <input
                 type="text"
                 placeholder="Title"
                 value={bucketTitle}
                 onChange={titleChange}
-                className="form-input"
+                className="form__input"
               />
             </div>
 
-            <div className="form-box">
+            <div className="form__box">
               <div className="theme-dropdown">
                 <select
                   id="theme"
                   value={bucketTheme}
                   onChange={updateTheme}
-                  className="form-input"
+                  className="form__input"
                 >
                   <option value="" disabled>
                     Select a theme
@@ -195,7 +195,7 @@ export default function BucketAdd() {
             </div>
           </div>
           <div className="selected-photo">
-            <h2 className="selected-photo-banner">Selected Banner</h2>
+            <h2 className="full">Selected Banner</h2>
             <img src={selectedPhoto} className="selected-thumbnail" />
           </div>
           <div
@@ -215,7 +215,7 @@ export default function BucketAdd() {
                 : "Coffee-photo-list"
             }
           >
-            <div className="form-box">
+            <div className="form__box">
               <input
                 type="text"
                 placeholder="Search for photo"
@@ -227,7 +227,7 @@ export default function BucketAdd() {
                     document.getElementById("search-button").click();
                   }
                 }}
-                className="form-input"
+                className="form__input"
               />
 
               <button

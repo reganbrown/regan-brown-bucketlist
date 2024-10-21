@@ -191,8 +191,8 @@ export default function BucketDetails() {
         </Link>
       </div>
       <img src={bucket.image_url} className="banner-image" />
-      <div className="bucket-body">
-        <div className="app-wrapper-left">
+      <div className="bucket__body">
+        <div className="app__wrapper--left">
           <div
             className={
               bucket.theme_name === "Coffee"
@@ -203,7 +203,7 @@ export default function BucketDetails() {
             BUCKET LIST
           </div>
           <h1 className="title">{bucket.title}</h1>
-          <div className="bucket-links">
+          <div className="bucket__links">
             <Link to={`/${bucketID}/expenses`} className="link">
               <div
                 className={
@@ -240,7 +240,7 @@ export default function BucketDetails() {
               </div>
             </Link>
 
-            <div className="bucket-links__wrapper">
+            <div className="bucket__links--wrapper">
               <Link
                 to={`/${bucketID}/edit`}
                 className={userRole === "owner" ? "link" : "contributor-hidden"}
@@ -260,7 +260,7 @@ export default function BucketDetails() {
             </div>
           </div>
         </div>
-        <div className="app-wrapper-right">
+        <div className="app__wrapper--right">
           <CircularProgressbar
             value={percent}
             text={`${percent}%`}

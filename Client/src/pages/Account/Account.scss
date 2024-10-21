@@ -3,27 +3,10 @@
 @use "../../styles//variables" as *;
 @use "../../styles/global";
 
-.nav-box {
-  width: 20rem;
-  background-color: $Coffee-secondary;
-  border-radius: 8px;
-  box-shadow: 8px 5px 8px black;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-content: space-between;
-  padding: 1rem;
-}
-
 .account-page {
   background: url("../../assets/home-background.svg");
   background-size: cover;
   display: flex;
   justify-content: center;
-  align-items: center;
-}
-
-.logout {
-  flex-direction: column;
   align-items: center;
 }

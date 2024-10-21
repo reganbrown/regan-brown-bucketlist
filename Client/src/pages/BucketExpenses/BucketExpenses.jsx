@@ -298,7 +298,7 @@ export default function BucketExpenses() {
         <input
           type="text"
           placeholder="Expense Name"
-          className="form-input"
+          className="form__input"
           value={expenseName}
           onChange={changeName}
         />
@@ -307,14 +307,14 @@ export default function BucketExpenses() {
           min="0"
           step="0.01"
           placeholder="Expense Amount"
-          className="form-input"
+          className="form__input"
           value={expenseAmount}
           onChange={changeAmount}
         />
         <input
           type="text"
           placeholder="Expense Notes"
-          className="form-input"
+          className="form__input"
           value={expenseNotes}
           onChange={changeNotes}
         />

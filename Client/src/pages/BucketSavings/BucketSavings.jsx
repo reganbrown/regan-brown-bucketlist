@@ -297,7 +297,7 @@ export default function BucketSavings() {
           min="0"
           step="0.01"
           placeholder="Savings Amount"
-          className="form-input full"
+          className="form__input full"
           value={savingsAmount}
           onChange={changeAmount}
         />

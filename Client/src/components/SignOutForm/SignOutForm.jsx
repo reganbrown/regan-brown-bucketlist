@@ -45,9 +45,9 @@ export default function SignOutForm({ onLogout }) {
       <Link to={`/`}>
         <img src={arrowBack} className="logo Coffee-filter" />
       </Link>
-      <h1 className="account-header">Welcome</h1>
-      <h2 className="account-header">{name}</h2>
-      <button onClick={logout} className="add-button">
+      <h1 className="account__header">Welcome</h1>
+      <h2 className="account__header">{name}</h2>
+      <button onClick={logout} className="sign-in__button">
         Logout
       </button>
     </div>

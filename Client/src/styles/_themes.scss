@@ -1,0 +1,443 @@
+@use "./fonts" as *;
+@use "./mixins" as *;
+@use "./variables" as *;
+
+// Themes
+
+// Extenders
+
+.default-button {
+  margin: 0.5rem;
+  border-radius: 8px;
+  width: 8rem;
+  height: 2.2rem;
+  border: 1px solid black;
+  box-shadow: 5px 5px 8px black;
+  font-size: 1.3rem;
+}
+
+.finance-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 18rem;
+  height: 4rem;
+  box-shadow: 6px 5px 8px black;
+  border-radius: 8px;
+}
+
+.photo-list {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  width: 60%;
+  height: 23rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  box-shadow: 8px 5px 8px black;
+}
+
+.user-list {
+  margin-top: 2rem;
+  margin-right: 2rem;
+  padding-top: 1rem;
+  width: 35%;
+  height: 23rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  box-shadow: 8px 5px 8px black;
+}
+
+.user-chat-item {
+  align-self: flex-end;
+  display: flex;
+  flex-wrap: wrap;
+  text-align: start;
+  width: 70%;
+  margin: 1rem 0;
+  min-height: 6rem;
+  padding: 2rem;
+  border-radius: 36px;
+  background-color: $Coffee-primary;
+  color: $Coffee-secondary;
+  font-size: 20px;
+  box-shadow: 6px 5px 8px black;
+}
+
+.chat-item {
+  display: flex;
+  flex-wrap: wrap;
+  text-align: start;
+  flex-shrink: 0;
+  width: 70%;
+  min-height: 8rem;
+  margin: 1rem 0;
+  padding: 2rem;
+  border-radius: 36px;
+  background-color: $Coffee-secondary;
+  color: $Coffee-primary;
+  font-size: 22px;
+  box-shadow: 6px 5px 8px black;
+}
+
+.Travel-filter {
+  filter: invert(19%) sepia(18%) saturate(1287%) hue-rotate(74deg)
+    brightness(98%) contrast(94%);
+}
+
+.Travel-page {
+  background-color: $Travel-secondary;
+  color: $Travel-primary;
+}
+
+.Travel-user-list {
+  @extend .user-list;
+  background-color: $Travel-primary;
+}
+
+.Travel-photo-list {
+  @extend .photo-list;
+  background-color: $Travel-primary;
+}
+
+.Travel-finance-box {
+  @extend .finance-box;
+  background-color: $Travel-primary;
+  color: $Travel-secondary;
+}
+
+.Travel-button {
+  @extend .default-button;
+  background-color: $Travel-secondary;
+  color: $Travel-primary;
+}
+
+.Travel-button-alt {
+  @extend .default-button;
+  background-color: $Travel-primary;
+  color: $Travel-secondary;
+}
+
+.user-Travel-chat {
+  @extend .user-chat-item;
+  background-color: $Travel-primary;
+  color: $Travel-secondary;
+}
+
+.Travel-chat {
+  @extend .chat-item;
+  background-color: $Travel-secondary;
+  color: $Travel-primary;
+}
+
+// Navy
+.Navy-filter {
+  filter: invert(32%) sepia(3%) saturate(6916%) hue-rotate(183deg)
+    brightness(90%) contrast(91%);
+}
+
+.Navy-page {
+  background-color: $Navy-secondary;
+  color: $Navy-primary;
+}
+
+.Navy-photo-list {
+  @extend .photo-list;
+  background-color: $Navy-primary;
+}
+
+.Navy-user-list {
+  @extend .user-list;
+  background-color: $Navy-primary;
+}
+
+.Navy-finance-box {
+  @extend .finance-box;
+  background-color: $Navy-primary;
+  color: $Navy-secondary;
+}
+
+.Navy-button {
+  @extend .default-button;
+  background-color: $Navy-secondary;
+  color: $Navy-primary;
+}
+
+.Navy-button-alt {
+  @extend .default-button;
+  background-color: $Navy-primary;
+  color: $Navy-secondary;
+}
+
+.user-Navy-chat {
+  @extend .user-chat-item;
+  background-color: $Navy-primary;
+  color: $Navy-secondary;
+}
+
+.Navy-chat {
+  @extend .chat-item;
+  background-color: $Navy-secondary;
+  color: $Navy-primary;
+}
+
+// Rose
+.Rose-filter {
+  filter: invert(82%) sepia(4%) saturate(2070%) hue-rotate(316deg)
+    brightness(99%) contrast(95%);
+}
+
+.Rose-page {
+  background-color: $Rose-secondary;
+  color: $Rose-primary;
+}
+
+.Rose-photo-list {
+  @extend .photo-list;
+  background-color: $Rose-primary;
+}
+
+.Rose-user-list {
+  @extend .user-list;
+  background-color: $Rose-primary;
+}
+
+.Rose-finance-box {
+  @extend .finance-box;
+  background-color: $Rose-primary;
+  color: $Rose-secondary;
+}
+
+.Rose-button {
+  @extend .default-button;
+  background-color: $Rose-secondary;
+  color: $Rose-primary;
+}
+
+.Rose-button-alt {
+  @extend .default-button;
+  background-color: $Rose-primary;
+  color: $Rose-secondary;
+}
+
+.user-Rose-chat {
+  @extend .user-chat-item;
+  background-color: $Rose-primary;
+  color: $Rose-secondary;
+}
+
+.Rose-chat {
+  @extend .chat-item;
+  background-color: $Rose-secondary;
+  color: $Rose-primary;
+}
+
+// Desert
+
+.Desert-filter {
+  filter: invert(72%) sepia(15%) saturate(3007%) hue-rotate(315deg)
+    brightness(89%) contrast(96%);
+}
+
+.Desert-page {
+  background-color: $Desert-secondary;
+  color: $Desert-primary;
+}
+
+.Desert-user-list {
+  @extend .user-list;
+  background-color: $Desert-primary;
+}
+
+.Desert-photo-list {
+  @extend .photo-list;
+  background-color: $Desert-primary;
+}
+
+.Desert-finance-box {
+  @extend .finance-box;
+  background-color: $Desert-primary;
+  color: $Desert-secondary;
+}
+
+.Desert-button {
+  @extend .default-button;
+  background-color: $Desert-secondary;
+  color: $Desert-primary;
+}
+.Desert-button-alt {
+  @extend .default-button;
+  background-color: $Desert-primary;
+  color: $Desert-secondary;
+}
+
+.user-Desert-chat {
+  @extend .user-chat-item;
+  background-color: $Desert-primary;
+  color: $Desert-secondary;
+}
+
+.Desert-chat {
+  @extend .chat-item;
+  background-color: $Desert-secondary;
+  color: $Desert-primary;
+}
+
+// Royal
+.Royal-filter {
+  filter: invert(75%) sepia(69%) saturate(4086%) hue-rotate(8deg)
+    brightness(102%) contrast(101%);
+}
+.Royal-page {
+  background-color: $Royal-secondary;
+  color: $Royal-primary;
+}
+
+.Royal-photo-list {
+  @extend .photo-list;
+  background-color: $Royal-primary;
+}
+
+.Royal-user-list {
+  @extend .user-list;
+  background-color: $Royal-primary;
+}
+
+.Royal-finance-box {
+  @extend .finance-box;
+  background-color: $Royal-primary;
+  color: $Royal-secondary;
+}
+
+.Royal-button {
+  @extend .default-button;
+  background-color: $Royal-secondary;
+  color: $Royal-primary;
+}
+
+.Royal-button-alt {
+  @extend .default-button;
+  background-color: $Royal-primary;
+  color: $Royal-secondary;
+}
+
+.user-Royal-chat {
+  @extend .user-chat-item;
+  background-color: $Royal-primary;
+  color: $Royal-secondary;
+}
+
+.Royal-chat {
+  @extend .chat-item;
+  background-color: $Royal-secondary;
+  color: $Royal-primary;
+}
+
+// Elegant
+
+.Elegant-filter {
+  filter: invert(10%) sepia(23%) saturate(3692%) hue-rotate(193deg)
+    brightness(96%) contrast(109%);
+}
+
+.Elegant-page {
+  background-color: $Elegant-secondary;
+  color: $Elegant-primary;
+}
+
+.Elegant-user-list {
+  @extend .user-list;
+  background-color: $Elegant-primary;
+}
+
+.Elegant-photo-list {
+  @extend .photo-list;
+  background-color: $Elegant-primary;
+}
+
+.Elegant-finance-box {
+  @extend .finance-box;
+  background-color: $Elegant-primary;
+  color: $Elegant-secondary;
+}
+
+.Elegant-button {
+  @extend .default-button;
+  background-color: $Elegant-secondary;
+  color: $Elegant-primary;
+}
+
+.Elegant-button-alt {
+  @extend .default-button;
+  background-color: $Elegant-primary;
+  color: $Elegant-secondary;
+}
+
+.user-Elegant-chat {
+  @extend .user-chat-item;
+  background-color: $Elegant-primary;
+  color: $Elegant-secondary;
+}
+
+.Elegant-chat {
+  @extend .chat-item;
+  background-color: $Elegant-secondary;
+  color: $Elegant-primary;
+}
+
+// Coffee
+.Coffee-filter {
+  filter: invert(23%) sepia(8%) saturate(3609%) hue-rotate(324deg)
+    brightness(92%) contrast(87%);
+}
+.Coffee-page {
+  background-color: $Coffee-secondary;
+  color: $Coffee-primary;
+}
+
+.Coffee-photo-list {
+  @extend .photo-list;
+  background-color: $Coffee-primary;
+}
+
+.Coffee-user-list {
+  @extend .user-list;
+  background-color: $Coffee-primary;
+}
+
+.Coffee-finance-box {
+  @extend .finance-box;
+  background-color: $Coffee-primary;
+  color: $Coffee-secondary;
+}
+
+.Coffee-button {
+  @extend .default-button;
+  background-color: $Coffee-secondary;
+  color: $Coffee-primary;
+}
+
+.Coffee-button-alt {
+  @extend .default-button;
+  background-color: $Coffee-primary;
+  color: $Coffee-secondary;
+}
+
+.user-Coffee-chat {
+  @extend .user-chat-item;
+  background-color: $Coffee-primary;
+  color: $Coffee-secondary;
+}
+
+.Coffee-chat {
+  @extend .chat-item;
+  background-color: $Coffee-secondary;
+  color: $Coffee-primary;
+}
+
+.button-small {
+  width: 2rem;
+  height: 1.2rem;
+  font-size: 1rem;
+  box-shadow: none;
+  border: none;
+}

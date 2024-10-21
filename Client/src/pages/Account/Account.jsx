@@ -31,7 +31,7 @@ export default function Account() {
             ) : (
               <SignUpForm onToggle={toggleForm} />
             )}
-            <button onClick={toggleForm} className="add-button">
+            <button onClick={toggleForm} className="sign-in__button">
               {isSignIn ? "or Sign Up" : "or Sign In"}
             </button>
           </>

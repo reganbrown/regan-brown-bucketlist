@@ -273,22 +273,22 @@ export default function BucketEdit() {
         <h1 className="add-title">{bucketTitle}</h1>
         <form onSubmit={submitEdit} className="add-form">
           <div className="form-box__wrapper-left">
-            <div className="form-box">
+            <div className="form__box">
               <input
                 type="text"
                 placeholder="enter title"
                 value={bucketTitle}
                 onChange={titleChange}
-                className="form-input"
+                className="form__input"
               />
             </div>
-            <div className="form-box">
+            <div className="form__box">
               <div className="theme-dropdown">
                 <select
                   id="theme"
                   value={bucketTheme}
                   onChange={updateTheme}
-                  className="form-input"
+                  className="form__input"
                 >
                   <option value="" disabled>
                     Select a theme
@@ -303,7 +303,7 @@ export default function BucketEdit() {
             </div>
           </div>
           <div className="selected-photo">
-            <h2 className="selected-photo-banner">Selected Banner</h2>
+            <h2 className="full">Selected Banner</h2>
             <img src={selectedPhoto} className="selected-thumbnail" />
           </div>
           <div
@@ -323,7 +323,7 @@ export default function BucketEdit() {
                 : "Coffee-user-list"
             }
           >
-            <div className="form-box">
+            <div className="form__box">
               <input
                 type="text"
                 placeholder="Enter user Email"
@@ -335,7 +335,7 @@ export default function BucketEdit() {
                     document.getElementById("user-search-button").click();
                   }
                 }}
-                className="form-input"
+                className="form__input"
               />
 
               <button
@@ -407,7 +407,7 @@ export default function BucketEdit() {
                 : "Coffee-photo-list"
             }
           >
-            <div className="form-box">
+            <div className="form__box">
               <input
                 type="text"
                 placeholder="Search for photo"
@@ -419,7 +419,7 @@ export default function BucketEdit() {
                     document.getElementById("search-button").click();
                   }
                 }}
-                className="form-input"
+                className="form__input"
               />
 
               <button

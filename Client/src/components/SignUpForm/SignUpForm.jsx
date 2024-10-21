@@ -35,16 +35,16 @@ export default function SignInForm() {
   return (
     <div className="account-form">
       <Link to={"/account"}>
-        <div className="account-button-wrapper">
-          <img src={accountLogo} className="account-button Coffee-filter" />
+        <div className="account__button-wrapper">
+          <img src={accountLogo} className="account__button Coffee-filter" />
         </div>
       </Link>
-      <h1 className="full account-header">Sign Up</h1>
+      <h1 className="full account__header">Sign Up</h1>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
           placeholder="Name"
-          className="full account-input"
+          className="full account__input"
           value={name}
           onChange={(e) => setName(e.target.value)}
           required
@@ -53,7 +53,7 @@ export default function SignInForm() {
         <input
           type="email"
           placeholder="Email"
-          className="full account-input"
+          className="full account__input"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
@@ -62,13 +62,13 @@ export default function SignInForm() {
         <input
           type="password"
           placeholder="Password"
-          className="full account-input"
+          className="full account__input"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
 
-        <button type="submit" className="add-button">
+        <button type="submit" className="sign-in__button">
           Sign Up
         </button>
       </form>

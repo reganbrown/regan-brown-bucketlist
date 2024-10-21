@@ -32,8 +32,8 @@ export default function BucketList() {
   return (
     <>
       <Link to={"/account"}>
-        <div className="account-button-wrapper">
-          <img src={accountLogo} className="account-button Coffee-filter" />
+        <div className="account__button-wrapper">
+          <img src={accountLogo} className="account__button Coffee-filter" />
         </div>
       </Link>
       <div className="bucket-list">
@@ -44,7 +44,7 @@ export default function BucketList() {
         ))}
       </div>
       <Link to={"/addbucket"}>
-        <button type="button" className="add-button">
+        <button type="button" className="bucket__add-button">
           +
         </button>
       </Link>

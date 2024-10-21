@@ -196,7 +196,7 @@ export default function BucketChat() {
         </Link>
       </div>
       <h1>Message Board</h1>
-      <div className="message-board">
+      <div className="message__board">
         {chat.map((message) => (
           <div
             key={message.id}
@@ -297,7 +297,7 @@ export default function BucketChat() {
         <input
           type="text"
           placeholder="Message"
-          className="form-input message-input"
+          className="form__input message__input"
           value={message}
           onChange={changeChat}
         />
