@@ -34,7 +34,7 @@ export default function SignOutForm({ onLogout }) {
   useEffect(() => {
     const token = getToken();
     if (!token) {
-      navigate("/login");
+      navigate("/account");
     } else {
       getAccount();
     }

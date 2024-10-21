@@ -10,6 +10,8 @@ const { PORT, BACKEND_URL } = process.env;
 
 const app = express();
 
+app.use(express.static("public"));
+
 import bucketRoutes from "./routes/bucket-routes.js";
 import userRoutes from "./routes/user-routes.js";
 

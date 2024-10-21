@@ -72,10 +72,12 @@ See attached folder of example mock ups
 
 ### Data
 
-- Users sheet with ID, Name, and will have an associated list of buckets
-- Buckets will have details like image, title, theme, FK to ID of Expense and Savings, and comments
-- Expense sheet will have a FK to a bucket and have expense names, amounts, and notes
-- Savings sheet will have a FK to a bucket and have contributiond details
+- USERS: ID, Name, Email, Password
+- BUCKETS: ID, Image, Title, Theme
+- BUCKET_USERS: ID, BucketID, UserID, Role
+- CHATS: ID, UserID, BucketID, Message, DateAdded
+- SAVINGS: ID, BucketID, UserID, Amount, DateAdded
+- EXPENSES: ID, BucketID, Name, Amount, Notes
 
 ![](ProposalAssets/DB/user_data.png)
 ![](ProposalAssets/DB/buckets_data.png)
@@ -85,41 +87,57 @@ See attached folder of example mock ups
 
 ### Endpoints
 
+##### Users
+
+- POST - http://localhost${PORT}/user/signup creates a new user
+
+- POST - http://localhost${PORT}/user/login logs in a user
+
+- GET - http://localhost${PORT}/user/userDetails/ gets the user details for the authenticated user by token
+
 ##### Bucket
 
-- GET - http://localhost${PORT}/buckets/ Provides a list of all buckets of authenticated user
+- GET - http://localhost${PORT}/bucket/ Provides a list of all buckets of authenticated user
 
-- GET - http://localhost${PORT}/buckets/:BucketID Provides the details of one bucket
+- GET - http://localhost${PORT}/buckets/:bucket_id Provides the details of one bucket
 
-- POST - http://localhost${PORT}/buckets/ Add a new buckeet to the users list
+- POST - http://localhost${PORT}/bucket/ Add a new buckeet to the users list
 
-- PUT - http://localhost${PORT}/buckets/:BucketID Updates one bucket details by given ID
+- PUT - http://localhost${PORT}/bucket/:bucket_id Updates one bucket details by given ID
 
-- DELETE - http://localhost${PORT}/buckets/:BucketID Removes one bucket by given ID
+- DELETE - http://localhost${PORT}/bucket/:bucket_id Removes one bucket by given ID
 
 ##### Expense
 
-- GET - http://localhost${PORT}/expenses/:BucketID Returns the expense list for a bucket
+- GET - http://localhost${PORT}/bucket/:bucket_id/expenses Returns the expense list for a bucket
 
-- POST - http://localhost${PORT}/expenses/:BucketID Creates an expense list for the bucket
+- POST - http://localhost${PORT}/bucket/:bucket_id/expenses Creates an expense item for the bucket
 
-- DELETE - http://localhost${PORT}/expenses/:BucketID/expenses/:ExpensesID Deletes an expense list associated to a bucket
+- DELETE - http://localhost${PORT}/bucket/:bucket_id/expenses/:expense_id Deletes an expense list associated to a bucket
 
 ##### Savings
 
-- GET - http://localhost${PORT}/savings/:BucketID Returns the savings list for a bucket
+- GET - http://localhost${PORT}/bucket/:bucket_id/savings Returns the savings list for a bucket
 
-- POST - http://localhost${PORT}/savings/:BucketID Creates an savings list for the bucket
+- POST - http://localhost${PORT}/bucket/:bucket_id/savings Creates a savings item for the bucket
 
-- DELETE - http://localhost${PORT}/savings/:BucketID/savings/:SavingsID Deletes a savings list associated to a bucket
+- DELETE - http://localhost${PORT}/bucket//:bucket_id/savings/:savings_id Deletes a savings item associated to a bucket
 
 ##### Chat
 
-- GET - http://localhost${PORT}/chat/:BucketID Returns the savings list for a bucket
+- GET - http://localhost${PORT}/bucket/:bucket_id/chat/ Returns the chat list for a bucket
 
-- POST - http://localhost${PORT}/chat/:BucketID Creates an savings list for the bucket
+- POST - http://localhost${PORT}/bucket/:bucket_id/chat/ Adds a chat message
 
-- DELETE - http://localhost${PORT}/chat/:BucketID/chats/:ChatID Deletes a savings list associated to a bucket
+- DELETE - http://localhost${PORT}/bucket/:bucket_id/chat/:chat_id Deletes a chat message
+
+##### Contributors
+
+- GET - http://localhost${PORT}/bucket/:BucketID/contributors/ Returns the contributors on a bucket
+
+- POST - http://localhost${PORT}/bucket/:BucketID/contributors/:user_id Adds a user as a contributor to a bucket
+
+- DELETE - http://localhost${PORT}/bucket/:BucketID/contributors/:user_id Removes a contributor from a bucket
 
 ## Roadmap
 
@@ -131,8 +149,9 @@ See attached Roadmap
 
 ## Future Implementations
 
-- User Authentication
-- Multi user buckets
+- User Authentication - DONE
+- Multi user buckets - DONE
+- Toastify Alerts
 - Real time chat instead of comment board
 - Bucket dashboard image as upload instead of stock images
 - Additional page options for buckets like a mood board, or a links list where users can save links for hotels, excursions, etc.

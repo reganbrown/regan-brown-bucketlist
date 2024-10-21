@@ -23,7 +23,7 @@ export default function BucketExpenses() {
   useEffect(() => {
     const token = getToken();
     if (!token) {
-      navigate("/login");
+      navigate("/account");
     }
   }, [navigate]);
 

@@ -23,7 +23,7 @@ export default function BucketDetails() {
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
-      navigate("/login");
+      navigate("/account");
     }
   }, [navigate]);
 

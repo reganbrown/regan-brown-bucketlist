@@ -10,22 +10,19 @@ export async function seed(knex) {
   await knex("buckets").insert([
     {
       id: 1,
-      image_url:
-        "https://www.discoverboating.com/sites/default/files/boating-camping-activity.jpg",
+      image_url: "http://localhost:8080/images/default-banner.jpeg",
       title: "Camping Trip",
       theme_name: "Navy",
     },
     {
       id: 2,
-      image_url:
-        "https://www.flightgift.com/media/wp/FG/2024/08/Christmas-in-NYC-3.jpg",
+      image_url: "http://localhost:8080/images/default-banner.jpeg",
       title: "NYC Christmas",
       theme_name: "Travel",
     },
     {
       id: 3,
-      image_url:
-        "https://thesavvybackpacker.com/wp-content/uploads/2013/08/backpacking-europe-packing.jpg",
+      image_url: "http://localhost:8080/images/default-banner.jpeg",
       title: "Backpack in Europe",
       theme_name: "Travel",
     },

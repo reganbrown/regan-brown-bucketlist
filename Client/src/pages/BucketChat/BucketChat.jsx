@@ -23,7 +23,7 @@ export default function BucketChat() {
   useEffect(() => {
     const token = getToken();
     if (!token) {
-      navigate("/login");
+      navigate("/account");
     }
   }, [navigate]);
 

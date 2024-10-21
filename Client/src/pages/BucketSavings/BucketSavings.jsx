@@ -22,7 +22,7 @@ export default function BucketSavings() {
   useEffect(() => {
     const token = getToken();
     if (!token) {
-      navigate("/login");
+      navigate("/account");
     }
   }, [navigate]);
 

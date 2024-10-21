@@ -20,7 +20,7 @@ export default function BucketAdd() {
   const [photoSearch, setPhotoSearch] = useState("");
   const [photoList, setPhotoList] = useState([]);
   const [selectedPhoto, setSelectedPhoto] = useState(
-    "https://www.discoverboating.com/sites/default/files/boating-camping-activity.jpg"
+    "http://localhost:8080/images/default-banner.jpeg"
   );
   const [bucketTheme, setBucketTheme] = useState("Coffee");
 
