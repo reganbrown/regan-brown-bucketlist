@@ -184,4 +184,113 @@ const bucketDelete = async (req, res) => {
   }
 };
 
-export { bucketList, bucketAdd, bucketDelete, bucketDetails, bucketEdit };
+const addContributor = async (req, res) => {
+  const { email } = req.body;
+
+  try {
+    const user = await knex("users").where({ email }).first();
+
+    if (!user) {
+      console.log("User not found for email:", email);
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    const existingContributor = await knex("bucket_users")
+      .where({
+        bucket_id: req.params.bucket_id,
+        user_id: user.id,
+        role: "contributor",
+      })
+      .first();
+
+    if (existingContributor) {
+      return res.status(400).json({ message: "User is already a contributor" });
+    }
+
+    const bucketOwner = await knex("bucket_users")
+      .where({
+        bucket_id: req.params.bucket_id,
+        user_id: user.id,
+        role: "owner",
+      })
+      .first();
+
+    if (bucketOwner) {
+      return res
+        .status(400)
+        .json({ message: "Cannot add Owner as a Contributor" });
+    }
+
+    const userBucket = {
+      bucket_id: req.params.bucket_id,
+      user_id: user.id,
+      role: "contributor",
+    };
+
+    await knex("bucket_users").insert(userBucket);
+    res.status(200).json(userBucket);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const deleteContributor = async (req, res) => {
+  const bucketID = req.params.bucket_id;
+  const userID = req.params.user_id;
+
+  try {
+    const user = await knex("users").where({ id: userID }).first();
+
+    if (!user) {
+      console.log("User not found for ID:", userID);
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    const isContributor = await knex("bucket_users")
+      .where({
+        bucket_id: bucketID,
+        user_id: userID,
+        role: "contributor",
+      })
+      .first();
+
+    if (!isContributor) {
+      return res.status(400).json({ message: "User is not a contributor" });
+    }
+
+    await knex("bucket_users")
+      .where({ bucket_id: bucketID, user_id: userID })
+      .del();
+    res.status(200).send("user removed");
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const getContributors = async (req, res) => {
+  try {
+    const bucketID = req.params.bucket_id;
+
+    const contributors = await knex("bucket_users")
+      .join("users", "bucket_users.user_id", "users.id")
+      .where({
+        bucket_id: bucketID,
+        role: "contributor",
+      })
+      .select("users.id", "users.name", "bucket_users.role");
+    res.status(200).json(contributors);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export {
+  bucketList,
+  bucketAdd,
+  bucketDelete,
+  bucketDetails,
+  bucketEdit,
+  addContributor,
+  getContributors,
+  deleteContributor,
+};

@@ -13,7 +13,7 @@ export async function seed(knex) {
       image_url:
         "https://www.discoverboating.com/sites/default/files/boating-camping-activity.jpg",
       title: "Camping Trip",
-      theme_name: "Adventure",
+      theme_name: "Navy",
     },
     {
       id: 2,

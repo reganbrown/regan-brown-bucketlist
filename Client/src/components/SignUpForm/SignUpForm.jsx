@@ -36,7 +36,7 @@ export default function SignInForm() {
     <div className="account-form">
       <Link to={"/account"}>
         <div className="account-button-wrapper">
-          <img src={accountLogo} className="account-button coffee-filter" />
+          <img src={accountLogo} className="account-button Coffee-filter" />
         </div>
       </Link>
       <h1 className="full account-header">Sign Up</h1>

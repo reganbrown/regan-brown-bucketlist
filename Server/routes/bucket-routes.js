@@ -19,6 +19,15 @@ router
   .delete(authenticate, bucketController.bucketDelete);
 
 router
+  .route("/:bucket_id/contributors")
+  .post(authenticate, bucketController.addContributor)
+  .get(authenticate, bucketController.getContributors);
+
+router
+  .route("/:bucket_id/contributors/:user_id")
+  .delete(authenticate, bucketController.deleteContributor);
+
+router
   .route("/:bucket_id/chat")
   .get(authenticate, chatController.chatList)
   .post(authenticate, chatController.chatAdd);

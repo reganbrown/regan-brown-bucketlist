@@ -49,78 +49,78 @@ body {
 }
 
 .list-item {
-  color: $coffee-primary;
+  color: $Coffee-primary;
   @include rajdhani-bold;
   font-size: 1.2rem;
   padding: 1rem;
 }
 
-.travel-filter {
+.Travel-filter {
   filter: invert(19%) sepia(18%) saturate(1287%) hue-rotate(74deg)
     brightness(98%) contrast(94%);
 }
 
-.travel-page {
-  background-color: $travel-secondary;
-  color: $travel-primary;
+.Travel-page {
+  background-color: $Travel-secondary;
+  color: $Travel-primary;
 }
 
-.adventure-filter {
-  filter: invert(19%) sepia(80%) saturate(2346%) hue-rotate(349deg)
-    brightness(99%) contrast(99%);
+.Navy-filter {
+  filter: invert(32%) sepia(3%) saturate(6916%) hue-rotate(183deg)
+    brightness(90%) contrast(91%);
 }
 
-.adventure-page {
-  background-color: $adventure-secondary;
-  color: $adventure-primary;
+.Navy-page {
+  background-color: $Navy-secondary;
+  color: $Navy-primary;
 }
 
-.rose-filter {
+.Rose-filter {
   filter: invert(82%) sepia(4%) saturate(2070%) hue-rotate(316deg)
     brightness(99%) contrast(95%);
 }
 
-.rose-page {
-  background-color: $rose-secondary;
-  color: $rose-primary;
+.Rose-page {
+  background-color: $Rose-secondary;
+  color: $Rose-primary;
 }
 
-.grink-filter {
-  filter: invert(79%) sepia(12%) saturate(994%) hue-rotate(291deg)
-    brightness(97%) contrast(92%);
+.Desert-filter {
+  filter: invert(72%) sepia(15%) saturate(3007%) hue-rotate(315deg)
+    brightness(89%) contrast(96%);
 }
 
-.grink-page {
-  background-color: $grink-secondary;
-  color: $grink-primary;
+.Desert-page {
+  background-color: $Desert-secondary;
+  color: $Desert-primary;
 }
 
-.royal-filter {
+.Royal-filter {
   filter: invert(75%) sepia(69%) saturate(4086%) hue-rotate(8deg)
     brightness(102%) contrast(101%);
 }
-.royal-page {
-  background-color: $royal-secondary;
-  color: $royal-primary;
+.Royal-page {
+  background-color: $Royal-secondary;
+  color: $Royal-primary;
 }
 
-.elegant-filter {
+.Elegant-filter {
   filter: invert(10%) sepia(23%) saturate(3692%) hue-rotate(193deg)
     brightness(96%) contrast(109%);
 }
 
-.elegant-page {
-  background-color: $elegant-secondary;
-  color: $elegant-primary;
+.Elegant-page {
+  background-color: $Elegant-secondary;
+  color: $Elegant-primary;
 }
 
-.coffee-filter {
+.Coffee-filter {
   filter: invert(23%) sepia(8%) saturate(3609%) hue-rotate(324deg)
     brightness(92%) contrast(87%);
 }
-.coffee-page {
-  background-color: $coffee-secondary;
-  color: $coffee-primary;
+.Coffee-page {
+  background-color: $Coffee-secondary;
+  color: $Coffee-primary;
 }
 
 .account-form {
@@ -132,13 +132,13 @@ body {
 .account-input {
   height: 2rem;
   border-radius: 8px;
-  border: 1px solid $coffee-primary;
+  border: 1px solid $Coffee-primary;
   padding: 1rem;
   margin: 0.5rem 0;
 }
 
 .account-header {
-  color: $coffee-primary;
+  color: $Coffee-primary;
   @include rajdhani-bold;
 }
 
@@ -159,44 +159,156 @@ body {
   border-radius: 8px;
 }
 
-.adventure-finance-box {
+.Navy-finance-box {
   @extend .finance-box;
-  background-color: $adventure-primary;
-  color: $adventure-secondary;
+  background-color: $Navy-primary;
+  color: $Navy-secondary;
 }
 
-.travel-finance-box {
+.Travel-finance-box {
   @extend .finance-box;
-  background-color: $travel-primary;
-  color: $travel-secondary;
+  background-color: $Travel-primary;
+  color: $Travel-secondary;
 }
 
-.rose-finance-box {
+.Rose-finance-box {
   @extend .finance-box;
-  background-color: $rose-primary;
-  color: $rose-secondary;
+  background-color: $Rose-primary;
+  color: $Rose-secondary;
 }
 
-.grink-finance-box {
+.Desert-finance-box {
   @extend .finance-box;
-  background-color: $grink-primary;
-  color: $grink-secondary;
+  background-color: $Desert-primary;
+  color: $Desert-secondary;
 }
 
-.royal-finance-box {
+.Royal-finance-box {
   @extend .finance-box;
-  background-color: $royal-primary;
-  color: $royal-secondary;
+  background-color: $Royal-primary;
+  color: $Royal-secondary;
 }
 
-.elegant-finance-box {
+.Elegant-finance-box {
   @extend .finance-box;
-  background-color: $elegant-primary;
-  color: $elegant-secondary;
+  background-color: $Elegant-primary;
+  color: $Elegant-secondary;
 }
 
-.coffee-finance-box {
+.Coffee-finance-box {
   @extend .finance-box;
-  background-color: $coffee-primary;
-  color: $coffee-secondary;
+  background-color: $Coffee-primary;
+  color: $Coffee-secondary;
+}
+
+.expense-form {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 1000px;
+  margin: auto;
+  padding: 0 3rem;
+}
+
+.default-button {
+  margin: 0.5rem;
+  border-radius: 8px;
+  width: 8rem;
+  height: 2.2rem;
+  border: 1px solid black;
+  box-shadow: 5px 5px 8px black;
+  font-size: 1.3rem;
+}
+
+.Navy-button {
+  @extend .default-button;
+  background-color: $Navy-secondary;
+  color: $Navy-primary;
+}
+
+.Travel-button {
+  @extend .default-button;
+  background-color: $Travel-secondary;
+  color: $Travel-primary;
+}
+
+.Coffee-button {
+  @extend .default-button;
+  background-color: $Coffee-secondary;
+  color: $Coffee-primary;
+}
+
+.Rose-button {
+  @extend .default-button;
+  background-color: $Rose-secondary;
+  color: $Rose-primary;
+}
+
+.Desert-button {
+  @extend .default-button;
+  background-color: $Desert-secondary;
+  color: $Desert-primary;
+}
+
+.Royal-button {
+  @extend .default-button;
+  background-color: $Royal-secondary;
+  color: $Royal-primary;
+}
+
+.Elegant-button {
+  @extend .default-button;
+  background-color: $Elegant-secondary;
+  color: $Elegant-primary;
+}
+
+.Navy-button-alt {
+  @extend .default-button;
+  background-color: $Navy-primary;
+  color: $Navy-secondary;
+}
+
+.Travel-button-alt {
+  @extend .default-button;
+  background-color: $Travel-primary;
+  color: $Travel-secondary;
+}
+
+.Coffee-button-alt {
+  @extend .default-button;
+  background-color: $Coffee-primary;
+  color: $Coffee-secondary;
+}
+
+.Rose-button-alt {
+  @extend .default-button;
+  background-color: $Rose-primary;
+  color: $Rose-secondary;
+}
+
+.Desert-button-alt {
+  @extend .default-button;
+  background-color: $Desert-primary;
+  color: $Desert-secondary;
+}
+
+.Royal-button-alt {
+  @extend .default-button;
+  background-color: $Royal-primary;
+  color: $Royal-secondary;
+}
+
+.Elegant-button-alt {
+  @extend .default-button;
+  background-color: $Elegant-primary;
+  color: $Elegant-secondary;
+}
+
+.button-small {
+  width: 2rem;
+  height: 1.2rem;
+  font-size: 1rem;
+  box-shadow: none;
+  border: none;
 }

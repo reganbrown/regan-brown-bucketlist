@@ -27,9 +27,9 @@ export default function BucketAdd() {
   const themes = [
     "Coffee",
     "Travel",
-    "Adventure",
+    "Navy",
     "Rose",
-    "Grink",
+    "Desert",
     "Royal",
     "Elegant",
   ];
@@ -44,12 +44,12 @@ export default function BucketAdd() {
         image_url: selectedPhoto,
       };
 
-      await axios.post(`${backendUrl}/bucket/`, newBucket, {
+      let response = await axios.post(`${backendUrl}/bucket/`, newBucket, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-      navigate(`/`);
+      navigate(`/${response.data.id}`);
     } catch (error) {
       console.log(error);
     }
@@ -83,19 +83,19 @@ export default function BucketAdd() {
   return (
     <div
       className={
-        bucketTheme === "Adventure"
-          ? "container adventure-page"
+        bucketTheme === "Navy"
+          ? "container Navy-page"
           : bucketTheme === "Travel"
-          ? "container travel-page"
+          ? "container Travel-page"
           : bucketTheme === "Rose"
-          ? "container rose-page"
-          : bucketTheme === "Grink"
-          ? "container grink-page"
+          ? "container Rose-page"
+          : bucketTheme === "Desert"
+          ? "container Desert-page"
           : bucketTheme === "Royal"
-          ? "container royal-page"
+          ? "container Royal-page"
           : bucketTheme === "Elegant"
-          ? "container elegant-page"
-          : "container coffee-page"
+          ? "container Elegant-page"
+          : "container Coffee-page"
       }
     >
       <div className="header">
@@ -103,19 +103,19 @@ export default function BucketAdd() {
           <img
             src={arrowBack}
             className={
-              bucketTheme === "Adventure"
-                ? "logo adventure-filter"
+              bucketTheme === "Navy"
+                ? "logo Navy-filter"
                 : bucketTheme === "Travel"
-                ? "logo travel-filter"
+                ? "logo Travel-filter"
                 : bucketTheme === "Rose"
-                ? "logo rose-filter"
-                : bucketTheme === "Grink"
-                ? "logo grink-filter"
+                ? "logo Rose-filter"
+                : bucketTheme === "Desert"
+                ? "logo Desert-filter"
                 : bucketTheme === "Royal"
-                ? "logo royal-filter"
+                ? "logo Royal-filter"
                 : bucketTheme === "Elegant"
-                ? "logo elegant-filter"
-                : "logo coffee-filter"
+                ? "logo Elegant-filter"
+                : "logo Coffee-filter"
             }
           />
         </Link>
@@ -123,19 +123,19 @@ export default function BucketAdd() {
           <img
             src={bucketLogo}
             className={
-              bucketTheme === "Adventure"
-                ? "logo adventure-filter"
+              bucketTheme === "Navy"
+                ? "logo Navy-filter"
                 : bucketTheme === "Travel"
-                ? "logo travel-filter"
+                ? "logo Travel-filter"
                 : bucketTheme === "Rose"
-                ? "logo rose-filter"
-                : bucketTheme === "Grink"
-                ? "logo grink-filter"
+                ? "logo Rose-filter"
+                : bucketTheme === "Desert"
+                ? "logo Desert-filter"
                 : bucketTheme === "Royal"
-                ? "logo royal-filter"
+                ? "logo Royal-filter"
                 : bucketTheme === "Elegant"
-                ? "logo elegant-filter"
-                : "logo coffee-filter"
+                ? "logo Elegant-filter"
+                : "logo Coffee-filter"
             }
           />
         </Link>
@@ -143,19 +143,19 @@ export default function BucketAdd() {
           <img
             src={accountLogo}
             className={
-              bucketTheme === "Adventure"
-                ? "logo adventure-filter"
+              bucketTheme === "Navy"
+                ? "logo Navy-filter"
                 : bucketTheme === "Travel"
-                ? "logo travel-filter"
+                ? "logo Travel-filter"
                 : bucketTheme === "Rose"
-                ? "logo rose-filter"
-                : bucketTheme === "Grink"
-                ? "logo grink-filter"
+                ? "logo Rose-filter"
+                : bucketTheme === "Desert"
+                ? "logo Desert-filter"
                 : bucketTheme === "Royal"
-                ? "logo royal-filter"
+                ? "logo Royal-filter"
                 : bucketTheme === "Elegant"
-                ? "logo elegant-filter"
-                : "logo coffee-filter"
+                ? "logo Elegant-filter"
+                : "logo Coffee-filter"
             }
           />
         </Link>
@@ -163,50 +163,56 @@ export default function BucketAdd() {
       <div className="add-page">
         <h1 className="add-title">{bucketTitle}</h1>
         <form onSubmit={submitEdit} className="add-form">
-          <div className="form-box">
-            <input
-              type="text"
-              placeholder="Title"
-              value={bucketTitle}
-              onChange={titleChange}
-              className="form-input"
-            />
-          </div>
-
-          <div className="form-box">
-            <div className="theme-dropdown">
-              <select
-                id="theme"
-                value={bucketTheme}
-                onChange={updateTheme}
+          <div className="form-box__wrapper-left">
+            <div className="form-box">
+              <input
+                type="text"
+                placeholder="Title"
+                value={bucketTitle}
+                onChange={titleChange}
                 className="form-input"
-              >
-                <option value="" disabled>
-                  Select a theme
-                </option>
-                {themes.map((theme, index) => (
-                  <option key={index} value={theme}>
-                    {theme}
-                  </option>
-                ))}
-              </select>
+              />
             </div>
+
+            <div className="form-box">
+              <div className="theme-dropdown">
+                <select
+                  id="theme"
+                  value={bucketTheme}
+                  onChange={updateTheme}
+                  className="form-input"
+                >
+                  <option value="" disabled>
+                    Select a theme
+                  </option>
+                  {themes.map((theme, index) => (
+                    <option key={index} value={theme}>
+                      {theme}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+          </div>
+          <div className="selected-photo">
+            <h2 className="selected-photo-banner">Selected Banner</h2>
+            <img src={selectedPhoto} className="selected-thumbnail" />
           </div>
           <div
             className={
-              bucketTheme === "Adventure"
-                ? "adventure-photo-list"
+              bucketTheme === "Navy"
+                ? "Navy-photo-list"
                 : bucketTheme === "Travel"
-                ? "travel-photo-list"
+                ? "Travel-photo-list"
                 : bucketTheme === "Rose"
-                ? "rose-photo-list"
-                : bucketTheme === "Grink"
-                ? "grink-photo-list"
+                ? "Rose-photo-list"
+                : bucketTheme === "Desert"
+                ? "Desert-photo-list"
                 : bucketTheme === "Royal"
-                ? "royal-photo-list"
+                ? "Royal-photo-list"
                 : bucketTheme === "Elegant"
-                ? "elegant-photo-list"
-                : "coffee-photo-list"
+                ? "Elegant-photo-list"
+                : "Coffee-photo-list"
             }
           >
             <div className="form-box">
@@ -228,9 +234,23 @@ export default function BucketAdd() {
                 type="button"
                 onClick={findPhotos}
                 id="search-button"
-                className="search-button"
+                className={
+                  bucketTheme === "Navy"
+                    ? "Navy-button"
+                    : bucketTheme === "Travel"
+                    ? "Travel-button"
+                    : bucketTheme === "Rose"
+                    ? "Rose-button"
+                    : bucketTheme === "Desert"
+                    ? "Desert-button"
+                    : bucketTheme === "Royal"
+                    ? "Royal-button"
+                    : bucketTheme === "Elegant"
+                    ? "Elegant-button"
+                    : "Coffee-button"
+                }
               >
-                Search for Banners
+                Search
               </button>
             </div>
             {photoList.map((photo, index) => (
@@ -245,45 +265,40 @@ export default function BucketAdd() {
             ))}
           </div>
 
-          <div className="selected-photo">
-            <h2 className="selected-photo-banner">Selected Banner</h2>
-            <img src={selectedPhoto} className="selected-thumbnail" />
-          </div>
-
           <button
             type="submit"
             className={
-              bucketTheme === "Adventure"
-                ? "button adventure-page full"
+              bucketTheme === "Navy"
+                ? "button Navy-page full"
                 : bucketTheme === "Travel"
-                ? "button travel-page full"
+                ? "button Travel-page full"
                 : bucketTheme === "Rose"
-                ? "button rose-page full"
-                : bucketTheme === "Grink"
-                ? "button grink-page full"
+                ? "button Rose-page full"
+                : bucketTheme === "Desert"
+                ? "button Desert-page full"
                 : bucketTheme === "Royal"
-                ? "button royal-page full"
+                ? "button Royal-page full"
                 : bucketTheme === "Elegant"
-                ? "button elegant-page full"
-                : "button coffee-page full"
+                ? "button Elegant-page full"
+                : "button Coffee-page full"
             }
           >
             <img
               src={saveButton}
               className={
-                bucketTheme === "Adventure"
-                  ? "save-button adventure-filter"
+                bucketTheme === "Navy"
+                  ? "save-button Navy-filter"
                   : bucketTheme === "Travel"
-                  ? "save-button travel-filter"
+                  ? "save-button Travel-filter"
                   : bucketTheme === "Rose"
-                  ? "save-button rose-filter"
-                  : bucketTheme === "Grink"
-                  ? "save-button grink-filter"
+                  ? "save-button Rose-filter"
+                  : bucketTheme === "Desert"
+                  ? "save-button Desert-filter"
                   : bucketTheme === "Royal"
-                  ? "save-button royal-filter"
+                  ? "save-button Royal-filter"
                   : bucketTheme === "Elegant"
-                  ? "save-button elegant-filter"
-                  : "save-button coffee-filter"
+                  ? "save-button Elegant-filter"
+                  : "save-button Coffee-filter"
               }
             />
           </button>

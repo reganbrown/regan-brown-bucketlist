@@ -16,10 +16,16 @@ const chatAdd = async (req, res) => {
       });
     }
 
+    const user = await knex("users").where({ id: req.userId }).first();
+    if (!user) {
+      return res.status(404).send("user not found");
+    }
+
     const newChat = {
-      user_id: USER_ID,
+      user_id: req.userId,
       bucket_id: bucket_id,
       message: req.body.message,
+      date_added: Date.now(),
     };
 
     const insertedIDs = await knex("chats").insert(newChat);
@@ -46,7 +52,11 @@ const chatList = async (req, res) => {
       });
     }
 
-    const chats = await knex("chats").where({ bucket_id: bucket_id });
+    const chats = await knex("chats")
+      .join("users", "chats.user_id", "users.id")
+      .select("chats.*", "users.name as user_name")
+      .where({ "chats.bucket_id": bucket_id });
+
     res.status(200).json(chats);
   } catch (error) {
     console.error(error);

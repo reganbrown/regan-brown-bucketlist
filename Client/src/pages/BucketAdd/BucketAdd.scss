@@ -4,8 +4,8 @@
 @use "../../styles/global";
 
 .thumbnails {
-  width: 40%;
-  height: 4rem;
+  width: 30%;
+  height: 3rem;
   object-fit: cover;
   margin: 1rem;
   box-shadow: 8px 5px 8px black;
@@ -53,39 +53,39 @@
   box-shadow: 8px 5px 8px black;
 }
 
-.adventure-photo-list {
+.Navy-photo-list {
   @extend .photo-list;
-  background-color: $adventure-primary;
+  background-color: $Navy-primary;
 }
 
-.travel-photo-list {
+.Travel-photo-list {
   @extend .photo-list;
-  background-color: $travel-primary;
+  background-color: $Travel-primary;
 }
 
-.rose-photo-list {
+.Rose-photo-list {
   @extend .photo-list;
-  background-color: $rose-primary;
+  background-color: $Rose-primary;
 }
 
-.grink-photo-list {
+.Desert-photo-list {
   @extend .photo-list;
-  background-color: $grink-primary;
+  background-color: $Desert-primary;
 }
 
-.royal-photo-list {
+.Royal-photo-list {
   @extend .photo-list;
-  background-color: $royal-primary;
+  background-color: $Royal-primary;
 }
 
-.elegant-photo-list {
+.Elegant-photo-list {
   @extend .photo-list;
-  background-color: $elegant-primary;
+  background-color: $Elegant-primary;
 }
 
-.coffee-photo-list {
+.Coffee-photo-list {
   @extend .photo-list;
-  background-color: $coffee-primary;
+  background-color: $Coffee-primary;
 }
 
 .selected-photo {
@@ -107,4 +107,50 @@
 
 .search-button {
   margin-left: 1rem;
+}
+
+.user-list {
+  margin-top: 2rem;
+  margin-right: 2rem;
+  padding-top: 1rem;
+  width: 35%;
+  height: 23rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  box-shadow: 8px 5px 8px black;
+}
+
+.Navy-user-list {
+  @extend .user-list;
+  background-color: $Navy-primary;
+}
+
+.Travel-user-list {
+  @extend .user-list;
+  background-color: $Travel-primary;
+}
+
+.Rose-user-list {
+  @extend .user-list;
+  background-color: $Rose-primary;
+}
+
+.Desert-user-list {
+  @extend .user-list;
+  background-color: $Desert-primary;
+}
+
+.Royal-user-list {
+  @extend .user-list;
+  background-color: $Royal-primary;
+}
+
+.Elegant-user-list {
+  @extend .user-list;
+  background-color: $Elegant-primary;
+}
+
+.Coffee-user-list {
+  @extend .user-list;
+  background-color: $Coffee-primary;
 }

@@ -2,7 +2,7 @@
 
 ## Overview
 
-The Bucket List is a web application where users can create "Buckets" which are goal activities or places to travel with helpful dashboards to track those goals.
+The Bucket List is a web application where users can create "Buckets" which are goal activities or places to Travel with helpful dashboards to track those goals.
 
 ### Problem Space
 
@@ -41,7 +41,6 @@ Anyone who has a bucket list, a dream vacation, or activity they're working towa
 ### APIs
 
 - UnSplash for adding banner images
--
 
 ### Sitemap
 
@@ -138,3 +137,4 @@ See attached Roadmap
 - Bucket dashboard image as upload instead of stock images
 - Additional page options for buckets like a mood board, or a links list where users can save links for hotels, excursions, etc.
 - Customizable themes instead of the pre-builds
+- Mobile and Tablet views (responsiveness)

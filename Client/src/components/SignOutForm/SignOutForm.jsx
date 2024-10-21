@@ -43,7 +43,7 @@ export default function SignOutForm({ onLogout }) {
   return (
     <div className="account-form logout">
       <Link to={`/`}>
-        <img src={arrowBack} className="logo coffee-filter" />
+        <img src={arrowBack} className="logo Coffee-filter" />
       </Link>
       <h1 className="account-header">Welcome</h1>
       <h2 className="account-header">{name}</h2>

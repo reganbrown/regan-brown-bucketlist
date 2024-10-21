@@ -87,6 +87,9 @@ export default function BucketExpenses() {
   function submitExpense(event) {
     event.preventDefault();
     addExpense();
+    setExpenseAmount("");
+    setExpenseName("");
+    setExpenseNotes("");
   }
 
   async function deleteExpense(expenseID) {
@@ -112,19 +115,19 @@ export default function BucketExpenses() {
   return (
     <div
       className={
-        bucketTheme === "Adventure"
-          ? "container adventure-page"
+        bucketTheme === "Navy"
+          ? "container Navy-page"
           : bucketTheme === "Travel"
-          ? "container travel-page"
+          ? "container Travel-page"
           : bucketTheme === "Rose"
-          ? "container rose-page"
-          : bucketTheme === "Grink"
-          ? "container grink-page"
+          ? "container Rose-page"
+          : bucketTheme === "Desert"
+          ? "container Desert-page"
           : bucketTheme === "Royal"
-          ? "container royal-page"
+          ? "container Royal-page"
           : bucketTheme === "Elegant"
-          ? "container elegant-page"
-          : "container coffee-page"
+          ? "container Elegant-page"
+          : "container Coffee-page"
       }
     >
       <div className="header">
@@ -132,19 +135,19 @@ export default function BucketExpenses() {
           <img
             src={arrowBack}
             className={
-              bucketTheme === "Adventure"
-                ? "logo adventure-filter"
+              bucketTheme === "Navy"
+                ? "logo Navy-filter"
                 : bucketTheme === "Travel"
-                ? "logo travel-filter"
+                ? "logo Travel-filter"
                 : bucketTheme === "Rose"
-                ? "logo rose-filter"
-                : bucketTheme === "Grink"
-                ? "logo grink-filter"
+                ? "logo Rose-filter"
+                : bucketTheme === "Desert"
+                ? "logo Desert-filter"
                 : bucketTheme === "Royal"
-                ? "logo royal-filter"
+                ? "logo Royal-filter"
                 : bucketTheme === "Elegant"
-                ? "logo elegant-filter"
-                : "logo coffee-filter"
+                ? "logo Elegant-filter"
+                : "logo Coffee-filter"
             }
           />
         </Link>
@@ -152,19 +155,19 @@ export default function BucketExpenses() {
           <img
             src={bucketLogo}
             className={
-              bucketTheme === "Adventure"
-                ? "logo adventure-filter"
+              bucketTheme === "Navy"
+                ? "logo Navy-filter"
                 : bucketTheme === "Travel"
-                ? "logo travel-filter"
+                ? "logo Travel-filter"
                 : bucketTheme === "Rose"
-                ? "logo rose-filter"
-                : bucketTheme === "Grink"
-                ? "logo grink-filter"
+                ? "logo Rose-filter"
+                : bucketTheme === "Desert"
+                ? "logo Desert-filter"
                 : bucketTheme === "Royal"
-                ? "logo royal-filter"
+                ? "logo Royal-filter"
                 : bucketTheme === "Elegant"
-                ? "logo elegant-filter"
-                : "logo coffee-filter"
+                ? "logo Elegant-filter"
+                : "logo Coffee-filter"
             }
           />
         </Link>
@@ -172,19 +175,19 @@ export default function BucketExpenses() {
           <img
             src={accountLogo}
             className={
-              bucketTheme === "Adventure"
-                ? "logo adventure-filter"
+              bucketTheme === "Navy"
+                ? "logo Navy-filter"
                 : bucketTheme === "Travel"
-                ? "logo travel-filter"
+                ? "logo Travel-filter"
                 : bucketTheme === "Rose"
-                ? "logo rose-filter"
-                : bucketTheme === "Grink"
-                ? "logo grink-filter"
+                ? "logo Rose-filter"
+                : bucketTheme === "Desert"
+                ? "logo Desert-filter"
                 : bucketTheme === "Royal"
-                ? "logo royal-filter"
+                ? "logo Royal-filter"
                 : bucketTheme === "Elegant"
-                ? "logo elegant-filter"
-                : "logo coffee-filter"
+                ? "logo Elegant-filter"
+                : "logo Coffee-filter"
             }
           />
         </Link>
@@ -194,57 +197,57 @@ export default function BucketExpenses() {
         <div key={expense.id} className="finance-list">
           <div
             className={
-              bucketTheme === "Adventure"
-                ? "adventure-finance-box"
+              bucketTheme === "Navy"
+                ? "Navy-finance-box"
                 : bucketTheme === "Travel"
-                ? "travel-finance-box"
+                ? "Travel-finance-box"
                 : bucketTheme === "Rose"
-                ? "rose-finance-box"
-                : bucketTheme === "Grink"
-                ? "grink-finance-box"
+                ? "Rose-finance-box"
+                : bucketTheme === "Desert"
+                ? "Desert-finance-box"
                 : bucketTheme === "Royal"
-                ? "royal-finance-box"
+                ? "Royal-finance-box"
                 : bucketTheme === "Elegant"
-                ? "elegant-finance-box"
-                : "coffee-finance-box"
+                ? "Elegant-finance-box"
+                : "Coffee-finance-box"
             }
           >
             {expense.expense_name}
           </div>
           <div
             className={
-              bucketTheme === "Adventure"
-                ? "adventure-finance-box"
+              bucketTheme === "Navy"
+                ? "Navy-finance-box"
                 : bucketTheme === "Travel"
-                ? "travel-finance-box"
+                ? "Travel-finance-box"
                 : bucketTheme === "Rose"
-                ? "rose-finance-box"
-                : bucketTheme === "Grink"
-                ? "grink-finance-box"
+                ? "Rose-finance-box"
+                : bucketTheme === "Desert"
+                ? "Desert-finance-box"
                 : bucketTheme === "Royal"
-                ? "royal-finance-box"
+                ? "Royal-finance-box"
                 : bucketTheme === "Elegant"
-                ? "elegant-finance-box"
-                : "coffee-finance-box"
+                ? "Elegant-finance-box"
+                : "Coffee-finance-box"
             }
           >
             {expense.amount}
           </div>
           <div
             className={
-              bucketTheme === "Adventure"
-                ? "adventure-finance-box"
+              bucketTheme === "Navy"
+                ? "Navy-finance-box"
                 : bucketTheme === "Travel"
-                ? "travel-finance-box"
+                ? "Travel-finance-box"
                 : bucketTheme === "Rose"
-                ? "rose-finance-box"
-                : bucketTheme === "Grink"
-                ? "grink-finance-box"
+                ? "Rose-finance-box"
+                : bucketTheme === "Desert"
+                ? "Desert-finance-box"
                 : bucketTheme === "Royal"
-                ? "royal-finance-box"
+                ? "Royal-finance-box"
                 : bucketTheme === "Elegant"
-                ? "elegant-finance-box"
-                : "coffee-finance-box"
+                ? "Elegant-finance-box"
+                : "Coffee-finance-box"
             }
           >
             {expense.notes}
@@ -255,37 +258,37 @@ export default function BucketExpenses() {
               deleteExpense(expense.id);
             }}
             className={
-              bucketTheme === "Adventure"
-                ? "button adventure-page"
+              bucketTheme === "Navy"
+                ? "button Navy-page"
                 : bucketTheme === "Travel"
-                ? "button travel-page"
+                ? "button Travel-page"
                 : bucketTheme === "Rose"
-                ? "button rose-page"
-                : bucketTheme === "Grink"
-                ? "button grink-page"
+                ? "button Rose-page"
+                : bucketTheme === "Desert"
+                ? "button Desert-page"
                 : bucketTheme === "Royal"
-                ? "button royal-page"
+                ? "button Royal-page"
                 : bucketTheme === "Elegant"
-                ? "button elegant-page"
-                : "button coffee-page"
+                ? "button Elegant-page"
+                : "button Coffee-page"
             }
           >
             <img
               src={deleteButton}
               className={
-                bucketTheme === "Adventure"
-                  ? "delete-button adventure-filter"
+                bucketTheme === "Navy"
+                  ? "delete-button Navy-filter"
                   : bucketTheme === "Travel"
-                  ? "delete-button travel-filter"
+                  ? "delete-button Travel-filter"
                   : bucketTheme === "Rose"
-                  ? "delete-button rose-filter"
-                  : bucketTheme === "Grink"
-                  ? "delete-button grink-filter"
+                  ? "delete-button Rose-filter"
+                  : bucketTheme === "Desert"
+                  ? "delete-button Desert-filter"
                   : bucketTheme === "Royal"
-                  ? "delete-button royal-filter"
+                  ? "delete-button Royal-filter"
                   : bucketTheme === "Elegant"
-                  ? "delete-button elegant-filter"
-                  : "delete-button coffee-filter"
+                  ? "delete-button Elegant-filter"
+                  : "delete-button Coffee-filter"
               }
             />
           </button>
@@ -295,6 +298,7 @@ export default function BucketExpenses() {
         <input
           type="text"
           placeholder="Expense Name"
+          className="form-input"
           value={expenseName}
           onChange={changeName}
         />
@@ -303,16 +307,37 @@ export default function BucketExpenses() {
           min="0"
           step="0.01"
           placeholder="Expense Amount"
+          className="form-input"
           value={expenseAmount}
           onChange={changeAmount}
         />
         <input
           type="text"
           placeholder="Expense Notes"
+          className="form-input"
           value={expenseNotes}
           onChange={changeNotes}
         />
-        <button type="submit">Save</button>
+        <button
+          type="submit"
+          className={
+            bucketTheme === "Navy"
+              ? "Navy-button-alt"
+              : bucketTheme === "Travel"
+              ? "Travel-button-alt"
+              : bucketTheme === "Rose"
+              ? "Rose-button-alt"
+              : bucketTheme === "Desert"
+              ? "Desert-button-alt"
+              : bucketTheme === "Royal"
+              ? "Royal-button-alt"
+              : bucketTheme === "Elegant"
+              ? "Elegant-button-alt"
+              : "Coffee-button-alt"
+          }
+        >
+          +
+        </button>
       </form>
     </div>
   );

@@ -1,0 +1,150 @@
+@use "../../styles/fonts" as *;
+@use "../../styles/mixins" as *;
+@use "../../styles//variables" as *;
+@use "../../styles/global";
+
+.message-board {
+  display: flex;
+  flex-direction: column;
+  height: 70vh;
+  width: 60%;
+  max-width: 1000px;
+  margin: auto;
+  background-color: white;
+  border-radius: 36px;
+  padding: 1rem;
+  overflow: auto;
+  overflow-anchor: none;
+}
+
+.message-input {
+  width: 50%;
+  max-width: 900px;
+}
+
+.send-button {
+  margin: 0.5rem;
+  border-radius: 8px;
+  width: 4rem;
+  height: 2.5rem;
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+  box-shadow: 5px 5px 8px black;
+  font-size: 1.3rem;
+}
+
+#anchor {
+  overflow-anchor: auto;
+  height: 1px;
+}
+
+.user-chat-item {
+  align-self: flex-end;
+  display: flex;
+  flex-wrap: wrap;
+  text-align: start;
+  width: 70%;
+  margin: 1rem 0;
+  min-height: 6rem;
+  padding: 2rem;
+  border-radius: 36px;
+  background-color: $Coffee-primary;
+  color: $Coffee-secondary;
+  font-size: 20px;
+  box-shadow: 6px 5px 8px black;
+}
+
+.chat-item {
+  display: flex;
+  flex-wrap: wrap;
+  text-align: start;
+  flex-shrink: 0;
+  width: 70%;
+  min-height: 8rem;
+  margin: 1rem 0;
+  padding: 2rem;
+  border-radius: 36px;
+  background-color: $Coffee-secondary;
+  color: $Coffee-primary;
+  font-size: 22px;
+  box-shadow: 6px 5px 8px black;
+}
+
+.Navy-chat {
+  @extend .chat-item;
+  background-color: $Navy-secondary;
+  color: $Navy-primary;
+}
+.Travel-chat {
+  @extend .chat-item;
+  background-color: $Travel-secondary;
+  color: $Travel-primary;
+}
+.Rose-chat {
+  @extend .chat-item;
+  background-color: $Rose-secondary;
+  color: $Rose-primary;
+}
+.Desert-chat {
+  @extend .chat-item;
+  background-color: $Desert-secondary;
+  color: $Desert-primary;
+}
+.Royal-chat {
+  @extend .chat-item;
+  background-color: $Royal-secondary;
+  color: $Royal-primary;
+}
+.Elegant-chat {
+  @extend .chat-item;
+  background-color: $Elegant-secondary;
+  color: $Elegant-primary;
+}
+.Coffee-chat {
+  @extend .chat-item;
+  background-color: $Coffee-secondary;
+  color: $Coffee-primary;
+}
+
+.user-Navy-chat {
+  @extend .user-chat-item;
+  background-color: $Navy-primary;
+  color: $Navy-secondary;
+}
+.user-Travel-chat {
+  @extend .user-chat-item;
+  background-color: $Travel-primary;
+  color: $Travel-secondary;
+}
+.user-Rose-chat {
+  @extend .user-chat-item;
+  background-color: $Rose-primary;
+  color: $Rose-secondary;
+}
+.user-Desert-chat {
+  @extend .user-chat-item;
+  background-color: $Desert-primary;
+  color: $Desert-secondary;
+}
+.user-Royal-chat {
+  @extend .user-chat-item;
+  background-color: $Royal-primary;
+  color: $Royal-secondary;
+}
+.user-Elegant-chat {
+  @extend .user-chat-item;
+  background-color: $Elegant-primary;
+  color: $Elegant-secondary;
+}
+.user-Coffee-chat {
+  @extend .user-chat-item;
+  background-color: $Coffee-primary;
+  color: $Coffee-secondary;
+}
+
+.message-details {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}

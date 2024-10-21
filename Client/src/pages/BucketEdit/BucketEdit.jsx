@@ -21,13 +21,15 @@ export default function BucketEdit() {
   const [photoSearch, setPhotoSearch] = useState("");
   const [photoList, setPhotoList] = useState([]);
   const [selectedPhoto, setSelectedPhoto] = useState("");
+  const [userSearch, setUserSearch] = useState("");
+  const [contributors, setContributors] = useState([]);
 
   const themes = [
     "Coffee",
     "Travel",
-    "Adventure",
+    "Navy",
     "Rose",
-    "Grink",
+    "Desert",
     "Royal",
     "Elegant",
   ];
@@ -92,6 +94,7 @@ export default function BucketEdit() {
 
   useEffect(() => {
     getBucket();
+    getUsers();
   }, [bucketID]);
 
   function titleChange(event) {
@@ -113,27 +116,95 @@ export default function BucketEdit() {
     setPhotoList(results.data.results);
   }
 
+  async function addNewUser() {
+    let newUser = {
+      email: userSearch,
+    };
+
+    try {
+      let results = await axios.post(
+        `${backendUrl}/bucket/${bucketID}/contributors`,
+        newUser,
+        {
+          headers: {
+            Authorization: `Bearer ${getToken()}`,
+          },
+        }
+      );
+      getUsers();
+    } catch (error) {
+      if (error.response && error.response.status === 404) {
+        alert("User not found. Please check the email address.");
+      } else if (error.response && error.response.status === 400) {
+        alert(error.response.data.message);
+      } else {
+        console.log("Error adding user", error);
+      }
+    }
+  }
+
+  async function getUsers() {
+    let results = await axios.get(
+      `${backendUrl}/bucket/${bucketID}/contributors`,
+
+      {
+        headers: {
+          Authorization: `Bearer ${getToken()}`,
+        },
+      }
+    );
+
+    setContributors(results.data);
+  }
+
   function submitEdit(event) {
     event.preventDefault();
     updateBucketDetails();
   }
 
+  function updateUserSearch(event) {
+    event.preventDefault();
+    setUserSearch(event.target.value);
+  }
+
+  function findUser(event) {
+    event.preventDefault();
+    addNewUser();
+    setUserSearch("");
+  }
+
+  async function deleteUser(userID) {
+    try {
+      await axios.delete(
+        `${backendUrl}/bucket/${bucketID}/contributors/${userID}`,
+        {
+          headers: {
+            Authorization: `Bearer ${getToken()}`,
+          },
+        }
+      );
+      getUsers();
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <div
       className={
-        bucketTheme === "Adventure"
-          ? "container adventure-page"
+        bucketTheme === "Navy"
+          ? "container Navy-page"
           : bucketTheme === "Travel"
-          ? "container travel-page"
+          ? "container Travel-page"
           : bucketTheme === "Rose"
-          ? "container rose-page"
-          : bucketTheme === "Grink"
-          ? "container grink-page"
+          ? "container Rose-page"
+          : bucketTheme === "Desert"
+          ? "container Desert-page"
           : bucketTheme === "Royal"
-          ? "container royal-page"
+          ? "container Royal-page"
           : bucketTheme === "Elegant"
-          ? "container elegant-page"
-          : "container coffee-page"
+          ? "container Elegant-page"
+          : "container Coffee-page"
       }
     >
       <div className="header">
@@ -141,19 +212,19 @@ export default function BucketEdit() {
           <img
             src={arrowBack}
             className={
-              bucketTheme === "Adventure"
-                ? "logo adventure-filter"
+              bucketTheme === "Navy"
+                ? "logo Navy-filter"
                 : bucketTheme === "Travel"
-                ? "logo travel-filter"
+                ? "logo Travel-filter"
                 : bucketTheme === "Rose"
-                ? "logo rose-filter"
-                : bucketTheme === "Grink"
-                ? "logo grink-filter"
+                ? "logo Rose-filter"
+                : bucketTheme === "Desert"
+                ? "logo Desert-filter"
                 : bucketTheme === "Royal"
-                ? "logo royal-filter"
+                ? "logo Royal-filter"
                 : bucketTheme === "Elegant"
-                ? "logo elegant-filter"
-                : "logo coffee-filter"
+                ? "logo Elegant-filter"
+                : "logo Coffee-filter"
             }
           />
         </Link>
@@ -161,19 +232,19 @@ export default function BucketEdit() {
           <img
             src={bucketLogo}
             className={
-              bucketTheme === "Adventure"
-                ? "logo adventure-filter"
+              bucketTheme === "Navy"
+                ? "logo Navy-filter"
                 : bucketTheme === "Travel"
-                ? "logo travel-filter"
+                ? "logo Travel-filter"
                 : bucketTheme === "Rose"
-                ? "logo rose-filter"
-                : bucketTheme === "Grink"
-                ? "logo grink-filter"
+                ? "logo Rose-filter"
+                : bucketTheme === "Desert"
+                ? "logo Desert-filter"
                 : bucketTheme === "Royal"
-                ? "logo royal-filter"
+                ? "logo Royal-filter"
                 : bucketTheme === "Elegant"
-                ? "logo elegant-filter"
-                : "logo coffee-filter"
+                ? "logo Elegant-filter"
+                : "logo Coffee-filter"
             }
           />
         </Link>
@@ -181,19 +252,19 @@ export default function BucketEdit() {
           <img
             src={accountLogo}
             className={
-              bucketTheme === "Adventure"
-                ? "logo adventure-filter"
+              bucketTheme === "Navy"
+                ? "logo Navy-filter"
                 : bucketTheme === "Travel"
-                ? "logo travel-filter"
+                ? "logo Travel-filter"
                 : bucketTheme === "Rose"
-                ? "logo rose-filter"
-                : bucketTheme === "Grink"
-                ? "logo grink-filter"
+                ? "logo Rose-filter"
+                : bucketTheme === "Desert"
+                ? "logo Desert-filter"
                 : bucketTheme === "Royal"
-                ? "logo royal-filter"
+                ? "logo Royal-filter"
                 : bucketTheme === "Elegant"
-                ? "logo elegant-filter"
-                : "logo coffee-filter"
+                ? "logo Elegant-filter"
+                : "logo Coffee-filter"
             }
           />
         </Link>
@@ -201,49 +272,139 @@ export default function BucketEdit() {
       <div className="add-page">
         <h1 className="add-title">{bucketTitle}</h1>
         <form onSubmit={submitEdit} className="add-form">
-          <div className="form-box">
-            <input
-              type="text"
-              placeholder="enter title"
-              value={bucketTitle}
-              onChange={titleChange}
-              className="form-input"
-            />
-          </div>
-          <div className="form-box">
-            <div className="theme-dropdown">
-              <select
-                id="theme"
-                value={bucketTheme}
-                onChange={updateTheme}
+          <div className="form-box__wrapper-left">
+            <div className="form-box">
+              <input
+                type="text"
+                placeholder="enter title"
+                value={bucketTitle}
+                onChange={titleChange}
                 className="form-input"
-              >
-                <option value="" disabled>
-                  Select a theme
-                </option>
-                {themes.map((theme, index) => (
-                  <option key={index} value={theme}>
-                    {theme}
-                  </option>
-                ))}
-              </select>
+              />
             </div>
+            <div className="form-box">
+              <div className="theme-dropdown">
+                <select
+                  id="theme"
+                  value={bucketTheme}
+                  onChange={updateTheme}
+                  className="form-input"
+                >
+                  <option value="" disabled>
+                    Select a theme
+                  </option>
+                  {themes.map((theme, index) => (
+                    <option key={index} value={theme}>
+                      {theme}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+          </div>
+          <div className="selected-photo">
+            <h2 className="selected-photo-banner">Selected Banner</h2>
+            <img src={selectedPhoto} className="selected-thumbnail" />
           </div>
           <div
             className={
-              bucketTheme === "Adventure"
-                ? "adventure-photo-list"
+              bucketTheme === "Navy"
+                ? "Navy-user-list"
                 : bucketTheme === "Travel"
-                ? "travel-photo-list"
+                ? "Travel-user-list"
                 : bucketTheme === "Rose"
-                ? "rose-photo-list"
-                : bucketTheme === "Grink"
-                ? "grink-photo-list"
+                ? "Rose-user-list"
+                : bucketTheme === "Desert"
+                ? "Desert-user-list"
                 : bucketTheme === "Royal"
-                ? "royal-photo-list"
+                ? "Royal-user-list"
                 : bucketTheme === "Elegant"
-                ? "elegant-photo-list"
-                : "coffee-photo-list"
+                ? "Elegant-user-list"
+                : "Coffee-user-list"
+            }
+          >
+            <div className="form-box">
+              <input
+                type="text"
+                placeholder="Enter user Email"
+                value={userSearch}
+                onChange={updateUserSearch}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter") {
+                    event.preventDefault();
+                    document.getElementById("user-search-button").click();
+                  }
+                }}
+                className="form-input"
+              />
+
+              <button
+                type="button"
+                id="user-search-button"
+                className={
+                  bucketTheme === "Navy"
+                    ? "Navy-button"
+                    : bucketTheme === "Travel"
+                    ? "Travel-button"
+                    : bucketTheme === "Rose"
+                    ? "Rose-button"
+                    : bucketTheme === "Desert"
+                    ? "Desert-button"
+                    : bucketTheme === "Royal"
+                    ? "Royal-button"
+                    : bucketTheme === "Elegant"
+                    ? "Elegant-button"
+                    : "Coffee-button"
+                }
+                onClick={findUser}
+              >
+                Add User
+              </button>
+            </div>
+            {contributors.map((contributor, index) => (
+              <div key={index} className="contributor-name">
+                {contributor.name}
+                <button
+                  type="button"
+                  className={
+                    bucketTheme === "Navy"
+                      ? "Navy-button button-small"
+                      : bucketTheme === "Travel"
+                      ? "Travel-button button-small"
+                      : bucketTheme === "Rose"
+                      ? "Rose-button button-small"
+                      : bucketTheme === "Desert"
+                      ? "Desert-button button-small"
+                      : bucketTheme === "Royal"
+                      ? "Royal-button button-small"
+                      : bucketTheme === "Elegant"
+                      ? "Elegant-button button-small"
+                      : "Coffee-button button-small"
+                  }
+                  onClick={() => {
+                    deleteUser(contributor.id);
+                  }}
+                >
+                  X
+                </button>
+              </div>
+            ))}
+          </div>
+          <div
+            className={
+              bucketTheme === "Navy"
+                ? "Navy-photo-list"
+                : bucketTheme === "Travel"
+                ? "Travel-photo-list"
+                : bucketTheme === "Rose"
+                ? "Rose-photo-list"
+                : bucketTheme === "Desert"
+                ? "Desert-photo-list"
+                : bucketTheme === "Royal"
+                ? "Royal-photo-list"
+                : bucketTheme === "Elegant"
+                ? "Elegant-photo-list"
+                : "Coffee-photo-list"
             }
           >
             <div className="form-box">
@@ -265,9 +426,23 @@ export default function BucketEdit() {
                 type="button"
                 onClick={findPhotos}
                 id="search-button"
-                className="search-button"
+                className={
+                  bucketTheme === "Navy"
+                    ? "Navy-button"
+                    : bucketTheme === "Travel"
+                    ? "Travel-button"
+                    : bucketTheme === "Rose"
+                    ? "Rose-button"
+                    : bucketTheme === "Desert"
+                    ? "Desert-button"
+                    : bucketTheme === "Royal"
+                    ? "Royal-button"
+                    : bucketTheme === "Elegant"
+                    ? "Elegant-button"
+                    : "Coffee-button"
+                }
               >
-                Search for Banners
+                Search
               </button>
             </div>
             {photoList.map((photo, index) => (
@@ -281,44 +456,40 @@ export default function BucketEdit() {
               />
             ))}
           </div>
-          <div className="selected-photo">
-            <h2 className="selected-photo-banner">Selected Banner</h2>
-            <img src={selectedPhoto} className="selected-thumbnail" />
-          </div>
           <button
             type="submit"
             className={
-              bucketTheme === "Adventure"
-                ? "button adventure-page"
+              bucketTheme === "Navy"
+                ? "button Navy-page"
                 : bucketTheme === "Travel"
-                ? "button travel-page"
+                ? "button Travel-page"
                 : bucketTheme === "Rose"
-                ? "button rose-page"
-                : bucketTheme === "Grink"
-                ? "button grink-page"
+                ? "button Rose-page"
+                : bucketTheme === "Desert"
+                ? "button Desert-page"
                 : bucketTheme === "Royal"
-                ? "button royal-page"
+                ? "button Royal-page"
                 : bucketTheme === "Elegant"
-                ? "button elegant-page"
-                : "button coffee-page"
+                ? "button Elegant-page"
+                : "button Coffee-page"
             }
           >
             <img
               src={saveButton}
               className={
-                bucketTheme === "Adventure"
-                  ? "save-button adventure-filter"
+                bucketTheme === "Navy"
+                  ? "save-button Navy-filter"
                   : bucketTheme === "Travel"
-                  ? "save-button travel-filter"
+                  ? "save-button Travel-filter"
                   : bucketTheme === "Rose"
-                  ? "save-button rose-filter"
-                  : bucketTheme === "Grink"
-                  ? "save-button grink-filter"
+                  ? "save-button Rose-filter"
+                  : bucketTheme === "Desert"
+                  ? "save-button Desert-filter"
                   : bucketTheme === "Royal"
-                  ? "save-button royal-filter"
+                  ? "save-button Royal-filter"
                   : bucketTheme === "Elegant"
-                  ? "save-button elegant-filter"
-                  : "save-button coffee-filter"
+                  ? "save-button Elegant-filter"
+                  : "save-button Coffee-filter"
               }
             />
           </button>
@@ -326,37 +497,37 @@ export default function BucketEdit() {
             type="button"
             onClick={deleteBucket}
             className={
-              bucketTheme === "Adventure"
-                ? "button adventure-page"
+              bucketTheme === "Navy"
+                ? "button Navy-page"
                 : bucketTheme === "Travel"
-                ? "button travel-page"
+                ? "button Travel-page"
                 : bucketTheme === "Rose"
-                ? "button rose-page"
-                : bucketTheme === "Grink"
-                ? "button grink-page"
+                ? "button Rose-page"
+                : bucketTheme === "Desert"
+                ? "button Desert-page"
                 : bucketTheme === "Royal"
-                ? "button royal-page"
+                ? "button Royal-page"
                 : bucketTheme === "Elegant"
-                ? "button elegant-page"
-                : "button coffee-page"
+                ? "button Elegant-page"
+                : "button Coffee-page"
             }
           >
             <img
               src={deleteButton}
               className={
-                bucketTheme === "Adventure"
-                  ? "delete-button adventure-filter"
+                bucketTheme === "Navy"
+                  ? "delete-button Navy-filter"
                   : bucketTheme === "Travel"
-                  ? "delete-button travel-filter"
+                  ? "delete-button Travel-filter"
                   : bucketTheme === "Rose"
-                  ? "delete-button rose-filter"
-                  : bucketTheme === "Grink"
-                  ? "delete-button grink-filter"
+                  ? "delete-button Rose-filter"
+                  : bucketTheme === "Desert"
+                  ? "delete-button Desert-filter"
                   : bucketTheme === "Royal"
-                  ? "delete-button royal-filter"
+                  ? "delete-button Royal-filter"
                   : bucketTheme === "Elegant"
-                  ? "delete-button elegant-filter"
-                  : "delete-button coffee-filter"
+                  ? "delete-button Elegant-filter"
+                  : "delete-button Coffee-filter"
               }
             />
           </button>

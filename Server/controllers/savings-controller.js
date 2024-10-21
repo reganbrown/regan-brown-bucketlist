@@ -2,9 +2,6 @@ import initKnex from "knex";
 import configuration from "../knexfile.js";
 const knex = initKnex(configuration);
 
-// user_id is hardcoded in all instances until I figure out user authentication
-const { USER_ID } = process.env;
-
 const savingsAdd = async (req, res) => {
   const { bucket_id } = req.params;
   try {

@@ -113,19 +113,19 @@ export default function BucketDetails() {
   return (
     <div
       className={
-        bucket.theme_name === "Adventure"
-          ? "container adventure-page"
+        bucket.theme_name === "Navy"
+          ? "container Navy-page"
           : bucket.theme_name === "Travel"
-          ? "container travel-page"
+          ? "container Travel-page"
           : bucket.theme_name === "Rose"
-          ? "container rose-page"
-          : bucket.theme_name === "Grink"
-          ? "container grink-page"
+          ? "container Rose-page"
+          : bucket.theme_name === "Desert"
+          ? "container Desert-page"
           : bucket.theme_name === "Royal"
-          ? "container royal-page"
+          ? "container Royal-page"
           : bucket.theme_name === "Elegant"
-          ? "container elegant-page"
-          : "container coffee-page"
+          ? "container Elegant-page"
+          : "container Coffee-page"
       }
     >
       <div className="header">
@@ -133,19 +133,19 @@ export default function BucketDetails() {
           <img
             src={arrowBack}
             className={
-              bucket.theme_name === "Adventure"
-                ? "logo adventure-filter"
+              bucket.theme_name === "Navy"
+                ? "logo Navy-filter"
                 : bucket.theme_name === "Travel"
-                ? "logo travel-filter"
+                ? "logo Travel-filter"
                 : bucket.theme_name === "Rose"
-                ? "logo rose-filter"
-                : bucket.theme_name === "Grink"
-                ? "logo grink-filter"
+                ? "logo Rose-filter"
+                : bucket.theme_name === "Desert"
+                ? "logo Desert-filter"
                 : bucket.theme_name === "Royal"
-                ? "logo royal-filter"
+                ? "logo Royal-filter"
                 : bucket.theme_name === "Elegant"
-                ? "logo elegant-filter"
-                : "logo coffee-filter"
+                ? "logo Elegant-filter"
+                : "logo Coffee-filter"
             }
           />
         </Link>
@@ -153,19 +153,19 @@ export default function BucketDetails() {
           <img
             src={bucketLogo}
             className={
-              bucket.theme_name === "Adventure"
-                ? "logo adventure-filter"
+              bucket.theme_name === "Navy"
+                ? "logo Navy-filter"
                 : bucket.theme_name === "Travel"
-                ? "logo travel-filter"
+                ? "logo Travel-filter"
                 : bucket.theme_name === "Rose"
-                ? "logo rose-filter"
-                : bucket.theme_name === "Grink"
-                ? "logo grink-filter"
+                ? "logo Rose-filter"
+                : bucket.theme_name === "Desert"
+                ? "logo Desert-filter"
                 : bucket.theme_name === "Royal"
-                ? "logo royal-filter"
+                ? "logo Royal-filter"
                 : bucket.theme_name === "Elegant"
-                ? "logo elegant-filter"
-                : "logo coffee-filter"
+                ? "logo Elegant-filter"
+                : "logo Coffee-filter"
             }
           />
         </Link>
@@ -173,19 +173,19 @@ export default function BucketDetails() {
           <img
             src={accountLogo}
             className={
-              bucket.theme_name === "Adventure"
-                ? "logo adventure-filter"
+              bucket.theme_name === "Navy"
+                ? "logo Navy-filter"
                 : bucket.theme_name === "Travel"
-                ? "logo travel-filter"
+                ? "logo Travel-filter"
                 : bucket.theme_name === "Rose"
-                ? "logo rose-filter"
-                : bucket.theme_name === "Grink"
-                ? "logo grink-filter"
+                ? "logo Rose-filter"
+                : bucket.theme_name === "Desert"
+                ? "logo Desert-filter"
                 : bucket.theme_name === "Royal"
-                ? "logo royal-filter"
+                ? "logo Royal-filter"
                 : bucket.theme_name === "Elegant"
-                ? "logo elegant-filter"
-                : "logo coffee-filter"
+                ? "logo Elegant-filter"
+                : "logo Coffee-filter"
             }
           />
         </Link>
@@ -228,7 +228,7 @@ export default function BucketDetails() {
               </div>
             </Link>
 
-            <Link to={`/bucketlist/${bucketID}/chat`} className="link">
+            <Link to={`/${bucketID}/chat`} className="link">
               <div
                 className={
                   bucket.theme_name === "Coffee"
@@ -267,14 +267,14 @@ export default function BucketDetails() {
             styles={{
               path: {
                 stroke:
-                  bucket.theme_name === "Adventure"
-                    ? "#bf1717"
+                  bucket.theme_name === "Navy"
+                    ? "#3c4f76"
                     : bucket.theme_name === "Travel"
                     ? "#1e3f20"
                     : bucket.theme_name === "Rose"
                     ? "#f7c1bb"
-                    : bucket.theme_name === "Grink"
-                    ? "#edadc7"
+                    : bucket.theme_name === "Desert"
+                    ? "#e07a5f"
                     : bucket.theme_name === "Royal"
                     ? "#eca400"
                     : bucket.theme_name === "Elegant"
@@ -283,14 +283,14 @@ export default function BucketDetails() {
               },
               text: {
                 fill:
-                  bucket.theme_name === "Adventure"
-                    ? "#bf1717"
+                  bucket.theme_name === "Navy"
+                    ? "#3c4f76"
                     : bucket.theme_name === "Travel"
                     ? "#1e3f20"
                     : bucket.theme_name === "Rose"
                     ? "#f7c1bb"
-                    : bucket.theme_name === "Grink"
-                    ? "#edadc7"
+                    : bucket.theme_name === "Desert"
+                    ? "#e07a5f"
                     : bucket.theme_name === "Royal"
                     ? "#eca400"
                     : bucket.theme_name === "Elegant"

@@ -33,7 +33,7 @@ export default function BucketList() {
     <>
       <Link to={"/account"}>
         <div className="account-button-wrapper">
-          <img src={accountLogo} className="account-button coffee-filter" />
+          <img src={accountLogo} className="account-button Coffee-filter" />
         </div>
       </Link>
       <div className="bucket-list">
