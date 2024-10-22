@@ -21,7 +21,8 @@ router
 router
   .route("/:bucket_id/contributors")
   .post(authenticate, bucketController.addContributor)
-  .get(authenticate, bucketController.getContributors);
+  .get(authenticate, bucketController.getContributors)
+  .delete(authenticate, bucketController.removeContributor);
 
 router
   .route("/:bucket_id/contributors/:user_id")

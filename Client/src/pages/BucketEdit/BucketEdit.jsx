@@ -58,9 +58,14 @@ export default function BucketEdit() {
           Authorization: `Bearer ${getToken()}`,
         },
       });
-      setBucketTitle(results.data.bucket.title);
-      setBucketTheme(results.data.bucket.theme_name);
-      setSelectedPhoto(results.data.bucket.image_url);
+
+      if (results.data.userRole != "owner") {
+        navigate(`/${bucketID}`);
+      } else {
+        setBucketTitle(results.data.bucket.title);
+        setBucketTheme(results.data.bucket.theme_name);
+        setSelectedPhoto(results.data.bucket.image_url);
+      }
     } catch (error) {
       navigate("/404");
     }

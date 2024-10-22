@@ -98,6 +98,19 @@ export default function BucketDetails() {
     getSavings();
   }, [bucketID]);
 
+  const removeContributor = async () => {
+    try {
+      await axios.delete(`${backendUrl}/bucket/${bucketID}/contributors/`, {
+        headers: {
+          Authorization: `Bearer ${getToken()}`,
+        },
+      });
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     if (expensesTotal !== undefined && savingsTotal !== undefined) {
       if (expensesTotal === 0 && savingsTotal === 0) {
@@ -257,6 +270,20 @@ export default function BucketDetails() {
                   EDIT
                 </div>
               </Link>
+
+              <div
+                type="button"
+                className={
+                  userRole === "contributor"
+                    ? bucket.theme_name === "Coffee"
+                      ? "edit-button__coffee"
+                      : "edit-button"
+                    : "contributor-hidden"
+                }
+                onClick={removeContributor}
+              >
+                LEAVE BUCKET
+              </div>
             </div>
           </div>
         </div>

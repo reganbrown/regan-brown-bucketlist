@@ -267,6 +267,38 @@ const deleteContributor = async (req, res) => {
   }
 };
 
+const removeContributor = async (req, res) => {
+  const bucketID = req.params.bucket_id;
+
+  try {
+    const user = await knex("users").where({ id: req.userId }).first();
+
+    if (!user) {
+      console.log("User not found for ID:", req.userId);
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    const isContributor = await knex("bucket_users")
+      .where({
+        bucket_id: bucketID,
+        user_id: req.userId,
+        role: "contributor",
+      })
+      .first();
+
+    if (!isContributor) {
+      return res.status(400).json({ message: "User is not a contributor" });
+    }
+
+    await knex("bucket_users")
+      .where({ bucket_id: bucketID, user_id: req.userId })
+      .del();
+    res.status(200).send("user removed");
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 const getContributors = async (req, res) => {
   try {
     const bucketID = req.params.bucket_id;
@@ -293,4 +325,5 @@ export {
   addContributor,
   getContributors,
   deleteContributor,
+  removeContributor,
 };

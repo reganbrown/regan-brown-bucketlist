@@ -151,7 +151,8 @@ See attached Roadmap
 
 - User Authentication - DONE
 - Multi user buckets - DONE
-- Toastify Alerts
+- Toastify Alerts - DONE
+- Users can remove themselves as Contributors
 - Real time chat instead of comment board
 - Bucket dashboard image as upload instead of stock images
 - Additional page options for buckets like a mood board, or a links list where users can save links for hotels, excursions, etc.
