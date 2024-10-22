@@ -322,7 +322,20 @@ export default function BucketAdd() {
           </button>
         </form>
       </div>
-      <ToastContainer limit={3} />
+      <ToastContainer
+        limit={3}
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+        transition:Bounce
+      />
     </div>
   );
 }

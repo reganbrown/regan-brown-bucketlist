@@ -3,6 +3,20 @@
 @use "./variables" as *;
 @use "./themes" as *;
 
+.Toastify__toast-theme--colored.Toastify__toast--success {
+  background-color: $Coffee-secondary;
+  color: $Coffee-primary;
+}
+
+.Toastify__progress-bar-theme--colored.Toastify__progress-bar--success {
+  background-color: $Coffee-primary;
+}
+
+.Toastify__toast-theme--colored.Toastify__toast--error {
+  background-color: $Coffee-primary;
+  color: $Coffee-secondary;
+}
+
 // global resets
 html {
   box-sizing: border-box;

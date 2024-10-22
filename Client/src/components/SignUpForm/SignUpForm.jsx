@@ -89,7 +89,20 @@ export default function SignInForm() {
           Sign Up
         </button>
       </form>
-      <ToastContainer limit={3} />
+      <ToastContainer
+        limit={3}
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+        transition:Bounce
+      />
     </div>
   );
 }
