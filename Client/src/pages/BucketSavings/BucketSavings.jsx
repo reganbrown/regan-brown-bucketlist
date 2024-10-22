@@ -54,7 +54,7 @@ export default function BucketSavings() {
       });
       setBucketTheme(results.data.bucket.theme_name);
     } catch (error) {
-      navigate("/404");
+      navigate("/account");
     }
   };
 
@@ -256,18 +256,18 @@ export default function BucketSavings() {
             }}
             className={
               bucketTheme === "Navy"
-                ? "button Navy-page"
+                ? "finance-delete-button Navy-page"
                 : bucketTheme === "Travel"
-                ? "button Travel-page"
+                ? "finance-delete-button Travel-page"
                 : bucketTheme === "Rose"
-                ? "button Rose-page"
+                ? "finance-delete-button Rose-page"
                 : bucketTheme === "Desert"
-                ? "button Desert-page"
+                ? "finance-delete-button Desert-page"
                 : bucketTheme === "Royal"
-                ? "button Royal-page"
+                ? "finance-delete-button Royal-page"
                 : bucketTheme === "Elegant"
-                ? "button Elegant-page"
-                : "button Coffee-page"
+                ? "finance-delete-button Elegant-page"
+                : "finance-delete-button Coffee-page"
             }
           >
             <img

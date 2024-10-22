@@ -41,10 +41,6 @@ body {
 
 // Global Styles
 
-.full {
-  width: 100%;
-}
-
 .container {
   text-align: center;
   width: 100%;
@@ -67,7 +63,12 @@ body {
 }
 
 .link {
+  width: 100%;
   text-decoration: none;
+
+  @include breakpoint-desktop {
+    width: 12rem;
+  }
 }
 
 .list-item {
@@ -78,6 +79,13 @@ body {
 }
 
 .button {
+  width: 20%;
+  border: none;
+  cursor: pointer;
+}
+
+.finance-delete-button {
+  width: 5%;
   border: none;
   cursor: pointer;
 }
@@ -159,8 +167,15 @@ body {
   width: 100%;
 }
 
+.form-box__wrapper-left {
+  width: 100%;
+  @include breakpoint-tablet {
+    width: 50%;
+  }
+}
+
 .form__input {
-  width: 16rem;
+  width: 90%;
   height: 3rem;
   padding: 0.5rem;
   margin: 1rem;
@@ -174,7 +189,8 @@ body {
 }
 
 .nav-box {
-  width: 20rem;
+  width: 80%;
+  max-width: 25rem;
   background-color: $Coffee-secondary;
   border-radius: 8px;
   box-shadow: 8px 5px 8px black;
@@ -187,9 +203,15 @@ body {
 
 .finance-list {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
   gap: 1rem;
   padding: 0.5rem 0;
+
+  @include breakpoint-tablet {
+    flex-direction: row;
+  }
 }
 
 .thumbnails {
@@ -214,8 +236,12 @@ body {
   flex-wrap: wrap;
   align-content: center;
   justify-content: center;
-  width: 40%;
+  width: 100%;
   margin-bottom: 2rem;
+
+  @include breakpoint-tablet {
+    width: 45%;
+  }
 }
 
 .expense-form {
@@ -226,4 +252,8 @@ body {
   max-width: 1000px;
   margin: auto;
   padding: 0 3rem;
+}
+
+.full {
+  width: 100%;
 }

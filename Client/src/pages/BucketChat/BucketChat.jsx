@@ -66,7 +66,7 @@ export default function BucketChat() {
       });
       setBucketTheme(results.data.bucket.theme_name);
     } catch (error) {
-      navigate("/404");
+      navigate("/account");
     }
   };
 
@@ -231,64 +231,12 @@ export default function BucketChat() {
             }
           >
             <div className="message-details">
-              <div
-                className={
-                  bucketTheme === "Navy"
-                    ? "Navy-chat-box"
-                    : bucketTheme === "Travel"
-                    ? "Travel-chat-box"
-                    : bucketTheme === "Rose"
-                    ? "Rose-chat-box"
-                    : bucketTheme === "Desert"
-                    ? "Desert-chat-box"
-                    : bucketTheme === "Royal"
-                    ? "Royal-chat-box"
-                    : bucketTheme === "Elegant"
-                    ? "Elegant-chat-box"
-                    : "Coffee-chat-box"
-                }
-              >
-                {message.user_name}
-              </div>
-              <div
-                className={
-                  bucketTheme === "Navy"
-                    ? "Navy-chat-box"
-                    : bucketTheme === "Travel"
-                    ? "Travel-chat-box"
-                    : bucketTheme === "Rose"
-                    ? "Rose-chat-box"
-                    : bucketTheme === "Desert"
-                    ? "Desert-chat-box"
-                    : bucketTheme === "Royal"
-                    ? "Royal-chat-box"
-                    : bucketTheme === "Elegant"
-                    ? "Elegant-chat-box"
-                    : "Coffee-chat-box"
-                }
-              >
+              <div className="chat-box__name">{message.user_name}</div>
+              <div className="chat-box__date">
                 {timeConvert(message.date_added)}
               </div>
             </div>
-            <div
-              className={
-                bucketTheme === "Navy"
-                  ? "Navy-chat-box full"
-                  : bucketTheme === "Travel"
-                  ? "Travel-chat-box full"
-                  : bucketTheme === "Rose"
-                  ? "Rose-chat-box full"
-                  : bucketTheme === "Desert"
-                  ? "Desert-chat-box full"
-                  : bucketTheme === "Royal"
-                  ? "Royal-chat-box full"
-                  : bucketTheme === "Elegant"
-                  ? "Elegant-chat-box full"
-                  : "Coffee-chat-box full"
-              }
-            >
-              {message.message}
-            </div>
+            <div className="chat-box full">{message.message}</div>
           </div>
         ))}
         <div id="anchor"></div>

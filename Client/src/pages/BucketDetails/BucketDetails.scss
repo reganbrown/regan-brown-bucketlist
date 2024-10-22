@@ -12,9 +12,13 @@
 
 .title {
   width: 100%;
-  font-size: 80px;
+  font-size: 60px;
   @include playfair-display;
   padding-bottom: 2rem;
+
+  @include breakpoint-tablet {
+    font-size: 80px;
+  }
 }
 
 .bucket {
@@ -30,6 +34,7 @@
     display: flex;
     flex-wrap: wrap;
     width: 100%;
+    max-width: 40rem;
     justify-content: center;
     gap: 2rem;
 
@@ -42,7 +47,8 @@
 .edit-button {
   margin: auto;
   display: flex;
-  width: 40rem;
+  width: 90%;
+  max-width: 40rem;
   height: 4rem;
   background-color: none;
   border-radius: 8px;
@@ -54,6 +60,15 @@
   @include rajdhani-regular;
   font-size: 20px;
   box-shadow: 8px 5px 8px black;
+
+  @include breakpoint-tablet {
+    max-width: 40rem;
+  }
+
+  @include breakpoint-desktop {
+    width: 100%;
+    max-width: 40rem;
+  }
 
   &__coffee {
     @extend .edit-button;
@@ -65,7 +80,7 @@
 .finance-button {
   margin: auto;
   display: flex;
-  width: 12rem;
+  width: 90%;
   height: 4rem;
   background-color: none;
   border-radius: 8px;
@@ -77,6 +92,10 @@
   @include rajdhani-regular;
   font-size: 20px;
   box-shadow: 8px 5px 8px black;
+
+  @include breakpoint-desktop {
+    width: 12rem;
+  }
 
   &__coffee {
     @extend .finance-button;
@@ -95,8 +114,12 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    width: 70%;
+    width: 100%;
     min-height: 20rem;
+
+    @include breakpoint-tablet {
+      width: 70%;
+    }
   }
 
   &--right {
@@ -104,9 +127,14 @@
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    width: 30%;
-    height: 22rem;
+    width: 100%;
+
     padding: 2rem;
+
+    @include breakpoint-tablet {
+      width: 30%;
+      height: 22rem;
+    }
   }
 }
 

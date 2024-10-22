@@ -67,7 +67,7 @@ export default function BucketEdit() {
         setSelectedPhoto(results.data.bucket.image_url);
       }
     } catch (error) {
-      navigate("/404");
+      navigate("/account");
     }
   };
 

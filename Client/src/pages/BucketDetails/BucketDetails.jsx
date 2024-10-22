@@ -83,7 +83,7 @@ export default function BucketDetails() {
       setBucket(results.data.bucket);
       setUserRole(results.data.userRole);
     } catch (error) {
-      navigate("/404");
+      navigate("/account");
     }
   };
 
