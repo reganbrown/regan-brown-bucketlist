@@ -87,6 +87,11 @@ export default function BucketAdd() {
     }
   }
 
+  function updateBanner(photoURL) {
+    setSelectedPhoto(photoURL);
+    window.scrollTo(0, 0);
+  }
+
   async function findPhotos() {
     let results = await axios.get(
       `${unsplashURL}/search/photos/?client_id=${unsplashAPI}&page=1&per_page=6&query=${photoSearch}`
@@ -276,7 +281,7 @@ export default function BucketAdd() {
                 key={index}
                 className="thumbnails"
                 onClick={() => {
-                  setSelectedPhoto(photo.urls.regular);
+                  updateBanner(photo.urls.regular);
                 }}
               />
             ))}
