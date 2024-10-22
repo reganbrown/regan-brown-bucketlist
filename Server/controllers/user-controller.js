@@ -88,3 +88,38 @@ export const login = async (req, res) => {
     res.status(500).json({ message: "Login failed", error: err });
   }
 };
+
+export const deleteAccount = async (req, res) => {
+  try {
+    const userToDelete = await knex("users").where({ id: req.userId }).first();
+
+    if (!userToDelete) {
+      return res.status(404).json({
+        message: `User with ID ${req.userId} not found`,
+      });
+    }
+
+    await knex("buckets")
+      .whereIn(
+        "id",
+        knex("bucket_users")
+          .select("bucket_id")
+          .where({ user_id: req.userId, role: "owner" })
+      )
+      .del();
+
+    await knex("bucket_users").where({ user_id: req.userId }).del();
+    await knex("savings").where({ user_id: req.userId }).del();
+    await knex("chats").where({ user_id: req.userId }).del();
+
+    await knex("users").where({ id: req.userId }).del();
+
+    res.status(204).end();
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      message: "Unable to delete user",
+      error: error.message,
+    });
+  }
+};

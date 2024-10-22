@@ -9,7 +9,7 @@ export default function SignOutForm({ onLogout }) {
   const navigate = useNavigate();
 
   const logout = () => {
-    onLogout(); // Call the logout handler passed from Account
+    onLogout();
     navigate("/account");
   };
 
@@ -40,6 +40,20 @@ export default function SignOutForm({ onLogout }) {
     }
   }, [navigate]);
 
+  const deleteAccount = async () => {
+    try {
+      const response = await axios.delete(`${backendUrl}/user/deleteAccount`, {
+        headers: {
+          Authorization: `Bearer ${getToken()}`,
+        },
+      });
+      onLogout();
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="account-form logout">
       <Link to={`/`}>
@@ -50,6 +64,9 @@ export default function SignOutForm({ onLogout }) {
       <button onClick={logout} className="sign-in__button">
         Logout
       </button>
+      <div className="delete-account" onClick={deleteAccount}>
+        Or click here to delete your account permanently...
+      </div>
     </div>
   );
 }
