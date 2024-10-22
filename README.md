@@ -95,6 +95,8 @@ See attached folder of example mock ups
 
 - GET - http://localhost${PORT}/user/userDetails/ gets the user details for the authenticated user by token
 
+- DELETE - http://localhost${PORT}/user/deleteAccount/ deletes the user account and associated items
+
 ##### Bucket
 
 - GET - http://localhost${PORT}/bucket/ Provides a list of all buckets of authenticated user
@@ -105,7 +107,7 @@ See attached folder of example mock ups
 
 - PUT - http://localhost${PORT}/bucket/:bucket_id Updates one bucket details by given ID
 
-- DELETE - http://localhost${PORT}/bucket/:bucket_id Removes one bucket by given ID
+- DELETE - http://localhost${PORT}/bucket/:bucket_id Deletes one bucket by given ID
 
 ##### Expense
 
@@ -135,6 +137,8 @@ See attached folder of example mock ups
 
 - GET - http://localhost${PORT}/bucket/:BucketID/contributors/ Returns the contributors on a bucket
 
+- DELETE - http://localhost${PORT}/bucket/:BucketID/contributors/ Removes self as a contributor from a bucket
+
 - POST - http://localhost${PORT}/bucket/:BucketID/contributors/:user_id Adds a user as a contributor to a bucket
 
 - DELETE - http://localhost${PORT}/bucket/:BucketID/contributors/:user_id Removes a contributor from a bucket
@@ -153,8 +157,7 @@ See attached Roadmap
 - Multi user buckets - DONE
 - Toastify Alerts - DONE
 - Users can remove themselves as Contributors - DONE
-- User details edit / delete account
+- User delete account - DONE
 - Bucket dashboard image as upload instead of stock images
-- Additional page options for buckets like a mood board, or a links list where users can save links for hotels, excursions, etc.
 - Customizable themes instead of the pre-builds
 - Mobile and Tablet views (responsiveness)
