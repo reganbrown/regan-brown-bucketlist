@@ -50,9 +50,7 @@ export const signup = async (req, res) => {
       password: hashedPassword,
     });
 
-    const token = jwt.sign({ userId: newUserId }, process.env.JWT_SECRET, {
-      expiresIn: "24h",
-    });
+    const token = jwt.sign({ userId: newUserId }, process.env.JWT_SECRET);
 
     res.status(201).json({ token, userId: newUserId });
   } catch (err) {
@@ -78,9 +76,7 @@ export const login = async (req, res) => {
       return res.status(401).json({ message: "Invalid password" });
     }
 
-    const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, {
-      expiresIn: "24h",
-    });
+    const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET);
 
     res.status(200).json({ token, userId: user.id });
   } catch (err) {
