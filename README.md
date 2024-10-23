@@ -158,6 +158,6 @@ See attached Roadmap
 - Toastify Alerts - DONE
 - Users can remove themselves as Contributors - DONE
 - User delete account - DONE
+- Mobile and Tablet views (responsiveness) - DONE
 - Bucket dashboard image as upload instead of stock images
 - Customizable themes instead of the pre-builds
-- Mobile and Tablet views (responsiveness)
