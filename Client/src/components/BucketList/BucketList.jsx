@@ -36,12 +36,23 @@ export default function BucketList() {
           <img src={accountLogo} className="account__button Coffee-filter" />
         </div>
       </Link>
+      <h3 className="branded-title">This Little Bucket</h3>
       <div className="bucket-list">
+        <div
+          className={buckets.length === 0 ? "no-buckets" : "no-buckets-hidden"}
+        >
+          No buckets to display!
+        </div>
         {buckets.map((bucket) => (
           <Link to={`/${bucket.id}`} key={bucket.id} className="link">
             <div className="list-item">{bucket.title}</div>
           </Link>
         ))}
+      </div>
+      <div
+        className={buckets.length === 0 ? "no-buckets" : "no-buckets-hidden"}
+      >
+        Click this plus button to get started!
       </div>
       <Link to={"/addbucket"}>
         <button type="button" className="bucket__add-button">

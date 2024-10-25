@@ -5,6 +5,7 @@
 
 .bucket-list {
   width: 100%;
+  min-height: 6rem;
 }
 
 .bucket__add-button {
@@ -18,4 +19,15 @@
   box-shadow: 5px 5px 8px $Coffee-primary;
   font-size: 1.3rem;
   cursor: pointer;
+}
+
+.branded-title {
+  width: 100%;
+  color: $Coffee-primary;
+  @include rajdhani-regular;
+  margin-bottom: 1rem;
+}
+
+.no-buckets-hidden {
+  display: none;
 }
