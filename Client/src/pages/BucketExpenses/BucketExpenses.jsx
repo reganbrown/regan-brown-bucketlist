@@ -193,6 +193,51 @@ export default function BucketExpenses() {
         </Link>
       </div>
       <h1>Bucket Expenses</h1>
+      <form onSubmit={submitExpense}>
+        <input
+          type="text"
+          placeholder="Expense"
+          className="expense-form__input"
+          value={expenseName}
+          onChange={changeName}
+        />
+        <input
+          type="number"
+          min="0"
+          step="0.01"
+          placeholder="Amount"
+          className="expense-form__input"
+          value={expenseAmount}
+          onChange={changeAmount}
+        />
+        <input
+          type="text"
+          placeholder="Notes"
+          className="expense-form__input"
+          value={expenseNotes}
+          onChange={changeNotes}
+        />
+        <button
+          type="submit"
+          className={
+            bucketTheme === "Navy"
+              ? "Navy-button-alt"
+              : bucketTheme === "Travel"
+              ? "Travel-button-alt"
+              : bucketTheme === "Rose"
+              ? "Rose-button-alt"
+              : bucketTheme === "Desert"
+              ? "Desert-button-alt"
+              : bucketTheme === "Royal"
+              ? "Royal-button-alt"
+              : bucketTheme === "Elegant"
+              ? "Elegant-button-alt"
+              : "Coffee-button-alt"
+          }
+        >
+          +
+        </button>
+      </form>
       {expenses.map((expense) => (
         <div key={expense.id} className="finance-list">
           <div
@@ -294,51 +339,6 @@ export default function BucketExpenses() {
           </button>
         </div>
       ))}
-      <form onSubmit={submitExpense}>
-        <input
-          type="text"
-          placeholder="Expense Name"
-          className="form__input"
-          value={expenseName}
-          onChange={changeName}
-        />
-        <input
-          type="number"
-          min="0"
-          step="0.01"
-          placeholder="Expense Amount"
-          className="form__input"
-          value={expenseAmount}
-          onChange={changeAmount}
-        />
-        <input
-          type="text"
-          placeholder="Expense Notes"
-          className="form__input"
-          value={expenseNotes}
-          onChange={changeNotes}
-        />
-        <button
-          type="submit"
-          className={
-            bucketTheme === "Navy"
-              ? "Navy-button-alt"
-              : bucketTheme === "Travel"
-              ? "Travel-button-alt"
-              : bucketTheme === "Rose"
-              ? "Rose-button-alt"
-              : bucketTheme === "Desert"
-              ? "Desert-button-alt"
-              : bucketTheme === "Royal"
-              ? "Royal-button-alt"
-              : bucketTheme === "Elegant"
-              ? "Elegant-button-alt"
-              : "Coffee-button-alt"
-          }
-        >
-          +
-        </button>
-      </form>
     </div>
   );
 }

@@ -90,6 +90,8 @@ body {
 }
 
 .finance-delete-button {
+  display: flex;
+  justify-content: center;
   width: 5%;
   border: none;
   cursor: pointer;
@@ -188,9 +190,23 @@ body {
   border: 1px solid grey;
 }
 
+.expense-form__input {
+  width: 25%;
+  height: 3rem;
+  padding: 0.5rem;
+  margin: 1rem 0.5rem;
+  border-radius: 8px;
+  border: none;
+
+  @include breakpoint-tablet {
+    width: 20%;
+    margin: 1rem;
+  }
+}
+
 .message__input {
-  width: 40%;
-  max-width: 900px;
+  width: 80%;
+  max-width: 600px;
 }
 
 .nav-box {

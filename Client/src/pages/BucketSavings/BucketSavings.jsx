@@ -190,6 +190,37 @@ export default function BucketSavings() {
         </Link>
       </div>
       <h1>Bucket Savings</h1>
+      <form onSubmit={submitSavings} className="expense-form">
+        <input
+          type="number"
+          min="0"
+          step="0.01"
+          placeholder="Savings Amount"
+          className="form__input full"
+          value={savingsAmount}
+          onChange={changeAmount}
+        />
+        <button
+          type="submit"
+          className={
+            bucketTheme === "Navy"
+              ? "Navy-button-alt"
+              : bucketTheme === "Travel"
+              ? "Travel-button-alt"
+              : bucketTheme === "Rose"
+              ? "Rose-button-alt"
+              : bucketTheme === "Desert"
+              ? "Desert-button-alt"
+              : bucketTheme === "Royal"
+              ? "Royal-button-alt"
+              : bucketTheme === "Elegant"
+              ? "Elegant-button-alt"
+              : "Coffee-button-alt"
+          }
+        >
+          +
+        </button>
+      </form>
       {savings.map((item) => (
         <div key={item.id} className="finance-list">
           <div
@@ -291,37 +322,6 @@ export default function BucketSavings() {
           </button>
         </div>
       ))}
-      <form onSubmit={submitSavings} className="expense-form">
-        <input
-          type="number"
-          min="0"
-          step="0.01"
-          placeholder="Savings Amount"
-          className="form__input full"
-          value={savingsAmount}
-          onChange={changeAmount}
-        />
-        <button
-          type="submit"
-          className={
-            bucketTheme === "Navy"
-              ? "Navy-button-alt"
-              : bucketTheme === "Travel"
-              ? "Travel-button-alt"
-              : bucketTheme === "Rose"
-              ? "Rose-button-alt"
-              : bucketTheme === "Desert"
-              ? "Desert-button-alt"
-              : bucketTheme === "Royal"
-              ? "Royal-button-alt"
-              : bucketTheme === "Elegant"
-              ? "Elegant-button-alt"
-              : "Coffee-button-alt"
-          }
-        >
-          +
-        </button>
-      </form>
     </div>
   );
 }
